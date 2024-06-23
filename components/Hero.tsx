@@ -1,13 +1,14 @@
 import React from 'react'
-import { Spotlight } from './ui/Spotlight'
 import { LampDemo } from './ui/Lamp'
+import { motion } from 'framer-motion'
 
 const Hero = () => {
-  return (
-    <div className='pb-20 pt-36'>
-      <LampDemo></LampDemo>
-    </div>
-  )
+
+  return(
+    <LampDemo></LampDemo>
+  );
+
 }
+
 
 export default Hero
