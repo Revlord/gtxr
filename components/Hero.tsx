@@ -4,11 +4,13 @@ import { cn } from "@/utils/cn";
 import { motion } from "framer-motion";
 import React from "react";
 import { FlipWords } from "./ui/flip-words";
+import Link from "next/link";
 
 const Hero = () => {
   return (
     //Video div; change the source with the actual video later. Adjust the 'opacity' value for tweaking with the video's transparency
     <div className="relative h-screen flex items-center justify-center bg-black">
+      
       <video
         className="absolute inset-0 w-full h-full object-cover opacity-60"
         src="/dummy_video.mp4"
@@ -31,8 +33,11 @@ const Hero = () => {
         >
         <button className="mb-4 px-6 py-2 bg-white text-black rounded-full hover:scale-110 transition duration-200
         hover:text-purple hover:bg-violet-800 border-2 border-blue-800 hover:border-violet-950">
+          <Link href={"/events"} >
           → Discover our upcoming XR events and workshops.
+          </Link>
         </button>
+
         </motion.p> {/* Added animation and adjusted styling */}
 
         <motion.h1 
