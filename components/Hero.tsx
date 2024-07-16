@@ -5,50 +5,35 @@ import React from "react";
 import { LampDemo } from './ui/Lamp'
 import { ImagesSlider } from "./ui/Slider";
 
+//Replace the <video> src with the path to the actual video
+
 const Hero = () => {
-  return(
-    <ImagesSliderDemo />
-  );
-}
-
-export default Hero
-
-export function ImagesSliderDemo() {
-  //This is to be removed for the translucent video, no need for a picutre carousel,
-  const images = [
-    "https://images.unsplash.com/photo-1485433592409-9018e83a1f0d?q=80&w=1814&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1483982258113-b72862e6cff6?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1482189349482-3defd547e0e9?q=80&w=2848&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ];
 
   return (
-    <ImagesSlider className="h-screen" images={images}>
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: -80,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.6,
-        }}
-        className="z-50 flex flex-col justify-center items-center"
-      >
-        <motion.p className="font-bold text-6xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-[#a488eb] to-[#3b0e65] py-4">
-          Step into the future
-        </motion.p>
-        <motion.p className="font-bold text-m md:text-xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-300 to-neutral-600 py-4">
-          GTXR is Georgia Tech's spot for all things <span className="text-3xl">XR.</span> Leap into the reality of imagination.
-        </motion.p>
-        <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
-          <span>Join Discord Now →</span>
-          <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
+    //video. translucent-ness can be changed by altering 'opacity' value.
+    <div className="relative h-screen flex items-center justify-center bg-black">
+      <video
+        className="absolute inset-0 w-full h-full object-cover opacity-60"
+        src="/6615300-uhd_3840_2160_25fps.mp4"
+        autoPlay
+        loop
+        muted
+      />
+
+      {/* Hero text*/}
+
+      <div className="relative z-10 text-center text-white">
+        <h1 className="text-4xl md:text-7xl font-bold">Join GTXR</h1>
+        <p className="mt-4 text-xl md:text-2xl">Step into the future of XR</p>
+        <button className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-full">
+          Contact Us
         </button>
-      </motion.div>
-    </ImagesSlider>
+      </div>
+
+    </div>
+
   );
-}
+};
+
+export default Hero;
 

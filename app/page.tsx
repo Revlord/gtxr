@@ -7,7 +7,7 @@ export default function Home() {
   return ( //tailwind works, so does its extension
     <main>
       <div className="min-h-screen flex flex-col">
-        <Navbar></Navbar>
+        <Navbar/>
         <Hero/>
       </div>
     </main>

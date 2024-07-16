@@ -18,11 +18,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      ({
-        /*
-        Theme provider for dark theme
-         */
-      })
 
       <ThemeProvider
             attribute="class"
