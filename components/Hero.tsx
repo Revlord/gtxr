@@ -7,11 +7,11 @@ import { FlipWords } from "./ui/flip-words";
 
 const Hero = () => {
   return (
-    //video. Adjust the 'opacity' value for tweaking with the video's transparency
+    //Video div; change the source with the actual video later. Adjust the 'opacity' value for tweaking with the video's transparency
     <div className="relative h-screen flex items-center justify-center bg-black">
       <video
         className="absolute inset-0 w-full h-full object-cover opacity-60"
-        src="/6615300-uhd_3840_2160_25fps.mp4"
+        src="/dummy_video.mp4"
         autoPlay
         loop
         muted
@@ -31,8 +31,7 @@ const Hero = () => {
         hover:text-purple hover:bg-violet-800 border-2 border-blue-800 hover:border-violet-950">
           → Discover our upcoming XR events and workshops.
         </button>
-        </motion.p> {/* Added animation and adjusted styling
-        → Discover our upcoming XR events and workshops. */}
+        </motion.p> {/* Added animation and adjusted styling */}
 
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
@@ -40,8 +39,14 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-4xl md:text-6xl font-extrabold leading-tight md:leading-snug mb-8"
         >
+
           <FlipWords words={words} /> <br /> the world of Extended Reality with GTXR.
-        </motion.h1> {/* Adjusted font size and styling, added animation */}
+          {/* 
+          -> Go to /data/index.ts to change the flip words
+          -> Go to /components/ui/flip-words.tsx to tweak with the framermotion stuff for flip words 
+          */}
+
+        </motion.h1>
 
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
@@ -50,7 +55,7 @@ const Hero = () => {
           className="text-lg md:text-xl leading-relaxed"
         >
           GTXR is Georgia Tech's premier XR club, bringing together enthusiasts and experts to explore and innovate in the fields of virtual and augmented reality. Join us to learn, create, and push the boundaries of what's possible in XR.
-        </motion.p> {/* Added animation */}
+        </motion.p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <motion.p
@@ -61,7 +66,7 @@ const Hero = () => {
                      font-semibold hover:bg-gray-200 transition duration-200">
           → Get Connected
         </button>
-          </motion.p> {/* Added motion effects for hover and tap */}
+          </motion.p>
         </div>
       </div>
     </div>
