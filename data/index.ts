@@ -12,3 +12,6 @@ export const navItems = [
   { label: 'Hackathon', href: '/hackathon' },
   { label: 'Sponsorship', href: '/sponsorship' },
 ]
+
+//variable for the flipping words in hero section
+export const words = ["Step-into", "Explore", "Conquer"];

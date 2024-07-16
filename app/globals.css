@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles.css or any global CSS file */
+.hero-text {
+  text-align: center;
+  color: white;
+  padding-left: 1.5rem; /* 6px */
+  padding-right: 1.5rem; /* 6px */
+}
+
+@media (min-width: 640px) {
+  .hero-text {
+    padding-left: 3rem; /* 12px */
+    padding-right: 3rem; /* 12px */
+  }
+}
+
+input[type="email"] {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 9999px;
+  font-size: 1rem;
+}
+
+input[type="email"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
