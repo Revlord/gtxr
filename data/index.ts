@@ -6,9 +6,9 @@
 
 //variable for items displayed in the navbar
 export const navItems = [
-    { name: "About", link: "#about" },
-    { name: "Projects", link: "#projects" },
-    { name: "Events", link: "#events" },
-    { name: "Hackathon", link: "#hackathon" },
-    { name: "Sponsorship", link: "#sponsorship" },
-  ];
+  { label: 'About', href: '/about' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Events', href: '/events' },
+  { label: 'Hackathon', href: '/hackathon' },
+  { label: 'Sponsorship', href: '/sponsorship' },
+]

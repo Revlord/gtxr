@@ -10,6 +10,7 @@ import { ImagesSlider } from "./ui/Slider";
 const Hero = () => {
 
   return (
+
     //video. translucent-ness can be changed by altering 'opacity' value.
     <div className="relative h-screen flex items-center justify-center bg-black">
       <video
@@ -25,8 +26,8 @@ const Hero = () => {
       <div className="relative z-10 text-center text-white">
         <h1 className="text-4xl md:text-7xl font-bold">Join GTXR</h1>
         <p className="mt-4 text-xl md:text-2xl">Step into the future of XR</p>
-        <button className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-full">
-          Contact Us
+        <button className="mt-8 px-6 py-3 bg-violet-500 text-white rounded-full hover:scale-110 transition duration-200 hover:bg-violet-700">
+          Get Connected
         </button>
       </div>
 
