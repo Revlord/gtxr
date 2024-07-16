@@ -23,7 +23,9 @@ const Hero = () => {
         {/* Also, FEEL FREE to tweak with the framermotion values (as well as tailwind)
          and see if you can come up with cooler looking stuff!! */}
 
-        <motion.p 
+        <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
         >
@@ -59,6 +61,8 @@ const Hero = () => {
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >

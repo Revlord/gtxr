@@ -9,8 +9,8 @@ export const navItems = [
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
   { label: 'Events', href: '/events' },
-  { label: 'Hackathon', href: '/hackathon' },
-  { label: 'Sponsorship', href: '/sponsorship' },
+  { label: 'Hackathon', href: '/hackathons' },
+  { label: 'Sponsorship', href: '/sponsorships' },
 ]
 
 //variable for the flipping words in hero section
