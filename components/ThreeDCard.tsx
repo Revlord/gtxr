@@ -13,18 +13,18 @@ export function ThreeDCardDemo() {
           translateZ="50"
           className="text-xl font-bold text-neutral-600 dark:text-white"
         >
-          XR workspace
+          Join our XR Workspace
         </CardItem>
         <CardItem
           as="p"
           translateZ="60"
           className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
         >
-          Join GTXR to learn and leverage the power of XR
+          Join our club to engage in XR events, workshops, and get hands-on with the latest XR tech!
         </CardItem>
         <CardItem translateZ="100" className="w-full mt-4">
           <Image
-            src="/temp_logo2.png"
+            src="/temp_logo.png"
             height="1000"
             width="1000"
             className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -35,18 +35,19 @@ export function ThreeDCardDemo() {
           <CardItem
             translateZ={20}
             as={Link}
-            href="https://twitter.com/mannupaaji"
+            href="https://gatech.campuslabs.com/engage/organization/mixed-reality"
             target="__blank"
             className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
           >
-            Try now →
+            Membership →
           </CardItem>
           <CardItem
             translateZ={20}
-            as="button"
+            as={Link}
+            href="https://discord.gg/rVRTd4Q4"
             className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
           >
-            Sign up
+            Discord
           </CardItem>
         </div>
       </CardBody>
