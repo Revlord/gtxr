@@ -8,7 +8,7 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="transition duration-300 hover:opacity-80">
-          <Image src="/GTXR_logo.png" alt="logo" width={50} height={50} className="rounded-full" />
+          <Image src="/temp_logo.png" alt="logo" width={50} height={50} className="rounded-full" />
         </Link>
 
         {/* Navigation Menu */}

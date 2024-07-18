@@ -17,16 +17,10 @@
   }
 }
 
-input[type="email"] {
-  width: 100%;
-  max-width: 300px;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 9999px;
-  font-size: 1rem;
-}
 
-input[type="email"]:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+.last-row {
+  justify-content: space-between; /* Space between for two items */
+}
+.last-row:has(:nth-child(1):last-child) {
+  justify-content: center; /* Center for single item */
 }

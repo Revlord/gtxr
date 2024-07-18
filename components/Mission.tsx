@@ -1,3 +1,5 @@
+import { ThreeDCardDemo } from "./ThreeDCard";
+
 export default function Mission() {
     return (
         <div className="relative h-screen flex items-center justify-center bg-black">
@@ -9,6 +11,7 @@ export default function Mission() {
             </p>
             </div>
 
+            <ThreeDCardDemo/>
         </div>
     );
 }

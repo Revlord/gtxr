@@ -17,42 +17,43 @@ export const navItems = [
 export const words = ["Step-into", "Explore", "Conquer"];
 
 //variable for info about the exec members, edit them as needed
+//need to add actual images of the exec memebers from the notion
 export const execMembers = [
   {
     name: "Jack English",
     role: "Co-President",
     bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
-    image: "/dummy_image_1.jpg"
+    image: "/jackenglish.jpeg"
   },
   {
     name: "Ilkin Mammadli",
     role: "Co-President",
     bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
-    image: "/dummy_image_1.jpg"
+    image: "/ilkin.png"
   },
   {
     name: "Revanth Reddy",
     role: "Director Of Operations",
     bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
-    image: "/dummy_image_1.jpg"
+    image: "/revanth.png"
   },
   {
     name: "Ian Valderas",
     role: "Secretary",
     bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
-    image: "/dummy_image_1.jpg"
+    image: "/ian.jpg"
   },
   {
     name: "Ryan Clark",
     role: "Director Of Projects",
     bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
-    image: "/dummy_image_1.jpg"
+    image: "/ryan.jpg"
   },
   {
     name: "Ethan Kimmel",
     role: "Director Of Marketing",
     bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
-    image: "/dummy_image_1.jpg"
+    image: "/ethan.jpg"
   },
   {
     name: "Akshin Vemana",
