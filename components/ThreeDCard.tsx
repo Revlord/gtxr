@@ -20,11 +20,11 @@ export function ThreeDCardDemo() {
           translateZ="60"
           className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
         >
-          Join our club to engage in XR events, workshops, and get hands-on with the latest XR tech!
+          Engage in XR events, workshops, and get hands-on with the latest XR tech!
         </CardItem>
         <CardItem translateZ="100" className="w-full mt-4">
           <Image
-            src="/temp_logo.png"
+            src="/Blog-1.png.webp"
             height="1000"
             width="1000"
             className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
