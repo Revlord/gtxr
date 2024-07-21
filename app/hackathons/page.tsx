@@ -1,8 +1,13 @@
+import Navbar from "@/components/ui/Navbar";
+
 // /app/about/page.tsx
 export default function Hackathons() {
     return (
       <main>
-        <h1>Hackathons page works</h1>
+        <div className="min-h-screen flex flex-col">
+          <Navbar/>
+          <h1>Hackathons Page Works</h1>
+        </div>
       </main>
     );
   }
