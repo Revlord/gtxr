@@ -10,4 +10,4 @@ export default function Sponsorships() {
         </div>
       </main>
     );
-  }
+}
