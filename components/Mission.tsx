@@ -11,10 +11,12 @@ export default function Mission() {
                         We strive to push the boundaries of technology and creativity to create impactful and memorable experiences.
                     </p>
                     <p className="text-base text-gray-400">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium mollitia repudiandae atque, sunt fugiat quis commodi.
-                        Cupiditate non eius natus velit nisi ducimus, asperiores dignissimos doloribus, quo dolorem ad maiores!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem placeat expedita commodi deserunt officiis possimus est,
-                        eius ab sit iure labore id fugit temporibus autem amet. Doloremque omnis eos deserunt!
+                    Join us and get to know GTXR, Georgia Tech's Portal to Extended Reality, the university's premier VR/AR club.
+                     Take part in a hands-on workshop, where you'll learn the basics of XR development
+                      and see how you can be part of the growing XR community at Georgia Tech.
+                       Additionally, you'll be able to try out the demos of our cutting-edge projects and experience
+                        the latest XR technology, including Apple Vision Pro and Meta Quest 3.
+                         Don't miss out on the opportunity to get involved with the XR community on campus! →
                     </p>
                 </div>
                 <div className="md:w-1/2">
