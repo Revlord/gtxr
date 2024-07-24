@@ -6,7 +6,9 @@ export default function Events() {
       <main>
         <div className="min-h-screen flex flex-col">
           <Navbar/>
-          <h1>Events Page Works</h1>
+          <div>
+            <h1>Events page works</h1>
+          </div>
         </div>
       </main>
     );

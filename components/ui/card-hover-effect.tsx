@@ -21,13 +21,12 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 gap-8",
+        "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-10 gap-8",
         className
       )}
     >
       {items.map((item, idx) => (
-        <Link
-          href={item?.link}
+        <div
           key={item?.link}
           className="relative group block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
@@ -36,7 +35,7 @@ export const HoverEffect = ({
           <AnimatePresence>
             {hoveredIndex === idx && (
               <motion.span
-                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-3xl"
+                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-violet-200/[0.8] block rounded-3xl"
                 layoutId="hoverBackground"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{
@@ -72,7 +71,7 @@ export const HoverEffect = ({
               <CardDescription>{item.description}</CardDescription>
             </motion.div>
           </Card>
-        </Link>
+        </div>
       ))}
     </div>
   );
@@ -129,7 +128,7 @@ export const CardRole = ({
 }) => {
   return (
     <motion.p
-      className={cn("text-blue-400 text-sm font-medium mb-4", className)}
+      className={cn("text-pink-500 text-sm font-medium mb-4", className)}
       initial={{ y: 10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, delay: 0.25 }}

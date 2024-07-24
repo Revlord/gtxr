@@ -1,4 +1,5 @@
 import Exec from "@/components/Exec";
+import Footer from "@/components/Footer";
 import Mission from "@/components/Mission";
 import Navbar from "@/components/ui/Navbar";
 import WaveTransition from "@/components/WaveTransition";
@@ -6,12 +7,13 @@ import WaveTransition from "@/components/WaveTransition";
 // /app/about/page.tsx
 export default function About() {
     return (
-        <main>
+      <main>
         <div className="min-h-screen flex flex-col">
           <Navbar/>
           <Mission/>
           <WaveTransition/>
           <Exec/>
+          <Footer/>
         </div>
       </main>
     );

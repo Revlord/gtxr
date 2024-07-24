@@ -34,7 +34,7 @@ export const execMembers = [
   {
     name: "Revanth Reddy",
     role: "Director Of Operations",
-    bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
+    bio: "rburramukku3@gatech.edu",
     image: "/revanth.png"
   },
   {
@@ -57,7 +57,7 @@ export const execMembers = [
   },
   {
     name: "Akshin Vemana",
-    role: "Exec Member",
+    role: "Beat Saber Coordinator",
     bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
     image: "/dummy_image_1.jpg"
   },
