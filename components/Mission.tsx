@@ -1,8 +1,10 @@
 import { ThreeDCardDemo } from "./ThreeDCard";
+import { HeroHighlight } from "./ui/hero-highlight";
 
 export default function Mission() {
     return (
         <div className="relative min-h-screen flex items-center justify-center bg-black py-16">
+            <HeroHighlight>
             <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
                 <div className="md:w-1/2">
                     <h1 className="text-4xl md:text-5xl font-bold mb-6">We represent Georgia Tech's XR Community</h1>
@@ -23,6 +25,7 @@ export default function Mission() {
                     <ThreeDCardDemo />
                 </div>
             </div>
+            </HeroHighlight>
         </div>
     );
 }

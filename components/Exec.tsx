@@ -12,10 +12,10 @@ const execProjects = execMembers.map((member) => ({
 
 export default function Exec() {
   return (
-    <section className="py-16">
+    <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
-        <h2 className="text-6xl font-bold text-center text-pink-700 mb-12">
-          Meet the Team
+        <h2 className="text-6xl font-bold text-center text-violet-600 mb-12">
+          <span className="font-sans">Executive board 2024</span>
         </h2>
         <HoverEffect items={execProjects} />
       </div>
