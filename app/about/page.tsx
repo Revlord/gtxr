@@ -8,11 +8,12 @@ import WaveTransition from "@/components/WaveTransition";
 export default function About() {
     return (
       <main>
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col bg-black">
           <Navbar/>
-          <Mission/>
-          <WaveTransition/>
-          <Exec/>
+          <div className="pt-16">
+            <Mission/>
+            <Exec/>
+          </div>
           <Footer/>
         </div>
       </main>
