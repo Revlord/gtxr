@@ -86,4 +86,19 @@ export const projects = [
     description: "An immersive virtual reality Star Wars X-wing flight simulator fan game. In it, the player experiences the full scale and power of space combat from a galaxy far, far away behind the controls of an X-wing starfighter.",
     image: "/images/rogue-starfighter.jpg"
   },
+  {
+    title: "Motion ID",
+    description: "The primary objective of this research project is to explore the feasibility of utilizing motion data as a means of identifying users of XR devices.",
+    image: "/dummy_image_1.jpg"
+  },
+  {
+    title: "Exit Suit",
+    description: "A full-body support device that lets you move in amazing ways within virtual space and is the future of human/computer interface.",
+    image: "/images/rogue-starfighter.jpg"
+  },
+  {
+    title: "VR Graphing Calculator",
+    description: "This innovative tool has the potential to revolutionize the way we interact with mathematical concepts and visualize graphs.",
+    image: "/dummy_image_1.jpg"
+  },
 ]
