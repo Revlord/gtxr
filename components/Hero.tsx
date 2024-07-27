@@ -1,85 +1,43 @@
 "use client";
-import { words } from "@/data";
-import { cn } from "@/utils/cn";
-import { motion } from "framer-motion";
+
 import React from "react";
-import { FlipWords } from "./ui/flip-words";
 import Link from "next/link";
+import { navItems } from '@/data';
+import appleVisionPro from '@/public/apple-vision-pro.png';
+import { BackgroundBeams } from "./ui/background-beams";
 
 const Hero = () => {
   return (
-    //Video div; change the source with the actual video later. Adjust the 'opacity' value for tweaking with the video's transparency
-    <div className="relative h-screen flex items-center justify-center bg-black">
-      
-      <video
-        className="absolute inset-0 w-full h-full object-cover opacity-60"
-        src="/dummy_video.mp4"
-        autoPlay
-        loop
-        muted
-      />
+    <div className="relative w-full min-h-[calc(100vh)] h-fit flex bg-black">
+      <div className="w-full h-auto flex-grow m-8 rounded-[3rem] relative hero-gradient flex flex-col overflow-hidden">
 
-      {/* Hero text */}
-      <div className="relative z-10 hero-text px-6 sm:px-12 max-w-3xl mx-auto text-center">
-
-        {/* Also, FEEL FREE to tweak with the framermotion values (as well as tailwind)
-         and see if you can come up with cooler looking stuff!! */}
-
-        <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-        >
-        <button className="mb-4 px-6 py-2 bg-white text-black rounded-full hover:scale-110 transition duration-200
-        hover:text-purple hover:bg-violet-800 border-2 border-blue-800 hover:border-violet-950">
-          <Link href={"/events"} >
-          → Discover our upcoming XR events and workshops.
-          </Link>
-        </button>
-
-        </motion.p> {/* Added animation and adjusted styling */}
-
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-4xl md:text-6xl font-extrabold leading-tight md:leading-snug mb-8"
-        >
-
-          <FlipWords words={words} /> <br /> the world of Extended Reality with GTXR.
-          {/* 
-          -> Go to /data/index.ts to change the flip words
-          -> Go to /components/ui/flip-words.tsx to tweak with the framermotion stuff for flip words 
-          */}
-
-        </motion.h1>
-
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg md:text-xl leading-relaxed"
-        >
-          GTXR is Georgia Tech's premier XR club, bringing together enthusiasts and experts to explore and innovate in the fields of virtual and augmented reality. Join us to learn, create, and push the boundaries of what's possible in XR.
-        </motion.p>
-
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-                    <button className="px-6 py-2 bg-white text-black rounded-full
-                     font-semibold hover:bg-gray-200 transition duration-200">
-          → Reach Out
-        </button>
-          </motion.p>
-        </div>
+        <header className="nav-gradient shadow-2xl z-50 max-h-20 py-6 flex items-center justify-center rounded-[3rem] m-8 px-8 mx-auto">
+          <nav className="container mx-auto px-4 flex justify-between items-center gap-8">
+            <ul className="flex space-x-6 text-white">
+              {navItems.map(({ label, href }, index) => (
+                <li key={index} className="relative group">
+                  <Link
+                    href={href}
+                    className="text-sm uppercase font-medium tracking-wider group-hover:text-purple transition duration-300"
+                  >
+                    {label}
+                    <span className="absolute left-0 -bottom-1 w-full h-1 bg-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out">
+                      <span className="absolute left-0 top-1 w-full h-4 bg-gradient-to-b from-violet-600 to-transparent opacity-60"></span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </header>
+        <h1 className="font-sans text-center font-extrabold text-8xl mt-2">The future of XR,<br />at Georgia Tech.</h1>
+        <img src={appleVisionPro.src} alt="Apple Vision Pro" className="w-[50%] mt-8 2xl:mt-12 mx-auto z-10 float pointer-events-none" />
+        <div className="font-sans text-center font-extrabold text-[400px] opacity-[12%] text-zinc-50 absolute -bottom-12 w-full leading-none pointer-events-none">GTXR</div>
+        <div className="font-sans text-center font-extrabold text-[400px] opacity-[3%] text-zinc-50 absolute -bottom-12 w-full leading-none pointer-events-none z-20">GTXR</div>
+        <BackgroundBeams />
       </div>
     </div>
   );
 };
-
+6
 export default Hero;

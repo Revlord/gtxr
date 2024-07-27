@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <header className= "bg-black bg-opacity-90 py-4 shadow-lg sticky top-0 w-full z-50">
+    <header className= "bg-black bg-opacity-90 shadow-lg sticky top-0 w-full z-50 h-20 flex flex-col items-center justify-center">
       <nav className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="transition duration-300 hover:opacity-80">
-          <Image src="/temp_logo.png" alt="logo" width={50} height={50} className="rounded-full" />
+          <Image src="/temp_logo.png" alt="logo" width={125} height={60} className="rounded-full" />
         </Link>
 
         {/* Navigation Menu */}
