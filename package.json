@@ -13,7 +13,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.4.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.2.12",
+    "framer-motion": "^11.3.18",
     "mini-svg-data-uri": "^1.4.4",
     "next": "^14.2.4",
     "next-themes": "^0.3.0",
