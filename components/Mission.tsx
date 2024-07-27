@@ -11,7 +11,7 @@ export default function Mission() {
                             We represent Georgia Tech's XR Community
                         </h1>
                         <p className="text-base sm:text-lg">
-                            Our mission is to inspire and empower individuals through immersive XR experiences.
+                            We inspire and empower individuals through immersive XR experiences.
                             We strive to push the boundaries of technology and creativity to create impactful and memorable experiences.
                         </p>
                         <p className="text-sm sm:text-base text-gray-400">
