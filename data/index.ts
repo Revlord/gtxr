@@ -72,21 +72,6 @@ export const execMembers = [
 //variable for projects and their description
 export const projects = [
   {
-    title: "Pivot",
-    description: "A puzzle game that challenges players' ability to navigate strange spaces while controlling gravity. The main feature of the game is a teleportation mechanic where players can not only move laterally through the space but also shift their orientation and the gravity of the world in order to teleport to surfaces that are not at the same orientation as them.",
-    image: "/images/pivot.jpg"
-  },
-  {
-    title: "CentrifyVR",
-    description: "An immersive virtual reality relaxation experience that guides users to become more aware of their movements. There has been research demonstrating that when people are encouraged to slow down common movements in their limbs, their heart rate slows and they become more relaxed.",
-    image: "/images/centrifyvr.jpg"
-  },
-  {
-    title: "Rogue Starfighter VR",
-    description: "An immersive virtual reality Star Wars X-wing flight simulator fan game. In it, the player experiences the full scale and power of space combat from a galaxy far, far away behind the controls of an X-wing starfighter.",
-    image: "/images/rogue-starfighter.jpg"
-  },
-  {
     title: "Motion ID",
     description: "The primary objective of this research project is to explore the feasibility of utilizing motion data as a means of identifying users of XR devices.",
     image: "/dummy_image_1.jpg"
