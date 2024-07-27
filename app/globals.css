@@ -45,42 +45,52 @@
 }
 
 .nav-gradient {
-  background-color:hsla(271,0%,100%,0.2);
+  background-color: hsla(271, 0%, 100%, 0.2);
   background-image:
-  radial-gradient(at 86% 14%, hsla(0,0%,100%,0.1) 0px, transparent 50%);
+    radial-gradient(at 86% 14%, hsla(0, 0%, 100%, 0.1) 0px, transparent 50%);
 }
- 
+
 @keyframes float {
   0% {
     transform: translate(0, 0);
   }
+
   10% {
     transform: translate(3px, -3px);
   }
+
   20% {
     transform: translate(3px, 4px);
   }
+
   30% {
     transform: translate(0px, 4px);
   }
+
   40% {
     transform: translate(-2px, -2px);
   }
+
   50% {
     transform: translate(4px, 0px);
   }
+
   60% {
     transform: translate(2px, 3px);
   }
+
   70% {
     transform: translate(3px, -5px);
   }
+
   80% {
     transform: translate(-2px, 2px);
   }
+
   90% {
     transform: translate(2px, -3px);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -88,4 +98,39 @@
 
 .float {
   animation: float 20s ease-in-out infinite;
+}
+
+.card-gradient {
+  background-color: hsla(242, 46%, 20%, 1);
+  background-image:
+    radial-gradient(at 92% 90%, hsla(240, 52%, 13%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(240, 40%, 26%, 1) 0px, transparent 50%);
+}
+
+.card-gradient2 {
+  background-color: hsla(252, 46%, 20%, 1);
+  background-image:
+    radial-gradient(at 92% 90%, hsla(250, 52%, 13%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(250, 40%, 26%, 1) 0px, transparent 50%);
+}
+
+.card-gradient3 {
+  background-color: hsla(262, 46%, 20%, 1);
+  background-image:
+    radial-gradient(at 92% 90%, hsla(260, 52%, 13%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(260, 40%, 26%, 1) 0px, transparent 50%);
+}
+
+.card-gradient4 {
+  background-color: hsla(272, 46%, 20%, 1);
+  background-image:
+    radial-gradient(at 92% 90%, hsla(270, 52%, 13%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(270, 40%, 26%, 1) 0px, transparent 50%);
+}
+
+.card-gradient5 {
+  background-color: hsla(282, 46%, 20%, 1);
+  background-image:
+    radial-gradient(at 92% 90%, hsla(280, 52%, 13%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(280, 40%, 26%, 1) 0px, transparent 50%);
 }

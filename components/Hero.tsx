@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { navItems } from '@/data';
 import appleVisionPro from '@/public/apple-vision-pro.png';
