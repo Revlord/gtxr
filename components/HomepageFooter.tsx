@@ -35,7 +35,9 @@ const Footer: React.FC = () => {
 
                 </div>
                 <p className="text-center text-zinc-400 mt-12 pt-8 border-t border-zinc-700 text-sm">&copy; GTXR is a student organization. Membership and club resources are accessible to Georgia Tech students only.</p>
-            </div>
+                <p className="text-center text-zinc-400 mt-12 pt-8 border-t border-zinc-700 text-sm">Website designed and developed by <Link href={'https://github.com/AlexT101'}>Alex Thummalapali </Link>and <Link href={'https://github.com/Revlord'}>Revanth Reddy</Link></p>
+                </div>
+
             <div className="left-0 right-0 font-sans text-center font-extrabold text-[400px] absolute -bottom-24 w-full leading-none pointer-events-none footer-gradient-text">GTXR</div>
             </footer>
     );
