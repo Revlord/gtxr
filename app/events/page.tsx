@@ -1,13 +1,15 @@
-import { TracingBeamDemo } from "@/components/EventsHero";
+import { EventsHero } from "@/components/EventsHero";
+import EventsHeaderHero from "@/components/EventsHeroHeader";
 import Navbar from "@/components/ui/Navbar";
 
 // /app/about/page.tsx
 export default function Events() {
     return (
       <main>
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col bg-black">
           <Navbar/>
-          <TracingBeamDemo/>
+          <EventsHeaderHero/>
+          <EventsHero/>
         </div>
       </main>
     );

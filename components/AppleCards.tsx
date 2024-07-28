@@ -115,7 +115,7 @@ const data = [
   },
   {
     category: "Your 🫵 Project",
-    title: "Project Pitch Competition Winner Project 🏆",
+    title: "Pitch Competition Winner Project 🏆",
     src: "/stock2.jpeg",
     content: <ProjectPitchContent />,
   },
