@@ -69,7 +69,7 @@ const AboutUs = () => {
 
                 <p className="text-4xl text-zinc-500 mb-4 mt-32">03.</p>
                 <h2 className="text-5xl text-zinc-400 font-bold max-w-5xl">We work with <span className="text-zinc-50">experts in the industry</span> to provide real-world opportunities and skills.</h2>
-                <div className="flex gap-32 mt-24">
+                <div className="w-full flex justify-center gap-16 mt-24">
                     <div className="w-full max-w-xl flex flex-col items-center gap-8">
                         <p className="text-2xl font-bold text-zinc-200">Are you a sponsor looking to advance XR culture on Georgia Tech's campus?</p>
                         <HoverBorderGradient

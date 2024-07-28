@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import Footer from "@/components/HomepageFooter";
 import Hero from "@/components/Hero";
 import AboutUs from "@/components/AboutUs";
 
@@ -8,6 +8,7 @@ export default function Home() {
       <div className="min-h-screen flex flex-col bg-black">
         <Hero/>
         <AboutUs/>
+        <Footer />
       </div>
     </main>
   );
