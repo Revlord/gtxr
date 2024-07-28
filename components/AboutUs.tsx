@@ -51,7 +51,7 @@ const AboutUs = () => {
                 <p className="text-4xl text-zinc-500 mb-4 mt-32">02.</p>
                 <h2 className="text-5xl text-zinc-400 font-bold max-w-5xl">We <span className="text-zinc-50">collaborate with each other</span> to advance our knowledge of the XR space together.</h2>
                 <div className="mt-16 flex gap-8">
-                    <img src={Stock1.src} alt="Stock Image 1" className="w-[60%] max-w-7xl h-auto rounded-[3rem]" />
+                    <img src={Stock1.src} alt="Stock Image 1" className="w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-105" />
                     <div className="w-full text-center px-8 flex flex-col justify-center items-center max-w-xl">
                         <h3 className="text-zinc-50 font-bold text-3xl mb-12">Open to All, <span className="text-zinc-300 font-normal">Beginners and Experts Alike.</span></h3>
                         <p className="text-zinc-400 text-xl leading-relaxed mb-4">GTXR embraces a growth and learning culture for everyone, from beginners just getting started with XR to experienced practitioners looking to collaborate on innovative projects.</p>
@@ -70,7 +70,7 @@ const AboutUs = () => {
                             <li className="text-xl leading-relaxed">And so much more!</li>
                         </ul>
                     </div>
-                    <img src={Stock2.src} alt="Stock Image 2" className="w-[60%] max-w-7xl h-auto rounded-[3rem]" />
+                    <img src={Stock2.src} alt="Stock Image 2" className="w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-105" />
                 </div>
 
                 <p className="text-4xl text-zinc-500 mb-4 mt-32">03.</p>

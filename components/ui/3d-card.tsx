@@ -52,7 +52,7 @@ export const CardContainer = ({
           containerClassName
         )}
         style={{
-          perspective: "1000px",
+          perspective: "1200px",
         }}
       >
         <div
@@ -85,7 +85,7 @@ export const CardBody = ({
   return (
     <div
       className={cn(
-        "h-96 w-96 [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]",
+        "h-96 w-96 [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d] transition-transform duration-300 hover:scale-110",
         className
       )}
     >
