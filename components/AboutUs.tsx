@@ -36,10 +36,16 @@ const AboutUs = () => {
                         variant={3}
                     />
                     <AboutUsCard
-                        title="Hackathons"
-                        content="ImmerseGT, our annual XR hackathon held in the spring semester."
+                        title="Research"
+                        content="We actively engage in conducting XR research under professors"
                         variant={4}
                     />
+                    <AboutUsCard
+                        title="Hackathons"
+                        content="ImmerseGT, our annual XR hackathon held in the spring semester."
+                        variant={5}
+                    />
+                    
                 </div>
 
                 <p className="text-4xl text-zinc-500 mb-4 mt-32">02.</p>

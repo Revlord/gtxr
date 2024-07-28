@@ -22,13 +22,13 @@ export const execMembers = [
   {
     name: "Jack English",
     role: "Co-President",
-    bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
+    bio: "email@gatech.edu",
     image: "/jackenglish.jpeg"
   },
   {
     name: "Ilkin Mammadli",
     role: "Co-President",
-    bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
+    bio: "email@gatech.edu",
     image: "/ilkin.png"
   },
   {
@@ -40,31 +40,31 @@ export const execMembers = [
   {
     name: "Ian Valderas",
     role: "Secretary",
-    bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
+    bio: "email@gatech.edu",
     image: "/ian.jpg"
   },
   {
     name: "Ryan Clark",
     role: "Director Of Projects",
-    bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
+    bio: "email@gatech.edu",
     image: "/ryan.jpg"
   },
   {
     name: "Ethan Kimmel",
     role: "Director Of Marketing",
-    bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
+    bio: "email@gatech.edu",
     image: "/ethan.jpg"
   },
   {
     name: "Akshin Vemana",
     role: "Beat Saber Coordinator",
-    bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
+    bio: "email@gatech.edu",
     image: "/dummy_image_1.jpg"
   },
   {
     name: "Prithiv Premkumar",
     role: "Director Of Finance",
-    bio: "Lorem ipsum blablabalablabal balbal blabalal bla",
+    bio: "email@gatech.edu",
     image: "/dummy_image_1.jpg"
   }
 ];

@@ -1,29 +1,27 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import { projects } from '@/data';
+import ShootingStars from './ui/shooting-stars';
+import { StarsBackground } from './ui/stars-background';
 
 
 const ProjHero = () => {
   
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-8 text-center py-16">GTXR Student Projects</h1>
-      <p className="text-lg mb-12 text-center max-w-3xl mx-auto">
-        GTXR selects and supports a cohort of student projects every school year. Each project group is paired with a relevant industry mentor to give guidance and feedback throughout the year.
-      </p>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <Image src={project.image} alt={project.title} width={500} height={300} className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-2 text-black">{project.title}</h2>
-              <p className="text-gray-700">{project.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className='relative w-full min-h-[calc(100vh)] h-fit flex bg-black mt-4'>
+      <div className="h-auto bg-neutral-900 flex flex-col flex-grow m-8 items-center justify-center relative w-full rounded-[3rem]">
+      <h2 className="relative flex-col md:flex-row z-10 text-3xl md:text-5xl md:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-white to-white flex items-center gap-2 md:gap-8">
+        <span>Shooting Star</span>
+        <span className="text-white text-lg font-thin">x</span>
+        <span>Star Background</span>
+      </h2>
+      <ShootingStars />
+      <StarsBackground />
     </div>
-  )
+    </div>
+  );
 }
 
 export default ProjHero
+'w-full h-auto flex-grow m-8 rounded-[3rem] relative hero-gradient flex flex-col overflow-hidden'
