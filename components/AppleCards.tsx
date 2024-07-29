@@ -77,44 +77,44 @@ const ProjectPitchContent = () => {
 
 const data = [
   {
-    category: "Ongoing",
+    category: "Ongoing | XR Application",
     title: "Exit Suit",
     src: "/carousel1.jpg",
     content: <DummyContent />,
   },
   {
-    category: "Ongoing",
+    category: "Ongoing | XR Research",
     title: "MotionID",
     src: "/carousel2.jpg",
     content: <DummyContent />,
   },
   {
-    category: "Ongoing",
+    category: "Completed | Mixed Reality",
     title: "XR Memory",
     src: "/carousel3.jpg",
     content: <DummyContent />,
   },
 
   {
-    category: "Completed",
+    category: "Completed | VR",
     title: "Graphing Calculator",
     src: "/carousel4.jpg",
     content: <DummyContent />,
   },
   {
-    category: "Completed",
+    category: "Completed | VR",
     title: "Planet Simulator",
     src: "/carousel5.jpg",
     content: <DummyContent />,
   },
   {
-    category: "Archived",
+    category: "Archived | Mixed Reality",
     title: "XRtistic Habitat",
     src: "/stock1.jpeg",
     content: <DummyContent />,
   },
   {
-    category: "Your 🫵 Project",
+    category: "Your 🫵 Project | ?",
     title: "Pitch Competition Winner Project 🏆",
     src: "/stock2.jpeg",
     content: <ProjectPitchContent />,
