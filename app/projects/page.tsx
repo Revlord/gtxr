@@ -1,5 +1,5 @@
 import { AppleCardsCarouselDemo } from "@/components/AppleCards";
-import Footer from "@/components/HomepageFooter";
+import Footer from "@/components/Footer";
 import ProjHero from "@/components/ProjHero";
 import Navbar from "@/components/ui/Navbar";
 

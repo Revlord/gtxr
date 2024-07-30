@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import AboutUsCard from "./ui/about-us-card";
 import Stock1 from "@/public/stock1.jpeg";
 import Stock2 from "@/public/stock2.jpeg";
@@ -11,10 +10,10 @@ import ImmerseGT from "@/public/immersegt.png";
 const AboutUs = () => {
     return (
         <div className="relative w-full min-h-[calc(100vh)] h-fit flex bg-black">
-            <div className="w-full h-auto flex-grow m-8 relative flex flex-col items-center text-center py-16">
-                <p className="text-4xl text-zinc-500 mb-4">01.</p>
-                <h2 className="text-5xl text-zinc-400 font-bold max-w-5xl">We are a <span className="text-zinc-50">passionate group of XR enthusiasts</span> committed to advancing XR technology at Georgia Tech and beyond.</h2>
-                <div className="flex flex-wrap max-w-8xl gap-5 w-full mt-24 justify-center">
+            <div className="w-full h-auto flex-grow m-8 relative flex flex-col items-center text-center py-0 sm:py-16">
+                <p className="text-2xl sm:text-3xl lg:text-4xl text-zinc-500 mb-4">01.</p>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl text-zinc-400 font-bold max-w-5xl">We are a <span className="text-purple">passionate group of XR enthusiasts</span> committed to advancing XR technology at Georgia Tech and beyond.</h2>
+                <div className="flex flex-wrap max-w-8xl gap-5 w-full mt-8 sm:mt-16 lg:mt-24 justify-center">
                     <AboutUsCard
                         title="Workshops"
                         content="Seminars to learn about the latest tech, tools, and techniques in XR."
@@ -48,50 +47,50 @@ const AboutUs = () => {
                     
                 </div>
 
-                <p className="text-4xl text-zinc-500 mb-4 mt-32">02.</p>
-                <h2 className="text-5xl text-zinc-400 font-bold max-w-5xl">We <span className="text-zinc-50">collaborate with each other</span> to advance our knowledge of the XR space together.</h2>
-                <div className="mt-16 flex gap-8">
-                    <img src={Stock1.src} alt="Stock Image 1" className="w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-105" />
+                <p className="text-2xl sm:text-3xl lg:text-4xl text-zinc-500 mb-4 mt-12 sm:mt-24 lg:mt-32">02.</p>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl text-zinc-400 font-bold max-w-5xl">We <span className="text-purple">collaborate with each other</span> to advance our knowledge of the XR space together.</h2>
+                <div className="mt-8 sm:mt-16 flex gap-8 flex-col lg:flex-row items-center">
+                    <img src={Stock1.src} alt="Stock Image 1" className="w-full lg:w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-[102%]" />
                     <div className="w-full text-center px-8 flex flex-col justify-center items-center max-w-xl">
-                        <h3 className="text-zinc-50 font-bold text-3xl mb-12">Open to All, <span className="text-zinc-300 font-normal">Beginners and Experts Alike.</span></h3>
-                        <p className="text-zinc-400 text-xl leading-relaxed mb-4">GTXR embraces a growth and learning culture for everyone, from beginners just getting started with XR to experienced practitioners looking to collaborate on innovative projects.</p>
-                        <p className="text-zinc-400 text-xl leading-relaxed">Anyone is welcome to drop by, regardless of experience, as we bring the XR revolution to GT.</p>
+                        <h3 className="text-purple font-bold text-2xl sm:text-3xl mb-12">Open to All, <span className="text-zinc-300 font-normal">Beginners and Experts Alike.</span></h3>
+                        <p className="text-zinc-400 text-lg sm:text-xl leading-relaxed mb-4">GTXR embraces a <span className="text-purple">growth and learning culture for everyone</span>, from beginners just getting started with XR to experienced practitioners looking to collaborate on innovative projects.</p>
+                        <p className="text-zinc-400 text-lg sm:text-xl leading-relaxed"><span className="text-purple">Anyone is welcome to drop by</span>, regardless of experience, as we bring the XR revolution to GT.</p>
                     </div>
                 </div>
-                <div className="mt-16 flex gap-8">
+                <div className="mt-16 flex gap-8 items-center flex-col-reverse lg:flex-row">
                     <div className="w-full text-center px-8 flex flex-col justify-center items-center max-w-xl">
-                        <h3 className="text-zinc-50 font-bold text-3xl mb-12">Free resources <span className="text-zinc-300 font-normal">to get started with the XR space.</span></h3>
-                        <p className="text-zinc-400 text-xl leading-relaxed mb-4">We provide <span className="text-zinc-300 font-semibold">the best XR opportunities</span> on campus.</p>
+                        <h3 className="text-purple font-bold text-2xl sm:text-3xl mb-12">Free resources <span className="text-zinc-300 font-normal">to get started with the XR space.</span></h3>
+                        <p className="text-zinc-400 text-lg sm:text-xl leading-relaxed mb-4">We provide <span className="text-purple">the best XR opportunities</span> on campus.</p>
                         <ul className="text-left list-disc pl-10 text-zinc-400 flex flex-col gap-2">
-                            <li className="text-xl leading-relaxed">Networking with industry professionals</li>
-                            <li className="text-xl leading-relaxed">The latest VR hardware including Vision Pros</li>
-                            <li className="text-xl leading-relaxed">Leadership and project pitch opportunities</li>
-                            <li className="text-xl leading-relaxed">A collaborative, welcoming atmosphere for all</li>
-                            <li className="text-xl leading-relaxed">And so much more!</li>
+                            <li className="text-lg sm:text-xl leading-relaxed">Networking with industry professionals</li>
+                            <li className="text-lg sm:text-xl leading-relaxed">The latest VR hardware including Vision Pros</li>
+                            <li className="text-lg sm:text-xl leading-relaxed">Leadership and project pitch opportunities</li>
+                            <li className="text-lg sm:text-xl leading-relaxed">A collaborative, welcoming atmosphere for all</li>
+                            <li className="text-lg sm:text-xl leading-relaxed">And so much more!</li>
                         </ul>
                     </div>
-                    <img src={Stock2.src} alt="Stock Image 2" className="w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-105" />
+                    <img src={Stock2.src} alt="Stock Image 2" className="w-full lg:w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-[102%]" />
                 </div>
 
-                <p className="text-4xl text-zinc-500 mb-4 mt-32">03.</p>
-                <h2 className="text-5xl text-zinc-400 font-bold max-w-5xl">We work with <span className="text-zinc-50">experts in the industry</span> to provide real-world opportunities and skills.</h2>
-                <div className="w-full flex justify-center gap-16 mt-24">
-                    <div className="w-full max-w-xl flex flex-col items-center gap-8">
-                        <p className="text-2xl font-bold text-zinc-200">Are you a sponsor looking to advance XR culture on Georgia Tech's campus?</p>
+                <p className="text-2xl sm:text-3xl lg:text-4xl text-zinc-500 mb-4 mt-16 sm:mt-24 lg:mt-32">03.</p>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl text-zinc-400 font-bold max-w-5xl">We work with <span className="text-purple">experts in the industry</span> to provide real-world opportunities and skills.</h2>
+                <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-4 sm:gap-12 md:gap-16 mt-12 sm:mt-16 lg:mt-24">
+                    <div className="w-full lg:max-w-xl flex flex-col items-center gap-8">
+                        <p className=" text-2xl sm:text-3xl font-bold text-zinc-200">Are you a sponsor looking to <span className="text-purple">advance XR culture</span> on Georgia Tech's campus?</p>
                         <HoverBorderGradient
                             containerClassName="rounded-full"
                             as="button"
-                            className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 text-xl"
+                            className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 text-lg sm:text-xl"
                         >
                             <span>Contact Us</span>
                         </HoverBorderGradient>
-                        <p className="text-zinc-400 text-lg mt-8 font-light">We rely on sponsors in the industry to run ImmerseGT. Their generous support allows us to open participation to any student interested in XR, for free. </p>
+                        <p className="text-zinc-400 text-lg mt-0 sm:mt-8 font-light">We rely on sponsors in the industry to run ImmerseGT. Their generous support allows us to <span className="text-purple">open participation to any student</span> interested in XR, for free. </p>
                     </div>
                     <PinContainer
                         title="immersegt.io"
                         href="https://immersegt.io"
                     >
-                        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[30rem] h-fit">
+                        <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] sm:w-[30rem] h-fit">
                             <h3 className="!pb-2 !m-0 font-bold  text-2xl text-slate-100">
                                 ImmerseGT
                             </h3>

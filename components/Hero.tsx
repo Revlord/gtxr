@@ -7,12 +7,12 @@ import { BackgroundBeams } from "./ui/background-beams";
 
 const Hero = () => {
   return (
-    <div className="relative w-full min-h-[calc(100vh)] h-fit flex bg-black">
-      <div className="w-full h-auto flex-grow m-8 rounded-[3rem] relative hero-gradient flex flex-col overflow-hidden">
+    <div className="relative w-full lg:min-h-[calc(100vh)] h-fit flex bg-black">
+      <div className="w-full h-auto flex-grow m-4 sm:m-8 rounded-3xl lg:rounded-[3rem] relative hero-gradient flex flex-col overflow-hidden">
 
-        <header className="nav-gradient shadow-2xl z-50 max-h-20 py-6 flex items-center justify-center rounded-[3rem] m-8 px-8 mx-auto">
+        <header className="nav-gradient shadow-2xl z-50 max-h-20 py-6 flex items-center justify-center rounded-3xl lg:rounded-[3rem] m-8 px-4 sm:px-8 md:mx-auto">
           <nav className="container mx-auto px-4 flex justify-between items-center gap-8">
-            <ul className="flex space-x-6 text-white">
+            <ul className="flex gap-x-6 text-white flex-wrap items-center justify-center">
               {navItems.map(({ label, href }, index) => (
                 <li key={index} className="relative group">
                   <Link
@@ -29,10 +29,10 @@ const Hero = () => {
             </ul>
           </nav>
         </header>
-        <h1 className="font-sans text-center font-extrabold text-8xl mt-2">The future of XR,<br />at Georgia Tech.</h1>
-        <img src={appleVisionPro.src} alt="Apple Vision Pro" className="w-[50%] mt-8 2xl:mt-12 mx-auto z-10 float pointer-events-none" />
-        <div className="font-sans text-center font-extrabold text-[400px] opacity-[12%] text-zinc-50 absolute -bottom-12 w-full leading-none pointer-events-none">GTXR</div>
-        <div className="font-sans text-center font-extrabold text-[400px] opacity-[3%] text-zinc-50 absolute -bottom-12 w-full leading-none pointer-events-none z-20">GTXR</div>
+        <h1 className="font-sans text-center font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl mt-2">The future of XR,<br />at Georgia Tech.</h1>
+        <img src={appleVisionPro.src} alt="Apple Vision Pro" className="w-[90%] sm:w-[80%] md:w-[70%] lg:w-[50%] mt-8 2xl:mt-12 mx-auto z-10 float pointer-events-none mb-4" />
+        <div className="font-sans text-center font-extrabold text-[30vw] xl:text-[400px] opacity-[12%] text-zinc-50 absolute -bottom-4 sm:-bottom-8 md:-bottom-12 w-full leading-none pointer-events-none">GTXR</div>
+        <div className="font-sans text-center font-extrabold text-[30vw] xl:text-[400px] opacity-[3%] text-zinc-50 absolute -bottom-4 sm:-bottom-8 md:-bottom-12 w-full leading-none pointer-events-none z-20">GTXR</div>
         <BackgroundBeams />
       </div>
     </div>

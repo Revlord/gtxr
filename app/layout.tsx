@@ -6,8 +6,8 @@ import { ThemeProvider } from "next-themes";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "GTXR Website",
-  description: "Website for the GTXR Club at Georgia Tech",
+  title: "GTXR - Georgia Tech Extended Reality",
+  description: "The future of extended reality, at Georgia Tech",
 };
 
 export default function RootLayout({

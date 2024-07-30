@@ -1,5 +1,5 @@
 import Exec from "@/components/Exec";
-import Footer from "@/components/HomepageFooter";
+import Footer from "@/components/Footer";
 
 import Mission from "@/components/Mission";
 import Navbar from "@/components/ui/Navbar";

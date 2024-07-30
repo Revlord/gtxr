@@ -15,7 +15,7 @@ export default function Exec() {
     <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
         <h2 className="text-6xl font-bold text-center mb-12">
-          <span className="font-sans text-gray-400 ">Executive board </span> <span className="text-violet-700">2024</span>
+          <span className="font-sans text-gray-400 ">Executive Board </span> <span className="text-violet-700">2024</span>
         </h2>
         <HoverEffect items={execProjects} />
       </div>
