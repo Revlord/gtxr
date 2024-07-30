@@ -10,9 +10,9 @@ const SponsorshipHero = () => {
   
   return (
     <div className='relative w-full min-h-[calc(30vh)] h-fit flex bg-black mt-4'>
-      <div className="h-[30vh] hero-gradient flex flex-col flex-grow m-8 items-center justify-center relative w-full rounded-[3rem]">
+      <div className="h-[30vh] bg-green-950 flex flex-col flex-grow m-8 items-center justify-center relative w-full rounded-[3rem]">
       <h2 className="relative flex-col md:flex-row z-10 text-3xl md:text-5xl md:leading-tight max-w-5xl mx-auto text-center gap-2 md:gap-8">
-        Our club runs on generous sponsors
+        Sponsor us to help cultivate XR talent!
       </h2>
       <ShootingStars />
       <StarsBackground />
