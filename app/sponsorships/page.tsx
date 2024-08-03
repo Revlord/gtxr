@@ -1,5 +1,6 @@
 
 import Footer from "@/components/Footer";
+import SponsorBody from "@/components/SponsorBody";
 import SponsorshipHero from "@/components/SponsorshipHero";
 import Navbar from "@/components/ui/Navbar";
 
@@ -10,6 +11,7 @@ export default function Sponsorships() {
       <div className="min-h-screen flex flex-col bg-black">
         <Navbar/>
         <SponsorshipHero/>
+        <SponsorBody></SponsorBody>
         <Footer/>
       </div>
     </main>
