@@ -1,4 +1,3 @@
-import { EventsHero } from "@/components/EventsHero";
 import EventsHeaderHero from "@/components/EventsHeroHeader";
 import Navbar from "@/components/ui/Navbar";
 
@@ -9,7 +8,6 @@ export default function Events() {
         <div className="min-h-screen flex flex-col bg-black">
           <Navbar/>
           <EventsHeaderHero/>
-          <EventsHero/>
         </div>
       </main>
     );
