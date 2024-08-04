@@ -7,16 +7,16 @@ const SponsorBody = () => {
     <div className="relative w-full min-h-screen bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
         <div className="max-w-4xl mx-auto">
-          <p className="text-xl sm:text-2xl lg:text-3xl text-zinc-500 mb-4 hover:scale-110 duration-300 text-center">
+          <p className="text-xl sm:text-2xl lg:text-3xl text-zinc-500 mb-4 hover:scale-120 duration-300 text-center">
             Why invest in us?
           </p>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 bg-gradient-to-r from-lime-600 to-cyan-600 text-transparent bg-clip-text text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 bg-gradient-to-r from-violet-500 to-indigo-700 text-transparent bg-clip-text text-center">
             At GTXR, we're not just a student organization - we're the breeding ground for tomorrow's XR innovators.
           </h2>
 
           <h3 className="text-purple-400 font-bold text-xl sm:text-2xl mb-8 sm:mb-12 hover:text-purple-300 transition-colors duration-300 text-center">
-            By sponsoring GTXR, you're <span className="bg-gradient-to-r to-lime-600 from-cyan-600 text-transparent bg-clip-text">investing in the future</span> of XR technology and gaining exclusive access to a pool of <span className="bg-gradient-to-r to-lime-600 from-cyan-600 text-transparent bg-clip-text">talented, passionate students</span> who are already making <span className="bg-gradient-to-r to-lime-600 from-cyan-600 text-transparent bg-clip-text">waves in the industry.</span>
+            By sponsoring GTXR, you're <span className="bg-gradient-to-r to-indigo-600 from-violet-600 text-transparent bg-clip-text">investing in the future</span> of XR technology and gaining exclusive access to a pool of <span className="bg-gradient-to-r to-violet-600 from-indigo-600 text-transparent bg-clip-text">talented, passionate students</span> who are already making <span className="bg-gradient-to-r to-indigo-600 from-violet-600 text-transparent bg-clip-text">waves in the industry.</span>
           </h3>
 
           <p className="text-zinc-400 text-base sm:text-lg leading-relaxed mb-8 text-center">

@@ -152,3 +152,27 @@
     radial-gradient(at 92% 90%, hsla(280, 52%, 13%, 1) 0px, transparent 50%),
     radial-gradient(at 0% 0%, hsla(280, 40%, 26%, 1) 0px, transparent 50%);
 }
+
+.event-gradient {
+  background-color: hsla(260, 80%, 20%, 0.2);
+  background-image:
+    radial-gradient(at 40% 20%, hsla(255, 70%, 30%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(250, 80%, 25%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(265, 75%, 28%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(270, 65%, 35%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(275, 70%, 40%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(245, 75%, 30%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(240, 80%, 35%, 0.2) 0px, transparent 50%);
+}
+
+.sponsor-gradient {
+  background-color: hsla(270, 70%, 25%, 0.2);
+  background-image:
+    radial-gradient(at 40% 20%, hsla(280, 65%, 40%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(290, 75%, 30%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(260, 80%, 35%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(275, 70%, 45%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(265, 85%, 50%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(285, 60%, 35%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(255, 90%, 40%, 0.2) 0px, transparent 50%);
+}
