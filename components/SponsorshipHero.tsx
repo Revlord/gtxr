@@ -14,8 +14,8 @@ const SponsorshipHero = () => {
       <h2 className="relative flex-col md:flex-row z-10 text-3xl md:text-5xl md:leading-tight max-w-5xl mx-auto text-center gap-2 md:gap-8">
         Sponsor us to help cultivate XR talent!
       </h2>
-      <ShootingStars />
-      <StarsBackground />
+      <ShootingStars minDelay={2500} />
+      <StarsBackground starDensity={0.00030} />
       </div>
     </div>
   );

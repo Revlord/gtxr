@@ -1,12 +1,12 @@
 import React from 'react';
 import { MeteorCard } from './MeteorCard';
-import Link from 'next/link';
 
 const SponsorBody = () => {
   return (
     <div className="relative w-full min-h-screen bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
         <div className="max-w-4xl mx-auto">
+
           <p className="text-xl sm:text-2xl lg:text-3xl text-zinc-500 mb-4 hover:scale-120 duration-300 text-center">
             Why invest in us?
           </p>

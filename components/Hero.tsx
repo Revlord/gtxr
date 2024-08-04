@@ -29,6 +29,7 @@ const Hero = () => {
             </ul>
           </nav>
         </header>
+        
         <h1 className="font-sans text-center font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl mt-2">The future of XR,<br />at Georgia Tech.</h1>
         <img src={appleVisionPro.src} alt="Apple Vision Pro" className="w-[90%] sm:w-[80%] md:w-[70%] lg:w-[50%] mt-8 2xl:mt-12 mx-auto z-10 float pointer-events-none mb-4" />
         <div className="font-sans text-center font-extrabold text-[30vw] xl:text-[400px] opacity-[12%] text-zinc-50 absolute -bottom-4 sm:-bottom-8 md:-bottom-12 w-full leading-none pointer-events-none">GTXR</div>

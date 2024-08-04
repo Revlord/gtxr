@@ -1,5 +1,4 @@
 import { ThreeDCardDemo } from "./ThreeDCard";
-import { HeroHighlight } from "./ui/hero-highlight";
 
 export default function Mission() {
     return (
