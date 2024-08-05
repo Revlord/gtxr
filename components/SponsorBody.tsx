@@ -1,6 +1,9 @@
 import React from 'react';
 import { MeteorCard } from './MeteorCard';
 
+//Need to fix spacing errors below the lower h3 and p (above the footer) when the screen size is minimized
+
+
 const SponsorBody = () => {
   return (
     <div className="relative w-full min-h-screen bg-black">
@@ -58,11 +61,11 @@ const SponsorBody = () => {
             />
           </div>
 
-          <h3 className="text-zinc-400 sm:text-xl leading-relaxed mt-12 bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text text-center">
+          <h3 className="text-zinc-400 sm:text-xl leading-relaxed mt-12 text-center">
             Join us in cultivating the next generation of XR talent. Together, we can create immersive experiences that will transform industries and shape our digital future.
           </h3>
 
-          <p className="text-zinc-400 sm:text-3xl leading-relaxed mt-6 bg-gradient-to-r from-purple-500 to-pink-500 p-4 text-center">
+          <p className="text-zinc-400 sm:text-3xl leading-relaxed mt-6 p-4 text-center">
             To reach out to us, feel free to email us at <a href='mailto:contact@gtxr.club' className='text-violet-600'>contact@gtxr.club</a>
           </p>
 

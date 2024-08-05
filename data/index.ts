@@ -68,22 +68,3 @@ export const execMembers = [
     image: "/dummy_image_1.jpg"
   }
 ];
-
-//variable for projects and their description
-export const projects = [
-  {
-    title: "Motion ID",
-    description: "The primary objective of this research project is to explore the feasibility of utilizing motion data as a means of identifying users of XR devices.",
-    image: "/dummy_image_1.jpg"
-  },
-  {
-    title: "Exit Suit",
-    description: "A full-body support device that lets you move in amazing ways within virtual space and is the future of human/computer interface.",
-    image: "/images/rogue-starfighter.jpg"
-  },
-  {
-    title: "VR Graphing Calculator",
-    description: "This innovative tool has the potential to revolutionize the way we interact with mathematical concepts and visualize graphs.",
-    image: "/dummy_image_1.jpg"
-  },
-]

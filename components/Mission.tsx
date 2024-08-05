@@ -3,7 +3,7 @@ import { ThreeDCardDemo } from "./ThreeDCard";
 export default function Mission() {
     return (
         <div className='relative w-full min-h-[calc(100vh)] h-fit flex bg-black mt-4'>
-            <div className="h-auto bg-gradient-to-r from-violet-900 to-violet-950 flex flex-col lg:flex-row m-12 items-center justify-center relative w-full rounded-[3rem]">
+            <div className="h-auto sponsor-gradient flex flex-col lg:flex-row m-12 items-center justify-center relative w-full rounded-[3rem]">
                 <div className="w-full lg:w-1/2 space-y-6 lg:pr-4 p-12">
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r to-gray-200 from-gray-600 bg-clip-text text-transparent">
                         We represent Georgia Tech's XR Community

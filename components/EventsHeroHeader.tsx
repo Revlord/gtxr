@@ -1,7 +1,6 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import { projects } from '@/data';
 import ShootingStars from './ui/shooting-stars';
 import { StarsBackground } from './ui/stars-background';
 
@@ -15,7 +14,7 @@ const EventsHeaderHero = () => {
         Social Events
       </h2>
       <ShootingStars />
-      <StarsBackground />
+      <StarsBackground starDensity={0.00030} />
       </div>
     </div>
   );
