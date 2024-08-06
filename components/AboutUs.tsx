@@ -13,7 +13,7 @@ const AboutUs = () => {
             <div className="w-full h-auto flex-grow m-8 relative flex flex-col items-center text-center py-0 sm:py-16">
                 <p className="text-2xl sm:text-3xl lg:text-4xl text-zinc-500 mb-4">01.</p>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl text-zinc-400 font-bold max-w-5xl">We are a <span className="text-purple">passionate group of XR enthusiasts</span> committed to advancing XR technology at Georgia Tech and beyond.</h2>
-                <div className="flex flex-wrap max-w-8xl gap-5 w-full mt-8 sm:mt-16 lg:mt-24 justify-center">
+                <div className="flex flex-wrap max-w-[1440px] gap-5 w-full mt-8 sm:mt-16 lg:mt-24 justify-center">
                     <AboutUsCard
                         title="Workshops"
                         content="Seminars to learn about the latest tech, tools, and techniques in XR."
