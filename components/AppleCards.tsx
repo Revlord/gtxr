@@ -79,31 +79,36 @@ const data = [
   {
     category: "Ongoing | XR Application",
     title: "Exit Suit",
-    src: "/carousel1.jpg",
+    src: "/exitsuit.png",
     content: <DummyContent />,
   },
   {
     category: "Ongoing | XR Research",
     title: "MotionID",
-    src: "/carousel2.jpg",
+    src: "/project5.png",
     content: <DummyContent />,
   },
   {
     category: "Completed | Mixed Reality",
     title: "XR Memory",
-    src: "/carousel3.jpg",
+    src: "/project3.png",
     content: <DummyContent />,
   },
-
   {
     category: "Completed | VR",
     title: "Graphing Calculator",
-    src: "/carousel4.jpg",
+    src: "/project11.png",
     content: <DummyContent />,
   },
   {
     category: "Completed | VR",
-    title: "Planet Simulator",
+    title: "Drum Simulator",
+    src: "/project4.jpg",
+    content: <DummyContent />,
+  },
+  {
+    category: "Completed | VR",
+    title: "Space Simulation",
     src: "/carousel5.jpg",
     content: <DummyContent />,
   },

@@ -46,7 +46,7 @@ const events: Event[] = [
   {
     id: 5,
     title: "Speaker Event (Meta)",
-    date: "September 15, 2024",
+    date: "April 4, 2023",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
     semester: "Spring 2024",
     imageUrl: "/club9.png"
@@ -54,18 +54,18 @@ const events: Event[] = [
   {
     id: 6,
     title: "Speaker Event (Start-ups)",
-    date: "September 15, 2024",
+    date: "April 5, 2023",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
     semester: "Spring 2024",
     imageUrl: "/club8.png"
   },
   {
     id: 7,
-    title: "VR Game Night",
-    date: "September 15, 2024",
+    title: "GT LEAD Info Session",
+    date: "March 31, 2024",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
     semester: "Spring 2024",
-    imageUrl: "/stock1.jpeg"
+    imageUrl: "/club12.png"
   },
   // ... Add more events with imageUrl
 ]
