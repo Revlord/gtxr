@@ -22,49 +22,49 @@ export const execMembers = [
   {
     name: "Jack English",
     role: "Co-President",
-    bio: "email@gatech.edu",
+    bio: "",
     image: "/jackenglish.jpeg"
   },
   {
     name: "Ilkin Mammadli",
     role: "Co-President",
-    bio: "email@gatech.edu",
+    bio: "",
     image: "/ilkin.png"
   },
   {
     name: "Revanth Reddy",
     role: "Director Of Operations",
-    bio: "rburramukku3@gatech.edu",
+    bio: "",
     image: "/revanth.png"
   },
   {
     name: "Ian Valderas",
     role: "Secretary",
-    bio: "email@gatech.edu",
+    bio: "",
     image: "/ian.jpg"
   },
   {
     name: "Ryan Clark",
     role: "Director Of Projects",
-    bio: "email@gatech.edu",
+    bio: "",
     image: "/ryan.jpg"
   },
   {
     name: "Ethan Kimmel",
     role: "Director Of Marketing",
-    bio: "email@gatech.edu",
+    bio: "",
     image: "/ethan.jpg"
   },
   {
     name: "Akshin Vemana",
     role: "Beat Saber Coordinator",
-    bio: "email@gatech.edu",
+    bio: "",
     image: "/akshin.png"
   },
   {
     name: "Prithiv Premkumar",
     role: "Director Of Finance",
-    bio: "email@gatech.edu",
+    bio: "",
     image: "/pritiv.jpg"
   }
 ];

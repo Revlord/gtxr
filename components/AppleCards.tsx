@@ -75,48 +75,50 @@ const ProjectPitchContent = () => {
   );
 };
 
+//fill content later
+
 const data = [
   {
     category: "Ongoing | XR Application",
     title: "Exit Suit",
     src: "/exitsuit.png",
-    content: <DummyContent />,
+    content: <></>,
   },
   {
     category: "Ongoing | XR Research",
     title: "MotionID",
     src: "/project5.png",
-    content: <DummyContent />,
+    content: <></>,
   },
   {
     category: "Completed | Mixed Reality",
     title: "XR Memory",
     src: "/project3.png",
-    content: <DummyContent />,
+    content: <></>,
   },
   {
     category: "Completed | VR",
     title: "Graphing Calculator",
     src: "/project11.png",
-    content: <DummyContent />,
+    content: <></>,
   },
   {
     category: "Completed | VR",
     title: "Drum Simulator",
     src: "/project4.jpg",
-    content: <DummyContent />,
+    content: <></>,
   },
   {
     category: "Completed | VR",
     title: "Space Simulation",
     src: "/carousel5.jpg",
-    content: <DummyContent />,
+    content: <></>,
   },
   {
     category: "Archived | Mixed Reality",
     title: "XRtistic Habitat",
     src: "/stock1.jpeg",
-    content: <DummyContent />,
+    content: <></>,
   },
   {
     category: "Your 🫵 Project | ?",
