@@ -13,38 +13,54 @@ type Event = {
 const events: Event[] = [
   {
     id: 1,
-    title: "VR Game Night",
-    date: "September 15, 2024",
-    description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
+    title: "Week of Welcome",
+    date: "August 13, 2024",
+    description: "Join us for an exciting showcase of cool VR stuff",
     semester: "Fall 2024",
-    imageUrl: "/stock1.jpeg"
+    imageUrl: "/club6.jpg"
   },
   {
     id: 2,
-    title: "VR Game Night",
-    date: "September 15, 2024",
-    description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
+    title: "Project Pitch",
+    date: "September 8, 2024",
+    description: "Join us for an exciting project pitch competition",
     semester: "Fall 2024",
-    imageUrl: "/stock1.jpeg"
+    imageUrl: "/club3.jpg"
   },
   {
     id: 3,
-    title: "VR Game Night",
-    date: "September 15, 2024",
-    description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
-    semester: "Spring 2024",
-    imageUrl: "/stock1.jpeg"
+    title: "ImmerseGT 2025",
+    date: "April 5-7, 2025",
+    description: "Attend the worlds biggest XR hackathon",
+    semester: "Fall 2024",
+    imageUrl: "/immersegt.png"
   },
   {
     id: 4,
-    title: "VR Game Night",
+    title: "ICXR Meetup",
     date: "September 15, 2024",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
     semester: "Spring 2024",
-    imageUrl: "/stock1.jpeg"
+    imageUrl: "/club7.jpg"
   },
   {
     id: 5,
+    title: "Speaker Event (Meta)",
+    date: "September 15, 2024",
+    description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
+    semester: "Spring 2024",
+    imageUrl: "/club9.png"
+  },
+  {
+    id: 6,
+    title: "Speaker Event (Start-ups)",
+    date: "September 15, 2024",
+    description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
+    semester: "Spring 2024",
+    imageUrl: "/club8.png"
+  },
+  {
+    id: 7,
     title: "VR Game Night",
     date: "September 15, 2024",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
@@ -77,6 +93,8 @@ const EventCard = ({ event }: { event: Event }) => (
  We are in right now. As of coding this website the new sem is 'Fall 2024', change it to 'Spring 2025'
  as spring 2025 arrives. Everything else will autosort to 'previous events'
 */
+
+//note for self: code an autosort algorithm here.
 
 const EventsBody = () => {
   return (

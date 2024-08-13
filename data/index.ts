@@ -59,12 +59,12 @@ export const execMembers = [
     name: "Akshin Vemana",
     role: "Beat Saber Coordinator",
     bio: "email@gatech.edu",
-    image: "/dummy_image_1.jpg"
+    image: "/akshin.png"
   },
   {
     name: "Prithiv Premkumar",
     role: "Director Of Finance",
     bio: "email@gatech.edu",
-    image: "/dummy_image_1.jpg"
+    image: "/pritiv.jpg"
   }
 ];
