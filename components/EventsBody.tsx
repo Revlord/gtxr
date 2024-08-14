@@ -16,7 +16,7 @@ const events: Event[] = [
     title: "Week of Welcome",
     date: "August 13, 2024",
     description: "Join us for an exciting showcase of cool VR stuff",
-    imageUrl: "/club6.jpg",
+    imageUrl: "/club13.jpg",
     status: 'Past'
   },
   {
