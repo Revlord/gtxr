@@ -6,8 +6,8 @@ type Event = {
   title: string;
   date: string;
   description: string;
-  semester: 'Fall 2024' | 'Spring 2024';
   imageUrl: string;
+  status: 'Upcoming' | 'Past';
 }
 
 const events: Event[] = [
@@ -16,56 +16,56 @@ const events: Event[] = [
     title: "Week of Welcome",
     date: "August 13, 2024",
     description: "Join us for an exciting showcase of cool VR stuff",
-    semester: "Fall 2024",
-    imageUrl: "/club6.jpg"
+    imageUrl: "/club6.jpg",
+    status: 'Past'
   },
   {
     id: 2,
     title: "Project Pitch",
     date: "September 8, 2024",
     description: "Join us for an exciting project pitch competition",
-    semester: "Fall 2024",
-    imageUrl: "/club3.jpg"
+    imageUrl: "/club3.jpg",
+    status: 'Upcoming'
   },
   {
     id: 3,
     title: "ImmerseGT 2025",
     date: "April 5-7, 2025",
     description: "Attend the worlds biggest XR hackathon",
-    semester: "Fall 2024",
-    imageUrl: "/immersegt.png"
+    imageUrl: "/immersegt.png",
+    status: 'Upcoming'
   },
   {
     id: 4,
     title: "ICXR Meetup",
     date: "September 15, 2024",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
-    semester: "Spring 2024",
-    imageUrl: "/club7.jpg"
+    imageUrl: "/club7.jpg",
+    status: 'Past'
   },
   {
     id: 5,
     title: "Speaker Event (Meta)",
     date: "April 4, 2023",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
-    semester: "Spring 2024",
-    imageUrl: "/club9.png"
+    imageUrl: "/club9.png",
+    status: 'Past'
   },
   {
     id: 6,
     title: "Speaker Event (Start-ups)",
     date: "April 5, 2023",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
-    semester: "Spring 2024",
-    imageUrl: "/club8.png"
+    imageUrl: "/club8.png",
+    status: 'Past'
   },
   {
     id: 7,
     title: "GT LEAD Info Session",
     date: "March 31, 2024",
     description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
-    semester: "Spring 2024",
-    imageUrl: "/club12.png"
+    imageUrl: "/club12.png",
+    status: 'Past'
   },
   // ... Add more events with imageUrl
 ]
@@ -89,12 +89,10 @@ const EventCard = ({ event }: { event: Event }) => (
 )
 
 
-/* This code here needs change every semester. Just update the events.filter logic to whatever semester
- We are in right now. As of coding this website the new sem is 'Fall 2024', change it to 'Spring 2025'
- as spring 2025 arrives. Everything else will autosort to 'previous events'
+/* Update the 'status' to either 'Upcoming' or 'Past' to switch events to their respective status
 */
 
-//note for self: code an autosort algorithm here.
+//note for self: code functionality to automatially update status
 
 const EventsBody = () => {
   return (
@@ -102,7 +100,7 @@ const EventsBody = () => {
       <div className="mb-16">
         <h2 className="text-4xl font-bold text-white mb-8">Upcoming Events</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {events.filter(event => event.semester === 'Fall 2024').map(event => (
+          {events.filter(event => event.status === 'Upcoming').map(event => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>
@@ -111,7 +109,7 @@ const EventsBody = () => {
       <div>
         <h2 className="text-4xl font-bold text-white mb-8">Past Events</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {events.filter(event => event.semester != 'Fall 2024').map(event => (
+          {events.filter(event => event.status != 'Upcoming').map(event => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>
