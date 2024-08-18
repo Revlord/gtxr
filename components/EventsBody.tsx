@@ -13,9 +13,9 @@ type Event = {
 const events: Event[] = [
   {
     id: 1,
-    title: "Week of Welcome",
+    title: "Week of Welcome Event 2024",
     date: "August 13, 2024",
-    description: "Join us for an exciting showcase of cool VR stuff",
+    description: "Join us for an exciting showcase of what this is all about and what we want to plan on providing and doing with members throughout the school year! Slide Deck: https://docs.google.com/file/d/120hN-dPiMV9QdhaYmcJKT6EGvkO38lkM/edit?usp=docslist_api&filetype=mspresentation",
     imageUrl: "/club13.jpg",
     status: 'Past'
   },
@@ -39,7 +39,7 @@ const events: Event[] = [
     id: 4,
     title: "ICXR Meetup",
     date: "September 15, 2024",
-    description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
+    description: "Join us for an exciting evening of VR gaming and networking with the INTERCOLLEGIATE XR organization that allow developers from all different schools and job positions to work together a foster an even larger connection all around the world!",
     imageUrl: "/club7.jpg",
     status: 'Past'
   },
@@ -47,7 +47,7 @@ const events: Event[] = [
     id: 5,
     title: "Speaker Event (Meta)",
     date: "April 4, 2023",
-    description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
+    description: "Join us for an exciting evening of networking alongside Meta recruiters and see the opprotunities available for Extended Reality developers!",
     imageUrl: "/club9.png",
     status: 'Past'
   },
@@ -63,7 +63,7 @@ const events: Event[] = [
     id: 7,
     title: "GT LEAD Info Session",
     date: "March 31, 2024",
-    description: "Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!Join us for an exciting evening of VR gaming and networking!",
+    description: "A HUGE paid VR Development opportunity open to undergrads in collaboration with GT Leadership Education and Development. Includes development work in Virtual and Augmented Reality experiences for specific classes around campus and even some school wide programs!",
     imageUrl: "/club12.png",
     status: 'Past'
   },
