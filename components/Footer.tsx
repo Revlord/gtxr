@@ -4,16 +4,14 @@ import Image from 'next/image';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="px-6 sm:px-12 lg:px-16 py-12 bg-zinc-900 text-white rounded-t-3xl lg:rounded-t-[3rem] relative footer-gradient overflow-hidden">
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start space-y-12 lg:space-y-0">
-                {/* Club Logo */}
-                <div className="flex justify-center lg:justify-start w-full lg:w-auto">
-                    <Image src="/temp_logo.png" alt="GTXR Logo" width={150} height={150} className="rounded-full" />
-                </div>
-
+        <footer className="m-4 sm:m-8 p-8 sm:p-12 lg:p-16 bg-zinc-900 text-white rounded-3xl lg:rounded-[3rem] relative footer-gradient overflow-hidden">
+            <div className="max-w-7xl mx-auto flex flex-col space-y-12 lg:space-y-0 items-center">
                 {/* Footer Content */}
-                <div className="flex-1 lg:ml-16">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center lg:text-left">
+                <div className="flex-1 lg:ml-16 w-full max-w-5xl">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center items-center">
+                        <div className="flex items-center justify-center">
+                        <Image src="/temp_logo.png" alt="GTXR Logo" width={150} height={150} className="rounded-full" />
+                        </div>
                         <div>
                             <h3 className="text-xl font-semibold mb-4">Website</h3>
                             <ul className="space-y-2">
@@ -41,16 +39,17 @@ const Footer: React.FC = () => {
                             </ul>
                         </div>
                     </div>
-
-                    <p className="text-center lg:text-left text-zinc-400 mt-12 pt-8 border-t border-zinc-700 text-sm">
-                        &copy; GTXR is a student organization. Membership and club resources are accessible to Georgia Tech students only.
-                    </p>
-                    <p className="text-center lg:text-left text-zinc-400 mt-8 pt-8 border-t border-zinc-700 text-sm">
-                        Website designed and developed by <Link className="hover:text-zinc-200 hover:underline" href={'https://www.alext.app/'}>Alex Thummalapalli</Link> and <Link className="hover:text-zinc-200 hover:underline" href={'https://github.com/Revlord'}>Revanth Reddy</Link>
-                    </p>
                 </div>
-            </div>
 
+            </div>
+            <div className="text-center text-zinc-400 mt-12 pt-8 border-t border-zinc-700 text-sm flex flex-col gap-2">
+                <p>
+                    &copy; GTXR is a student organization. Membership and club resources are accessible to Georgia Tech students only.
+                </p>
+                <p>
+                    Website designed and developed by <Link className="hover:text-zinc-200 hover:underline" href={'https://www.alext.app/'}>Alex Thummalapalli</Link> and <Link className="hover:text-zinc-200 hover:underline" href={'https://github.com/Revlord'}>Revanth Reddy</Link>.
+                </p>
+            </div>
             <div className="left-0 right-0 font-sans text-center font-extrabold text-[300px] sm:text-[400px] absolute -bottom-24 w-full leading-none pointer-events-none footer-gradient-text">
                 GTXR
             </div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { navItems } from '@/data';
 import appleVisionPro from '@/public/apple-vision-pro.png';
 import { BackgroundBeams } from "./ui/background-beams";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconMenu2 } from "@tabler/icons-react";
 import { useState } from "react";
 
 const Hero = () => {
@@ -48,40 +48,8 @@ const Hero = () => {
         <div className="font-sans text-center font-extrabold text-[30vw] xl:text-[400px] opacity-[3%] text-zinc-50 absolute -bottom-4 sm:-bottom-8 md:-bottom-12 w-full leading-none pointer-events-none z-20">GTXR</div>
         <BackgroundBeams />
       </div>
-
-      <MobileMenu isOpen={menuOpen} closeMenu={()=>{setMenuOpen(false)}} />
     </div>
   );
 };
-
-interface MobileMenuProps {
-  isOpen: boolean;
-  closeMenu: () => void;
-}
-
-const MobileMenu = ({ isOpen, closeMenu }: MobileMenuProps) => {
-  return (
-    <div className={`fixed top-0 bottom-0 z-[999] sm:hidden transition-all duration-500 w-full ${
-      isOpen ? 'left-0 opacity-100' : '-left-full opacity-0'
-    }`}>
-      <ul className="w-full h-full flex flex-col gap-8 text-white items-center justify-center bg-violet-950">
-        {navItems.map(({ label, href }, index) => (
-          <li key={index} className="relative group">
-            <Link
-              href={href}
-              className="text-3xl uppercase tracking-wider group-hover:text-purple transition duration-300"
-            >
-              {label}
-              <span className="absolute left-0 -bottom-1 w-full h-1 bg-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out">
-                <span className="absolute left-0 top-1 w-full h-4 bg-gradient-to-b from-violet-600 to-transparent opacity-60"></span>
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <button className="absolute top-4 right-4 text-zinc-300 hover:text-zinc-400 transition-colors" onClick={closeMenu}><IconX size={48}/></button>
-    </div>
-  )
-}
-
+6
 export default Hero;
