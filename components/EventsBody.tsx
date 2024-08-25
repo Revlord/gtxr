@@ -67,6 +67,22 @@ const events: Event[] = [
     imageUrl: "/club12.png",
     status: 'Past'
   },
+  {
+    id: 8,
+    title: "GTXR Club Fair",
+    date: "August 27, 2024",
+    description: "On the Skiles Walkway from 11am until 1pm. GTXR will have a table to showcase the organization, allowing students to learn more about their activities and possibly join. Includes some demoes for Virtual Reality headsets during the club expo",
+    imageUrl: "/kickoffFall2024.jpg",
+    status: 'Upcoming'
+  },
+  {
+    id: 9,
+    title: "GTXR Kickoff Event",
+    date: "September 1, 2024",
+    description: "Join us for an exciting kickoff event as we launch the Extended Reality College Club! This is your chance to dive into the world of VR and AR, connect with fellow enthusiasts, and get to know our club's vision and activities alongside some amazing headset demoes!",
+    imageUrl: "/clubExpoFallPhoto.png",
+    status: 'Upcoming'
+  },
   // ... Add more events with imageUrl
 ]
 
