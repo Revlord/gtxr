@@ -14,6 +14,6 @@ export default function Sponsorships() {
         <SponsorBody></SponsorBody>
         <Footer/>
       </div>
-    </main>
+      </main>
     );
 }

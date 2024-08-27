@@ -11,6 +11,7 @@ export const navItems = [
   { label: 'Events', href: '/events' },
   { label: 'Hackathon', href: 'https://www.immersegt.io/' },
   { label: 'Sponsorship', href: '/sponsorships' },
+  {label: 'Discord', href: 'https://discord.gg/GGBEuSHZHX'}
 ]
 
 //variable for the flipping words in hero section

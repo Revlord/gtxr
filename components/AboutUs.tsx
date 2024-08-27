@@ -81,7 +81,7 @@ const AboutUs = () => {
                             as="button"
                             className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 text-lg sm:text-xl"
                         >
-                            <span>Contact Us</span>
+                            <a href="mailto:contact@gtxr.club">Contact Us</a>
                         </HoverBorderGradient>
                         <p className="text-zinc-400 text-lg mt-0 sm:mt-8 font-light">We rely on sponsors in the industry to run ImmerseGT. Their generous support allows us to <span className="text-purple">open participation to any student</span> interested in XR, for free. </p>
                     </div>
