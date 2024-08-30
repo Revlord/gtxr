@@ -73,7 +73,7 @@ const events: Event[] = [
     date: "August 27, 2024",
     description: "On the Skiles Walkway from 11am until 1pm. GTXR will have a table to showcase the organization, allowing students to learn more about their activities and possibly join. Includes some demoes for Virtual Reality headsets during the club expo",
     imageUrl: "/clubExpoFallPhoto.png",
-    status: 'Upcoming'
+    status: 'Past'
   },
   {
     id: 9,
