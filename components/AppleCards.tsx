@@ -109,9 +109,15 @@ const MotionIDContent = () => {
           >
             <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
               <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                Motion Id Project <br></br>
+                Motion ID Research <br></br>
               </span>{" "}
-              Evaluate the feasibility of utilising motion data as a means of identification within the Apple Vision Pro by developing a model from publicly available datasets. This model aims to accurately determine the identity of active individuals from a database of participants based on their unique motion patterns, as well as identify new participants emulating strategies companies might use to track users to explore the feasibility.
+              Evaluate the feasibility of utilising motion data as a means of
+              identification for VR headsets such as the Quest Pro, 2, 3, and
+              Apple Vision Pro. This IRB approved study conducts research to
+              create models that predict the user in as little as a 2.5 second
+              wave or nod across multiple headsets. This serves as both an
+              authenthication mechanism as well as highlights the potency of
+              motion data raising privacy concerns.
             </p>
           </div>
         );
@@ -133,7 +139,9 @@ const XRMemoryContent = () => {
               <span className="font-bold text-neutral-700 dark:text-neutral-200">
                 XR Memory Project <br></br>
               </span>{" "}
-              An app that implements a Simon Says-like game in VR space to test whether memory retention in VR space is more effective than conventional memory retention.
+              An app that implements a Simon Says-like game in VR space to test
+              whether memory retention in VR spaces is more effective than
+              conventional memory retention.
             </p>
           </div>
         );
