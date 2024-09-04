@@ -9,18 +9,22 @@ const Footer: React.FC = () => {
                 {/* Footer Content */}
                 <div className="flex-1 lg:ml-16 w-full max-w-5xl">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center items-center">
-                        <div className="flex items-center justify-center">
-                        <Image src="/temp_logo.png" alt="GTXR Logo" width={150} height={150} className="rounded-full" />
+                        <div className="flex items-center justify-center gap-10">
+                            <Image src="/temp_logo.png" alt="GTXR Logo" width={150} height={150} className="rounded-full" />
+                            <Image src="/icxrorg.png" alt="ICXR Logo" width={150} height={150} className="rounded-full" />
                         </div>
+
+                        {/* Website Links */}
                         <div>
                             <h3 className="text-xl font-semibold mb-4">Website</h3>
                             <ul className="space-y-2">
                                 <li><Link href="/" className="text-zinc-300 hover:text-zinc-400 transition-colors">Home</Link></li>
                                 <li><Link href="/about" className="text-zinc-300 hover:text-zinc-400 transition-colors">About</Link></li>
-                                <li><Link href="/sponsorships" className="text-zinc-300 hover:text-zinc-400 transition-colors">Sponsorship</Link></li>
+                                <li><Link href='https://www.icxr.org/'>ICXR</Link></li>
                             </ul>
                         </div>
 
+                        {/* Activities Links */}
                         <div>
                             <h3 className="text-xl font-semibold mb-4">Activities</h3>
                             <ul className="space-y-2">
@@ -30,6 +34,7 @@ const Footer: React.FC = () => {
                             </ul>
                         </div>
 
+                        {/* Connect Links */}
                         <div>
                             <h3 className="text-xl font-semibold mb-4">Connect</h3>
                             <ul className="space-y-2">
@@ -42,6 +47,8 @@ const Footer: React.FC = () => {
                 </div>
 
             </div>
+
+            {/* Footer bottom section */}
             <div className="text-center text-zinc-400 mt-12 pt-8 border-t border-zinc-700 text-sm flex flex-col gap-2">
                 <p>
                     &copy; GTXR is a student organization. Membership and club resources are accessible to Georgia Tech students only.
