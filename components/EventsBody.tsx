@@ -23,7 +23,7 @@ const events: Event[] = [
     id: 2,
     title: "Project Pitch",
     date: "September 8, 2024",
-    description: "Join us for an exciting project pitch competition",
+    description: "The ultimate showdown of THE best projects in XR. The top projects will be chosen to commence for Fall 2024-Spring 2025. Applications close September 8th, join our discord and let your creativity take over!",
     imageUrl: "/club3.jpg",
     status: 'Upcoming'
   },
@@ -31,7 +31,7 @@ const events: Event[] = [
     id: 3,
     title: "ImmerseGT 2025",
     date: "April 5-7, 2025",
-    description: "Attend the worlds biggest XR hackathon",
+    description: "Participate in ImmerseGT, an innovative XR hackathon hosted by GTXR, on Georgia Tech's campus from April 4th-6th. Compete for your share of prizes as you build and test XR applications using state-of-the-art headsets.",
     imageUrl: "/immersegt.png",
     status: 'Upcoming'
   },
@@ -81,7 +81,7 @@ const events: Event[] = [
     date: "September 1, 2024",
     description: "Join us for an exciting kickoff event as we launch the Extended Reality College Club! This is your chance to dive into the world of VR and AR, connect with fellow enthusiasts, and get to know our club's vision and activities alongside some amazing headset demoes!",
     imageUrl: "/kickoffFall2024.jpg",
-    status: 'Upcoming'
+    status: 'Past'
   },
   // ... Add more events with imageUrl
 ]
