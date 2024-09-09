@@ -7,15 +7,14 @@ const Footer: React.FC = () => {
         <footer className="m-4 sm:m-8 p-8 sm:p-12 lg:p-16 bg-zinc-900 text-white rounded-3xl lg:rounded-[3rem] relative footer-gradient overflow-hidden">
             <div className="max-w-7xl mx-auto flex flex-col space-y-12 lg:space-y-0 items-center">
                 {/* Footer Content */}
-                <div className="flex-1 lg:ml-16 w-full max-w-5xl">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center items-center">
-                        <div className="flex items-center justify-center gap-10">
-                            <Image src="/temp_logo.png" alt="GTXR Logo" width={150} height={150} className="rounded-full" />
-                            <Image src="/icxrorg.png" alt="ICXR Logo" width={150} height={150} className="rounded-full" />
+                <div className="flex-1 w-full max-w-5xl">
+                    <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-5 gap-8 text-center items-center ">
+                        <div className="sm:col-span-3 md:col-span-1 order-first flex items-center justify-center">
+                            <Image src="/temp_logo.png" alt="GTXR Logo" width={150} height={150} />
                         </div>
 
                         {/* Website Links */}
-                        <div>
+                        <div className="sm:col-span-2 md:col-span-1">
                             <h3 className="text-xl font-semibold mb-4">Website</h3>
                             <ul className="space-y-2">
                                 <li><Link href="/" className="text-zinc-300 hover:text-zinc-400 transition-colors">Home</Link></li>
@@ -25,7 +24,7 @@ const Footer: React.FC = () => {
                         </div>
 
                         {/* Activities Links */}
-                        <div>
+                        <div className="sm:col-span-2 md:col-span-1">
                             <h3 className="text-xl font-semibold mb-4">Activities</h3>
                             <ul className="space-y-2">
                                 <li><Link href="/projects" className="text-zinc-300 hover:text-zinc-400 transition-colors">Projects</Link></li>
@@ -35,13 +34,17 @@ const Footer: React.FC = () => {
                         </div>
 
                         {/* Connect Links */}
-                        <div>
+                        <div className="sm:col-span-2 md:col-span-1">
                             <h3 className="text-xl font-semibold mb-4">Connect</h3>
                             <ul className="space-y-2">
                                 <li><a href="https://www.instagram.com/georgiatechxr" target="_blank" rel="noopener noreferrer" className="text-zinc-300 hover:text-zinc-400 transition-colors">Instagram</a></li>
                                 <li><a href="https://www.linkedin.com/company/georgiatechxr" target="_blank" rel="noopener noreferrer" className="text-zinc-300 hover:text-zinc-400 transition-colors">LinkedIn</a></li>
                                 <li><a href="mailto:contact@gtxr.club" className="text-zinc-300 hover:text-zinc-400 transition-colors">Email</a></li>
                             </ul>
+                        </div>
+
+                        <div className="sm:col-span-3 md:col-span-1 -order-1 md:order-last flex items-center justify-center">
+                            <Image src="/icxrorg.png" alt="ICXR Logo" width={170} height={150} />
                         </div>
                     </div>
                 </div>
