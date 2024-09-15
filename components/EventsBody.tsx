@@ -25,7 +25,7 @@ const events: Event[] = [
     date: "September 8, 2024",
     description: "The ultimate showdown of THE best projects in XR. The top projects will be chosen to commence for Fall 2024-Spring 2025. Applications close September 8th, join our discord and let your creativity take over!",
     imageUrl: "/club3.jpg",
-    status: 'Upcoming'
+    status: 'Past'
   },
   {
     id: 3,
@@ -82,6 +82,14 @@ const events: Event[] = [
     description: "Join us for an exciting kickoff event as we launch the Extended Reality College Club! This is your chance to dive into the world of VR and AR, connect with fellow enthusiasts, and get to know our club's vision and activities alongside some amazing headset demoes!",
     imageUrl: "/kickoffFall2024.jpg",
     status: 'Past'
+  },
+  {
+    id: 10,
+    title: "Project Showcase",
+    date: "September 20, 2024",
+    description: "Explore groundbreaking XR projects at our club's showcase, featuring top innovations selected from our recent Project Pitch Competition. See which projects you may want to get involved with over this semester!",
+    imageUrl: "/projectShowcase.jpg",
+    status: 'Upcoming'
   },
   // ... Add more events with imageUrl
 ]
