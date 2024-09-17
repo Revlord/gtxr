@@ -43,9 +43,9 @@ const Footer: React.FC = () => {
                             </ul>
                         </div>
 
-                        <div className="sm:col-span-3 md:col-span-1 -order-1 md:order-last flex items-center justify-center">
+                        <a href='https://www.icxr.org/' className="sm:col-span-3 md:col-span-1 -order-1 md:order-last flex items-center justify-center">
                             <Image src="/icxrorg.png" alt="ICXR Logo" width={170} height={150} />
-                        </div>
+                        </a>
                     </div>
                 </div>
 
