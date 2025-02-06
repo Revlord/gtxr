@@ -9,7 +9,7 @@ export const navItems = [
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
   { label: 'Events', href: '/events' },
-  { label: 'Hackathon', href: 'https://www.immersegt.io/' },
+  { label: 'Hackathon', href: 'https://www.immersegt.org/' },
   { label: 'Sponsorship', href: '/sponsorships' },
   {label: 'Discord', href: 'https://discord.gg/GGBEuSHZHX'}
 ]
