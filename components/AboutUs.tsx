@@ -86,8 +86,8 @@ const AboutUs = () => {
                         <p className="text-zinc-400 text-lg mt-0 sm:mt-8 font-light">We rely on sponsors in the industry to run ImmerseGT. Their generous support allows us to <span className="text-purple">open participation to any student</span> interested in XR, for free. </p>
                     </div>
                     <PinContainer
-                        title="immersegt.io"
-                        href="https://immersegt.io"
+                        title="immersegt.org"
+                        href="https://immersegt.org"
                     >
                         <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] sm:w-[30rem] h-fit">
                             <h3 className="!pb-2 !m-0 font-bold  text-2xl text-slate-100">

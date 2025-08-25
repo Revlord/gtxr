@@ -21,14 +21,26 @@ export const words = ["Step-into", "Explore", "Conquer"];
 //need to add actual images of the exec memebers from the notion
 export const execMembers = [
   {
-    name: "Jack English",
+    name: "Ethan Kimmel",
     role: "Co-President",
+    bio: "",
+    image: "/ethan.jpg"
+  },
+  {
+    name: "Ryan Clark",
+    role: "Co-President",
+    bio: "",
+    image: "/ryan.jpg"
+  },
+  {
+    name: "Jack English",
+    role: "Ex-President",
     bio: "",
     image: "/jackenglish.jpeg"
   },
   {
     name: "Ilkin Mammadli",
-    role: "Co-President",
+    role: "Ex-President",
     bio: "",
     image: "/ilkin.png"
   },
@@ -45,16 +57,10 @@ export const execMembers = [
     image: "/ian.jpg"
   },
   {
-    name: "Ryan Clark",
-    role: "Director Of Projects",
+    name: "Prithiv Premkumar",
+    role: "Director Of Finance",
     bio: "",
-    image: "/ryan.jpg"
-  },
-  {
-    name: "Ethan Kimmel",
-    role: "Director Of Marketing",
-    bio: "",
-    image: "/ethan.jpg"
+    image: "/pritiv.jpg"
   },
   {
     name: "Akshin Vemana",
@@ -62,10 +68,4 @@ export const execMembers = [
     bio: "",
     image: "/akshin.png"
   },
-  {
-    name: "Prithiv Premkumar",
-    role: "Director Of Finance",
-    bio: "",
-    image: "/pritiv.jpg"
-  }
 ];

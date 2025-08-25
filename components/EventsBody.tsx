@@ -33,7 +33,7 @@ const events: Event[] = [
     date: "April 5-7, 2025",
     description: "Participate in ImmerseGT, an innovative XR hackathon hosted by GTXR, on Georgia Tech's campus from April 4th-6th. Compete for your share of prizes as you build and test XR applications using state-of-the-art headsets.",
     imageUrl: "/immersegt.png",
-    status: 'Upcoming'
+    status: 'Past'
   },
   {
     id: 4,
@@ -88,6 +88,14 @@ const events: Event[] = [
     title: "Project Showcase",
     date: "September 20, 2024",
     description: "Explore groundbreaking XR projects at our club's showcase, featuring top innovations selected from our recent Project Pitch Competition. See which projects you may want to get involved with over this semester!",
+    imageUrl: "/projectShowcase.jpg",
+    status: 'Past'
+  },
+  {
+    id: 11,
+    title: "Annual Kickoff Event | 📍West Arch 258 ",
+    date: "August 27, 2025",
+    description: "💪Our exec team has been hard at work this summer planning an incredible semester for you guys. From industry speaker events, to cutting-edge club projects, this will be hands-down the most action-packed year we've ever had. 🥽And it's never been a better time to get involved in XR! Rumors are buzzing around every major tech company—Meta, Google, and Snapchat are all about to release new AR Glasses, and Valve is on the verge of announcing the long-awaited Deckard headset. 🍕Come join us, grab some free food, and connect with students from across campus who are passionate about XR.",
     imageUrl: "/projectShowcase.jpg",
     status: 'Upcoming'
   },
