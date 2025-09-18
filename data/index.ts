@@ -4,7 +4,7 @@
  */
 
 
-//variable for items displayed in the navbar
+//variable for items displayed in the navba
 export const navItems = [
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
