@@ -4,8 +4,35 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function Navbar() {
+import { SpatialContainer } from "@webspatial/react-sdk";
+
+export default function Navbar({ spatialMode = false }: { spatialMode?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  if (spatialMode) {
+    return (
+      <SpatialContainer>
+        <nav className="fixed left-0 top-0 h-full w-64 bg-black bg-opacity-90 shadow-lg z-50 flex flex-col items-center py-8">
+          <Link href="/" className="mb-8 transition duration-300 hover:opacity-80">
+            <Image src="/temp_logo.png" alt="logo" width={100} height={55} className="rounded-full" />
+          </Link>
+          <ul className="flex flex-col space-y-6 text-white w-full items-center">
+            {navItems.map(({ label, href }, index) => (
+              <li key={index} className="relative group w-full">
+                <Link 
+                  href={href} 
+                  className="block w-full text-sm uppercase font-medium tracking-wider hover:text-purple transition duration-300 px-4 py-2 text-center"
+                >
+                  {label}
+                  <span className="absolute left-0 bottom-0 w-full h-0.5 bg-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </SpatialContainer>
+    );
+  }
 
   return (
     <header className="bg-black bg-opacity-90 shadow-lg sticky top-0 w-full z-50">

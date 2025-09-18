@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.1.0",
     "@tabler/icons-react": "^3.11.0",
     "@tsparticles/engine": "^3.4.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.4.0",
+    "@webspatial/core-sdk": "^1.0.3",
+    "@webspatial/react-sdk": "^1.0.3",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.18",
     "mini-svg-data-uri": "^1.4.4",
@@ -22,7 +25,8 @@
     "react-dom": "^18",
     "sharp": "^0.33.4",
     "tailwind-merge": "^2.4.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.172.0"
   },
   "devDependencies": {
     "@types/node": "^20",
