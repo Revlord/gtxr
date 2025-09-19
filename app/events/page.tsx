@@ -8,7 +8,6 @@ export default function Events() {
     return (
       <main>
         <div className="min-h-screen flex flex-col bg-black">
-          <Navbar/>
           <EventsHeaderHero/>
           <EventsBody/>
           <Footer/>

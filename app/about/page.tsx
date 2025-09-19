@@ -9,7 +9,6 @@ export default function About() {
     return (
       <main>
         <div className="min-h-screen flex flex-col bg-black">
-          <Navbar/>
           <div className="pt-16">
             <Mission/>
             <Exec/>

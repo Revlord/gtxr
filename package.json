@@ -32,6 +32,9 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@webspatial/builder": "^1.0.3",
+    "@webspatial/next-plugin": "^0.1.8",
+    "@webspatial/platform-visionos": "^1.0.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.4"

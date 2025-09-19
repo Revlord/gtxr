@@ -1,19 +1,86 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+import { Carousel, Card } from "@/components/apple-cards-carousel";
 
-export function AppleCardsCarouselDemo() {
+interface AppleCardsCarouselDemoProps {
+  spatialMode?: boolean;
+}
+
+export function AppleCardsCarouselDemo({ spatialMode = false }: AppleCardsCarouselDemoProps) {
   const cards = data.map((card, index) => (
     <Card key={card.src} card={card} index={index} />
   ));
 
   return (
-    <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center">
+    <div 
+      className="w-full h-full py-20"
+      enable-xr={spatialMode}
+      style={spatialMode ? {
+        position: 'relative',
+        '--xr-back': '10',
+        '--xr-background-material': 'translucent',
+        borderRadius: '40px',
+        padding: '3rem',
+        margin: '2rem'
+      } : {}}
+    >
+      <h2 
+        className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center"
+        enable-xr={spatialMode}
+        style={spatialMode ? {
+          position: 'relative',
+          '--xr-back': '30',
+          '--xr-background-material': 'thick',
+          borderRadius: '25px',
+          padding: '2rem',
+          marginBottom: '2rem',
+          transform: 'rotateX(5deg)',
+          transformOrigin: 'center'
+        } : {}}
+      >
         Our Projects range from XR research to fun VR applications!
+        {spatialMode && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '-10px',
+              right: '-10px',
+              fontSize: '2rem',
+              '--xr-back': '10',
+              '--xr-background-material': 'translucent',
+              borderRadius: '50%',
+              padding: '8px',
+              animation: 'float 3s ease-in-out infinite'
+            }}
+            enable-xr
+          >
+            🥽
+          </div>
+        )}
       </h2>
-      <Carousel items={cards} />
+      
+      {spatialMode && (
+        <div 
+          className="text-center mb-8 text-neutral-600 dark:text-neutral-400"
+          enable-xr
+          style={{
+            position: 'relative',
+            '--xr-back': '20',
+            '--xr-background-material': 'thin',
+            borderRadius: '15px',
+            padding: '1rem',
+            fontSize: '1.1rem'
+          }}
+        >
+          👆 Use pinch gestures to interact with cards in XR mode
+        </div>
+      )}
+      
+      <Carousel 
+        items={cards} 
+        spatialMode={spatialMode}
+      />
     </div>
   );
 }
@@ -46,6 +113,7 @@ const DummyContent = () => {
     </>
   );
 };
+
 const ProjectPitchContent = () => {
   return (
     <>
@@ -181,7 +249,7 @@ const DrumSimulatorContent = () => {
             key={"dummy-content" + index}
             className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
           >
-            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-1 font-sans max-w-3xl mx-auto mb-4">
               <span className="font-bold text-neutral-700 dark:text-neutral-200">
                 Drum Simulator <br></br>
               </span>{" "}
@@ -229,7 +297,7 @@ const XRtisticHabitatContent = () => {
               <span className="font-bold text-neutral-700 dark:text-neutral-200">
                 XRtistic Habitat <br></br>
               </span>{" "}
-              The XRtistic Habitat project is an innovative solution designed to revolutionize how we approach interior design and space planning. By leveraging Extended Reality (XR) technology, this project allows users to create and visualize virtual objects, such as furniture and décor, within a physical room. This immersive experience enables individuals to see how different items would fit and look in their desired space, all without the need for physical objects. XRtistic Habitat was conceived to address the common challenges of interior design—specifically, the difficulty of envisioning how furniture and other objects will fit into a space. Whether you’re redesigning a living room, planning a new office layout, or simply trying to decide on the best furniture arrangement, XRtistic Habitat provides a powerful tool for making informed decisions.
+              The XRtistic Habitat project is an innovative solution designed to revolutionize how we approach interior design and space planning. By leveraging Extended Reality (XR) technology, this project allows users to create and visualize virtual objects, such as furniture and décor, within a physical room. This immersive experience enables individuals to see how different items would fit and look in their desired space, all without the need for physical objects. XRtistic Habitat was conceived to address the common challenges of interior design—specifically, the difficulty of envisioning how furniture and other objects will fit into a space. Whether you're redesigning a living room, planning a new office layout, or simply trying to decide on the best furniture arrangement, XRtistic Habitat provides a powerful tool for making informed decisions.
             </p>
           </div>
         );

@@ -9,7 +9,6 @@ export default function Sponsorships() {
     return (
       <main>
       <div className="min-h-screen flex flex-col bg-black">
-        <Navbar/>
         <SponsorshipHero/>
         <SponsorBody></SponsorBody>
         <Footer/>
