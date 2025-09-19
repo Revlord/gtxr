@@ -36,7 +36,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {!hideNavbar && <Navbar spatialMode={isXREnvironment} />}
-          <div enable-xr-monitor>
+          <div enable-xr-monitor="true">
             {children}
           </div>
         </ThemeProvider>

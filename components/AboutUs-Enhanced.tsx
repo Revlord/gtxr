@@ -8,14 +8,17 @@ import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import ImmerseGT from "@/public/immersegt.png";
 
 const AboutUs = () => {
+    // Detect if we're in spatial mode (you might want to pass this as a prop)
+    const spatialMode = typeof window !== 'undefined' && document.documentElement.classList.contains('is-spatial');
+    
     return (
         <div className="relative w-full min-h-[calc(100vh)] h-fit flex bg-black">
-            <div className="w-full h-auto flex-grow m-4 my-8 md:m-8 relative flex flex-col items-center text-center py-0 sm:py-16" enable-xr-monitor>
+            <div className="w-full h-auto flex-grow m-4 my-8 md:m-8 relative flex flex-col items-center text-center py-0 sm:py-16" enable-xr-monitor={true}>
                 
                 {/* Section 01 - Introduction with spatial background */}
                 <div 
                     className="section-intro" 
-                    enable-xr
+                    enable-xr={true}
                     style={{
                         position: 'relative',
                         '--xr-background-material': 'translucent',
@@ -31,10 +34,10 @@ const AboutUs = () => {
                 </div>
 
                 {/* Cards Grid with spatial enhancement */}
-                <div className="flex flex-wrap max-w-[1440px] gap-5 w-full mt-8 sm:mt-16 lg:mt-24 justify-center" enable-xr-monitor>
+                <div className="flex flex-wrap max-w-[1440px] gap-5 w-full mt-8 sm:mt-16 lg:mt-24 justify-center" enable-xr-monitor={true}>
                     <div 
                         className="card-container workshops"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '30',
@@ -50,7 +53,7 @@ const AboutUs = () => {
                     
                     <div 
                         className="card-container project-teams"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '50',
@@ -67,7 +70,7 @@ const AboutUs = () => {
                     
                     <div 
                         className="card-container project-pitches"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '40',
@@ -83,7 +86,7 @@ const AboutUs = () => {
                     
                     <div 
                         className="card-container social-events"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '35',
@@ -100,7 +103,7 @@ const AboutUs = () => {
                     
                     <div 
                         className="card-container research"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '45',
@@ -117,7 +120,7 @@ const AboutUs = () => {
                     
                     <div 
                         className="card-container hackathons"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '60',
@@ -137,7 +140,7 @@ const AboutUs = () => {
                 {/* Section 02 - Collaboration */}
                 <div 
                     className="section-collaboration" 
-                    enable-xr
+                    enable-xr={true}
                     style={{
                         position: 'relative',
                         '--xr-background-material': 'translucent',
@@ -154,10 +157,10 @@ const AboutUs = () => {
                 </div>
 
                 {/* Image and content sections with spatial layouts */}
-                <div className="mt-12 sm:mt-16 flex gap-8 flex-col lg:flex-row items-center px-4" enable-xr-monitor>
+                <div className="mt-12 sm:mt-16 flex gap-8 flex-col lg:flex-row items-center px-4" enable-xr-monitor={true}>
                     <div 
                         className="image-container-1 flex-1"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '40',
@@ -177,7 +180,7 @@ const AboutUs = () => {
                     
                     <div 
                         className="content-panel-1 flex-1"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '25',
@@ -190,7 +193,7 @@ const AboutUs = () => {
                         <div className="w-full text-center px-4 sm:px-8 flex flex-col justify-center items-center max-w-xl mx-auto">
                             <h3 
                                 className="text-purple font-bold text-xl sm:text-3xl mb-6"
-                                enable-xr
+                                enable-xr={true}
                                 style={{
                                     position: 'relative',
                                     '--xr-back': '10',
@@ -210,10 +213,10 @@ const AboutUs = () => {
                 </div>
 
                 {/* Second image/content section */}
-                <div className="mt-16 flex gap-8 items-center flex-col-reverse lg:flex-row px-4" enable-xr-monitor>
+                <div className="mt-16 flex gap-8 items-center flex-col-reverse lg:flex-row px-4" enable-xr-monitor={true}>
                     <div 
                         className="content-panel-2 flex-1"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '30',
@@ -227,7 +230,7 @@ const AboutUs = () => {
                         <div className="w-full text-center px-4 sm:px-8 flex flex-col justify-center items-center max-w-xl mx-auto">
                             <h3 
                                 className="text-purple font-bold text-xl sm:text-3xl mb-6"
-                                enable-xr
+                                enable-xr={true}
                                 style={{
                                     position: 'relative',
                                     '--xr-back': '15',
@@ -238,7 +241,7 @@ const AboutUs = () => {
                             </h3>
                             <ul 
                                 className="text-left list-disc pl-6 text-zinc-400 flex flex-col gap-3"
-                                enable-xr
+                                enable-xr={true}
                                 style={{
                                     position: 'relative',
                                     '--xr-back': '5',
@@ -258,7 +261,7 @@ const AboutUs = () => {
                     
                     <div 
                         className="image-container-2 flex-1"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '50',
@@ -280,7 +283,7 @@ const AboutUs = () => {
                 {/* Section 03 - Industry Collaboration */}
                 <div 
                     className="section-industry" 
-                    enable-xr
+                    enable-xr={true}
                     style={{
                         position: 'relative',
                         '--xr-background-material': 'translucent',
@@ -297,10 +300,10 @@ const AboutUs = () => {
                 </div>
 
                 {/* Sponsor and ImmerseGT section with spatial arrangement */}
-                <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 mt-12 px-4" enable-xr-monitor>
+                <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-12 mt-12 px-4" enable-xr-monitor={true}>
                     <div 
                         className="sponsor-panel flex-1 max-w-2xl"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '40',
@@ -314,7 +317,7 @@ const AboutUs = () => {
                         <div className="w-full flex flex-col items-center gap-6 bg-zinc-900 p-6 sm:p-8 rounded-3xl">
                             <p 
                                 className="text-xl sm:text-2xl font-semibold text-zinc-200 text-center"
-                                enable-xr
+                                enable-xr={true}
                                 style={{
                                     position: 'relative',
                                     '--xr-back': '10',
@@ -325,7 +328,7 @@ const AboutUs = () => {
                             </p>
                             
                             <div 
-                                enable-xr
+                                enable-xr={true}
                                 style={{
                                     position: 'relative',
                                     '--xr-back': '15',
@@ -352,7 +355,7 @@ const AboutUs = () => {
                     
                     <div 
                         className="immersegt-container flex-1 max-w-lg"
-                        enable-xr
+                        enable-xr={true}
                         style={{
                             position: 'relative',
                             '--xr-back': '60',
@@ -369,7 +372,7 @@ const AboutUs = () => {
                             <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] sm:w-[25rem] h-fit">
                                 <h3 
                                     className="!pb-2 !m-0 font-bold text-2xl text-slate-100"
-                                    enable-xr
+                                    enable-xr={true}
                                     style={{
                                         position: 'relative',
                                         '--xr-back': '10',

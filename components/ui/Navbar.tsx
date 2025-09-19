@@ -14,7 +14,7 @@ export default function Navbar({ spatialMode = false }: NavbarProps) {
   return (
     <header 
       className="bg-black bg-opacity-90 shadow-lg sticky top-0 w-full z-50"
-      enable-xr={spatialMode}
+      enable-xr={spatialMode ? true : undefined}
       style={spatialMode ? {
         position: 'fixed',
         top: '0',
@@ -28,11 +28,11 @@ export default function Navbar({ spatialMode = false }: NavbarProps) {
     >
       <nav 
         className="container mx-auto px-4 py-4 flex justify-between items-center"
-        enable-xr-monitor={spatialMode}
+        enable-xr-monitor={spatialMode ? true : undefined}
       >
         {/* Logo with spatial enhancement */}
         <div
-          enable-xr={spatialMode}
+          enable-xr={spatialMode ? true : undefined}
           style={spatialMode ? {
             position: 'relative',
             '--xr-back': '20',
@@ -57,7 +57,7 @@ export default function Navbar({ spatialMode = false }: NavbarProps) {
         <button
           className="lg:hidden text-white"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          enable-xr={spatialMode}
+          enable-xr={spatialMode ? true : undefined}
           style={spatialMode ? {
             position: 'relative',
             '--xr-back': '15',
@@ -86,7 +86,7 @@ export default function Navbar({ spatialMode = false }: NavbarProps) {
         {/* Navigation Menu - Desktop with spatial enhancements */}
         <ul 
           className="hidden lg:flex space-x-6 text-white"
-          enable-xr={spatialMode}
+          enable-xr={spatialMode ? true : undefined}
           style={spatialMode ? {
             position: 'relative',
             '--xr-back': '30',
@@ -99,10 +99,10 @@ export default function Navbar({ spatialMode = false }: NavbarProps) {
             <li 
               key={index} 
               className="relative group"
-              enable-xr={spatialMode}
+              enable-xr={spatialMode ? true : undefined}
               style={spatialMode ? {
                 position: 'relative',
-                '--xr-back': `${5 + index * 2}`, // Stagger depths
+                '--xr-back': `${5 + index * 2}`,
                 '--xr-background-material': 'transparent',
                 borderRadius: '12px',
                 padding: '8px 16px',
@@ -119,7 +119,7 @@ export default function Navbar({ spatialMode = false }: NavbarProps) {
                 {label}
                 <span 
                   className="absolute left-0 bottom-0 w-full h-0.5 bg-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"
-                  enable-xr={spatialMode}
+                  enable-xr={spatialMode ? true : undefined}
                   style={spatialMode ? {
                     '--xr-back': '3',
                     '--xr-background-material': 'translucent'
@@ -135,7 +135,7 @@ export default function Navbar({ spatialMode = false }: NavbarProps) {
       {isMenuOpen && (
         <div 
           className="lg:hidden bg-black bg-opacity-90"
-          enable-xr={spatialMode}
+          enable-xr={spatialMode ? true : undefined}
           style={spatialMode ? {
             position: 'relative',
             '--xr-back': '50',
@@ -146,12 +146,12 @@ export default function Navbar({ spatialMode = false }: NavbarProps) {
         >
           <ul 
             className="px-4 py-2 space-y-2 text-white"
-            enable-xr-monitor={spatialMode}
+            enable-xr-monitor={spatialMode ? true : undefined}
           >
             {navItems.map(({ label, href }, index) => (
               <li 
                 key={index}
-                enable-xr={spatialMode}
+                enable-xr={spatialMode ? true : undefined}
                 style={spatialMode ? {
                   position: 'relative',
                   '--xr-back': `${10 + index * 3}`,
