@@ -1,14 +1,15 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import AboutUs from "@/components/AboutUs-Enhanced";
-import Head from "next/head";
-import { AppleCardsCarouselDemo } from "@/components/AppleCards";
-
+import ClientNavbar from "@/components/client-navbar";
+import WebSpatialTest from "@/components/webspatial-test";
 
 export default function Home() {
-  return ( //tailwind works, so does its extension
+  return (
     <main>
       <div className="min-h-screen flex flex-col bg-black">
+        <ClientNavbar />
+        <WebSpatialTest />
         <Hero/>
         <AboutUs/>
         <Footer />
@@ -16,4 +17,3 @@ export default function Home() {
     </main>
   );
 }
-

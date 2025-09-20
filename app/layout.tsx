@@ -1,28 +1,23 @@
-'use client'
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import Navbar from "@/components/ui/Navbar";
-import Head from "next/head";
-import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "GTXR - Georgia Tech Extended Reality",
+  description: "The future of extended reality, at Georgia Tech",
+  manifest: "/manifest.webmanifest",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Detect if running in WebSpatial mode
-  const isXREnvironment = process.env.XR_ENV === 'avp';
-  const pathname = usePathname();
-  
-  // Hide navbar on home page (where Hero component is used)
-  const hideNavbar = pathname === '/';
-  
   return (
-    <html lang="en" className={isXREnvironment ? 'is-spatial' : ''}>
+    <html lang="en">
       <head>
         <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,7 +30,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {!hideNavbar && <Navbar spatialMode={isXREnvironment} />}
           <div enable-xr-monitor="true">
             {children}
           </div>
