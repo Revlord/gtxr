@@ -176,3 +176,9 @@
     radial-gradient(at 80% 100%, hsla(285, 60%, 35%, 0.2) 0px, transparent 50%),
     radial-gradient(at 0% 0%, hsla(255, 90%, 40%, 0.2) 0px, transparent 50%);
 }
+/* Only active in WebSpatial builds that add `.is-spatial` */
+html.is-spatial {
+  background-color: transparent;
+  --xr-background-material: translucent; /* WebSpatial window material */
+  border-radius: 28px;
+}
