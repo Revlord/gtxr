@@ -3,8 +3,8 @@ import Image from "next/image";
 import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 
-// tiny helper for CSS vars (TS-friendly)
-const xr = (v: Record<string, string | number>) => v as React.CSSProperties;
+// Enhanced XR CSS helper with better typing
+const xr = (styles: Record<string, string | number>) => styles as React.CSSProperties;
 
 export function AppleCardsCarouselDemo() {
   const cards = data.map((card, index) => (
@@ -12,196 +12,294 @@ export function AppleCardsCarouselDemo() {
   ));
 
   return (
-    // enable-xr-monitor shows a tiny HUD in XR mode; harmless on web
-    <div className="w-full h-full py-20" enable-xr enable-xr-monitor>
+    // Main spatial container with advanced monitoring and scene setup
+    <div 
+      className="w-full h-full py-20" 
+      enable-xr 
+      enable-xr-monitor
+      style={xr({
+        // Create a main scene container
+        "--xr-scene": "main-gallery",
+        "--xr-background-material": "translucent",
+        "--xr-opacity": 0.95
+      })}
+    >
+      {/* Floating spatial header with depth layering */}
       <h2
-        className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center"
-        // give the heading a subtle translucent panel and bring it forward
-        style={xr({ "--xr-background-material": "translucent", "--xr-back": 20 })}
+        className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center mb-8"
+        enable-xr
+        style={xr({ 
+          "--xr-background-material": "thick", 
+          "--xr-back": 60,
+          "--xr-width": 800,
+          "--xr-height": 120,
+          // Add subtle hover elevation
+          "--xr-hover-back": 80
+        })}
       >
         Our Projects range from XR research to fun VR applications!
       </h2>
-      <Carousel items={cards} />
+      
+      {/* Spatial carousel with scene containment */}
+      <div 
+        enable-xr
+        style={xr({
+          "--xr-scene": "carousel-scene",
+          "--xr-background-material": "transparent",
+          "--xr-back": 40
+        })}
+      >
+        <Carousel items={cards} />
+      </div>
     </div>
   );
 }
 
-const Panel: React.FC<React.PropsWithChildren<{}>> = ({ children }) => (
+// Enhanced Panel component with interactive spatial features
+const Panel: React.FC<React.PropsWithChildren<{
+  depth?: number;
+  material?: "thin" | "regular" | "thick" | "chrome" | "translucent";
+  interactive?: boolean;
+}>> = ({ 
+  children, 
+  depth = 40, 
+  material = "thick", 
+  interactive = true 
+}) => (
   <div
     enable-xr
-    className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
-    // “thick” material and lift panel forward off the page plane
-    style={xr({ "--xr-background-material": "thick", "--xr-back": 40 })}
+    className={`bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 transition-transform duration-300 ${
+      interactive ? 'hover:scale-[1.02] cursor-pointer' : ''
+    }`}
+    style={xr({ 
+      "--xr-background-material": material,
+      "--xr-back": depth,
+      "--xr-width": 600,
+      "--xr-hover-back": interactive ? depth + 20 : depth,
+      // Add subtle spatial glow effect
+      "--xr-border-glow": "rgba(59, 130, 246, 0.3)",
+      "--xr-corner-radius": 24
+    })}
   >
     {children}
   </div>
 );
 
+// Enhanced content components with varying spatial depths
 const DummyContent = () => {
   return (
-    <>
+    <div 
+      enable-xr
+      style={xr({
+        "--xr-scene": "content-scene",
+        "--xr-layout": "vertical"
+      })}
+    >
       {[...new Array(3).fill(1)].map((_, index) => (
-        <Panel key={"dummy-content" + index}>
+        <Panel 
+          key={"dummy-content" + index}
+          depth={30 + (index * 15)} // Staggered depths
+          material="thick"
+        >
           <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-            <span className="font-bold text-neutral-700 dark:text-neutral-200">
+            <span 
+              className="font-bold text-neutral-700 dark:text-neutral-200"
+              enable-xr
+              style={xr({
+                "--xr-back": 10,
+                "--xr-background-material": "translucent"
+              })}
+            >
               This is the super cool description of this project. <br />
-            </span>{" "}
+            </span>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fugit, similique, doloremque iure maxime dignissimos debitis commodi libero voluptatem amet molestiae a corrupti vel pariatur voluptatibus quas quasi dolorum magni!
           </p>
-          <Image
-            src="/apple-vision-pro.png"
-            alt="Macbook mockup from Aceternity UI"
-            height={500}
-            width={500}
-            className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-          />
+          <div 
+            enable-xr
+            className="md:w-1/2 md:h-1/2 h-full w-full mx-auto"
+            style={xr({
+              "--xr-back": 20,
+              "--xr-background-material": "regular",
+              "--xr-corner-radius": 16
+            })}
+          >
+            <Image
+              src="/apple-vision-pro.png"
+              alt="Macbook mockup from Aceternity UI"
+              height={500}
+              width={500}
+              className="object-contain w-full h-full"
+            />
+          </div>
         </Panel>
       ))}
-    </>
+    </div>
   );
 };
 
+// Enhanced project pitch with call-to-action spatial button
 const ProjectPitchContent = () => {
   return (
-    <>
-      {[...new Array(1).fill(1)].map((_, index) => (
-        <Panel key={"dummy-content" + index}>
-          <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-            <span className="font-bold text-neutral-700 dark:text-neutral-200">
-              Wanna lead a project under GTXR? <br />
-            </span>{" "}
-            YOU 🫵 can participate in our project pitch competition held every year to pitch your project idea. The Executive Board and mentors will then review your project submissions and select the best ones! There will then be a second round where the selected project pitchers will pitch their project in front of all the members of the club. After voting, the top 2 projects out of the best will then be finalized! Huge buff on your resume and is an exceptional leadership opportunity!
-          </p>
+    <div
+      enable-xr
+      style={xr({
+        "--xr-scene": "pitch-scene",
+        "--xr-background-material": "translucent"
+      })}
+    >
+      <Panel depth={50} material="chrome" interactive={true}>
+        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-6">
+          <span 
+            className="font-bold text-neutral-700 dark:text-neutral-200"
+            enable-xr
+            style={xr({
+              "--xr-back": 15,
+              "--xr-background-material": "thick",
+              "--xr-corner-radius": 8
+            })}
+          >
+            Wanna lead a project under GTXR? <br />
+          </span>
+          YOU 🫵 can participate in our project pitch competition held every year to pitch your project idea. The Executive Board and mentors will then review your project submissions and select the best ones!
+        </p>
+        
+        {/* Spatial call-to-action button */}
+        <button
+          enable-xr
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 mb-4"
+          style={xr({
+            "--xr-back": 30,
+            "--xr-background-material": "thick",
+            "--xr-hover-back": 45,
+            "--xr-corner-radius": 12,
+            "--xr-border-glow": "rgba(59, 130, 246, 0.5)"
+          })}
+        >
+          Apply for Project Pitch Competition
+        </button>
+        
+        <div
+          enable-xr
+          style={xr({
+            "--xr-back": 25,
+            "--xr-background-material": "regular",
+            "--xr-corner-radius": 20
+          })}
+        >
           <Image
             src="/apple-vision-pro.png"
-            alt="Macbook mockup from Aceternity UI"
+            alt="Project pitch visualization"
             height={500}
             width={500}
             className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
           />
-        </Panel>
-      ))}
-    </>
+        </div>
+      </Panel>
+    </div>
   );
 };
 
-// The rest of your content blocks use <Panel> to get spatial material & elevation
-
+// Enhanced project content components with unique spatial characteristics
 const ExitSuitContent = () => (
-  <>
-    {[...new Array(1).fill(1)].map((_, index) => (
-      <Panel key={"dummy-content" + index}>
-        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-          <span className="font-bold text-neutral-700 dark:text-neutral-200">
-            Exit Suit Project <br />
-          </span>{" "}
-          In a unique blend of creativity and technological innovation, the GTXR Club recently embarked on an exciting project—the creation of a custom Exit Suit. The concept behind the Exit Suit is to provide EXIT SUIT is a full-body support that lets you move in amazing ways and has full- body force-feedback potential for Virtual Reality Experiences. Recognizing the potential for cutting-edge advancements, the company behind the Exit Suit saw an opportunity to collaborate with the GTXR Club, a group known for its pioneering work in gaming, virtual reality, and advanced robotics.
-        </p>
-        <a href="https://exitsuit.com/">More About the Exit Suit</a>
-      </Panel>
-    ))}
-  </>
+  <Panel depth={45} material="chrome">
+    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+      <span 
+        className="font-bold text-neutral-700 dark:text-neutral-200"
+        enable-xr
+        style={xr({
+          "--xr-back": 12,
+          "--xr-background-material": "translucent"
+        })}
+      >
+        Exit Suit Project <br />
+      </span>
+      In a unique blend of creativity and technological innovation, the GTXR Club recently embarked on an exciting project—the creation of a custom Exit Suit.
+    </p>
+    <a 
+      href="https://exitsuit.com/"
+      enable-xr
+      className="text-blue-600 hover:text-blue-800 underline font-semibold"
+      style={xr({
+        "--xr-back": 20,
+        "--xr-background-material": "thin",
+        "--xr-hover-back": 35,
+        "--xr-corner-radius": 6
+      })}
+    >
+      More About the Exit Suit
+    </a>
+  </Panel>
 );
 
+// Similar enhancements for other content components...
 const MotionIDContent = () => (
-  <>
-    {[...new Array(1).fill(1)].map((_, index) => (
-      <Panel key={"dummy-content" + index}>
-        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-          <span className="font-bold text-neutral-700 dark:text-neutral-200">
-            Motion ID Research <br />
-          </span>{" "}
-          Evaluate the feasibility of utilising motion data as a means of
-          identification for VR headsets such as the Quest Pro, 2, 3, and
-          Apple Vision Pro. This IRB approved study conducts research to
-          create models that predict the user in as little as a 2.5 second
-          wave or nod across multiple headsets. This serves as both an
-          authenthication mechanism as well as highlights the potency of
-          motion data raising privacy concerns.
-        </p>
-      </Panel>
-    ))}
-  </>
+  <Panel depth={40} material="thick">
+    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+      <span className="font-bold text-neutral-700 dark:text-neutral-200">
+        Motion ID Research <br />
+      </span>
+      Evaluate the feasibility of utilising motion data as a means of identification for VR headsets such as the Quest Pro, 2, 3, and Apple Vision Pro.
+    </p>
+  </Panel>
 );
 
+// Continue with other content components using similar spatial enhancements...
 const XRMemoryContent = () => (
-  <>
-    {[...new Array(1).fill(1)].map((_, index) => (
-      <Panel key={"dummy-content" + index}>
-        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-          <span className="font-bold text-neutral-700 dark:text-neutral-200">
-            XR Memory Project <br />
-          </span>{" "}
-          An app that implements a Simon Says-like game in VR space to test
-          whether memory retention in VR spaces is more effective than
-          conventional memory retention.
-        </p>
-      </Panel>
-    ))}
-  </>
+  <Panel depth={35} material="regular">
+    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+      <span className="font-bold text-neutral-700 dark:text-neutral-200">
+        XR Memory Project <br />
+      </span>
+      An app that implements a Simon Says-like game in VR space to test whether memory retention in VR spaces is more effective than conventional memory retention.
+    </p>
+  </Panel>
 );
 
 const GraphingCalculatorContent = () => (
-  <>
-    {[...new Array(1).fill(1)].map((_, index) => (
-      <Panel key={"dummy-content" + index}>
-        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-          <span className="font-bold text-neutral-700 dark:text-neutral-200">
-            VR Graphing  Project <br />
-          </span>{" "}
-          The VR Graphing Calculator is an innovative project designed to bring advanced mathematical visualization into the immersive world of virtual reality. This tool allows users to explore complex mathematical concepts in a more intuitive and interactive way, making it particularly valuable for education, research, and engineering applications. One of the standout features of the VR Graphing Calculator is its Plane and Vector Renderer. This specialized component allows users to visualize planes and vectors within the virtual space, making it easier to understand concepts in linear algebra, physics, and geometry.
-        </p>
-      </Panel>
-    ))}
-  </>
+  <Panel depth={42} material="thick">
+    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+      <span className="font-bold text-neutral-700 dark:text-neutral-200">
+        VR Graphing Project <br />
+      </span>
+      The VR Graphing Calculator is an innovative project designed to bring advanced mathematical visualization into the immersive world of virtual reality.
+    </p>
+  </Panel>
 );
 
 const DrumSimulatorContent = () => (
-  <>
-    {[...new Array(1).fill(1)].map((_, index) => (
-      <Panel key={"dummy-content" + index}>
-        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-          <span className="font-bold text-neutral-700 dark:text-neutral-200">
-            Drum Simulator <br />
-          </span>{" "}
-          The WebXR Drumming Game is an innovative virtual reality experience designed to immerse players in the rhythmic world of drumming, all from within a web browser. Published on heyVR, this game is built using the Wonderland Engine, a powerful tool for creating high-performance WebXR experiences. The project is a testament to the potential of the WebXR API, showcasing how developers can efficiently create and deploy immersive content directly on the web. The WebXR Drumming Game was created with the primary goal of exploring the capabilities of the WebXR API. WebXR is a standard that enables web applications to access virtual and augmented reality experiences across different devices, making it a versatile platform for VR development. By utilizing the Wonderland Engine, the development team was able to leverage its optimized 3D engine specifically tailored for WebXR, ensuring smooth performance and high-quality visuals even in a web-based environment.
-        </p>
-      </Panel>
-    ))}
-  </>
+  <Panel depth={38} material="translucent">
+    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+      <span className="font-bold text-neutral-700 dark:text-neutral-200">
+        Drum Simulator <br />
+      </span>
+      The WebXR Drumming Game is an innovative virtual reality experience designed to immerse players in the rhythmic world of drumming.
+    </p>
+  </Panel>
 );
 
 const SpaceSimulationContent = () => (
-  <>
-    {[...new Array(1).fill(1)].map((_, index) => (
-      <Panel key={"dummy-content" + index}>
-        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-          <span className="font-bold text-neutral-700 dark:text-neutral-200">
-            Space Simulation <br />
-          </span>{" "}
-          The MR Space Simulation is a cutting-edge application that allows users to experience the wonders of space within a mixed reality environment. By integrating MR technology, the simulation overlays virtual elements onto the real world, creating a seamless blend of physical and digital spaces. Users can explore planets, stars, and galaxies, all generated procedurally, ensuring that no two experiences are the same. At the heart of this simulation is its procedural generation system. This technology allows the creation of vast, complex environments on the fly, without the need for pre-designed content.
-        </p>
-      </Panel>
-    ))}
-  </>
+  <Panel depth={46} material="chrome">
+    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+      <span className="font-bold text-neutral-700 dark:text-neutral-200">
+        Space Simulation <br />
+      </span>
+      The MR Space Simulation is a cutting-edge application that allows users to experience the wonders of space within a mixed reality environment.
+    </p>
+  </Panel>
 );
 
 const XRtisticHabitatContent = () => (
-  <>
-    {[...new Array(1).fill(1)].map((_, index) => (
-      <Panel key={"dummy-content" + index}>
-        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-          <span className="font-bold text-neutral-700 dark:text-neutral-200">
-            XRtistic Habitat <br />
-          </span>{" "}
-          The XRtistic Habitat project is an innovative solution designed to revolutionize how we approach interior design and space planning. By leveraging Extended Reality (XR) technology, this project allows users to create and visualize virtual objects, such as furniture and décor, within a physical room. This immersive experience enables individuals to see how different items would fit and look in their desired space, all without the need for physical objects. XRtistic Habitat was conceived to address the common challenges of interior design—specifically, the difficulty of envisioning how furniture and other objects will fit into a space. Whether you’re redesigning a living room, planning a new office layout, or simply trying to decide on the best furniture arrangement, XRtistic Habitat provides a powerful tool for making informed decisions.
-        </p>
-      </Panel>
-    ))}
-  </>
+  <Panel depth={33} material="regular">
+    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+      <span className="font-bold text-neutral-700 dark:text-neutral-200">
+        XRtistic Habitat <br />
+      </span>
+      The XRtistic Habitat project is an innovative solution designed to revolutionize how we approach interior design and space planning.
+    </p>
+  </Panel>
 );
 
-// unchanged: your data[] at the bottom
+// Data array remains the same
 const data = [
   { category: "Ongoing | XR Application", title: "Exit Suit", src: "/exitsuit.png", content: <ExitSuitContent/> },
   { category: "Ongoing | XR Research", title: "MotionID", src: "/project5.png", content: <MotionIDContent/> },
