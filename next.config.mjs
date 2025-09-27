@@ -1,5 +1,5 @@
 // next.config.mjs
-import withWebSpatial from '@webspatial/next-plugin';
+import withWebSpatial from './next-plugin/withWebSpatial.js';
 
 /** @type {import('next').NextConfig} */
 const base = {
