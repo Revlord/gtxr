@@ -3,7 +3,7 @@ var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { en
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
 // src/index.ts
-import webpack from "webpack";
+import { createRequire } from "module";
 import {
   addFirstSlash,
   getDefineByMode,
@@ -14,7 +14,6 @@ import {
   getJSXAliasByMode,
   getReactSDKAliasByMode
 } from "@webspatial/shared";
-var { DefinePlugin } = webpack;
 function withWebspatial(options = {}) {
   const mode = options.mode ?? getEnv();
   const outputDir = options.outputDir;
@@ -37,6 +36,9 @@ function withWebspatial(options = {}) {
       },
       webpack: (webpackConfig, context) => {
         let modifiedConfig = webpackConfig;
+        const require = createRequire(import.meta.url);
+        const webpack = require("webpack");
+        const { DefinePlugin } = webpack; 
         if (config && typeof config.webpack === "function") {
           modifiedConfig = config.webpack(modifiedConfig, context);
         }
