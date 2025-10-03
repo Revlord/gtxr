@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAssetPath } from '@/utils/handleBasePath';
 
 const Footer: React.FC = () => {
     return (
@@ -10,7 +11,7 @@ const Footer: React.FC = () => {
                 <div className="flex-1 w-full max-w-5xl">
                     <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-5 gap-8 text-center items-center ">
                         <div className="sm:col-span-3 md:col-span-1 order-first flex items-center justify-center">
-                            <Image src="/temp_logo.png" alt="GTXR Logo" width={150} height={150} />
+                            <Image src={getAssetPath("/temp_logo.png")} alt="GTXR Logo" width={150} height={150} />
                         </div>
 
                         {/* Website Links */}
@@ -44,7 +45,7 @@ const Footer: React.FC = () => {
                         </div>
 
                         <a href='https://www.icxr.org/' className="sm:col-span-3 md:col-span-1 -order-1 md:order-last flex items-center justify-center">
-                            <Image src="/icxrorg.png" alt="ICXR Logo" width={170} height={150} />
+                            <Image src={getAssetPath("/icxrorg.png")} alt="ICXR Logo" width={170} height={150} />
                         </a>
                     </div>
                 </div>

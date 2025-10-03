@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
+import { getAssetPath } from "@/utils/handleBasePath";
 
 export function ThreeDCardDemo() {
   return (
@@ -24,7 +25,7 @@ export function ThreeDCardDemo() {
         </CardItem>
         <CardItem translateZ="100" className="w-full mt-4">
           <Image
-            src="/Blog-1.png.webp"
+            src={getAssetPath("/Blog-1.png.webp")}
             height="1000"
             width="1000"
             className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"

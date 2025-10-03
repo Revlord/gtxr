@@ -3,6 +3,8 @@
  * Exec members can fill in/edit the texts || descriptions if required.
  */
 
+import { getAssetPath } from "@/utils/handleBasePath";
+
 
 //variable for items displayed in the navba
 export const navItems = [
@@ -24,48 +26,48 @@ export const execMembers = [
     name: "Ethan Kimmel",
     role: "Co-President",
     bio: "",
-    image: "/ethan.jpg"
+    image: getAssetPath("/ethan.jpg")
   },
   {
     name: "Ryan Clark",
     role: "Co-President",
     bio: "",
-    image: "/ryan.jpg"
+    image: getAssetPath("/ryan.jpg")
   },
   {
     name: "Jack English",
     role: "Ex-President",
     bio: "",
-    image: "/jackenglish.jpeg"
+    image: getAssetPath("/jackenglish.jpeg")
   },
   {
     name: "Ilkin Mammadli",
     role: "Ex-President",
     bio: "",
-    image: "/ilkin.png"
+    image: getAssetPath("/ilkin.png")
   },
   {
     name: "Revanth Reddy",
     role: "Director Of Operations",
     bio: "",
-    image: "/revanth.png"
+    image: getAssetPath("/revanth.png")
   },
   {
     name: "Ian Valderas",
     role: "Secretary",
     bio: "",
-    image: "/ian.jpg"
+    image: getAssetPath("/ian.jpg")
   },
   {
     name: "Prithiv Premkumar",
     role: "Director Of Finance",
     bio: "",
-    image: "/pritiv.jpg"
+    image: getAssetPath("/pritiv.jpg")
   },
   {
     name: "Akshin Vemana",
     role: "Beat Saber Coordinator",
     bio: "",
-    image: "/akshin.png"
+    image: getAssetPath("/akshin.png")
   },
 ];

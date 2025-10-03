@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+import { getAssetPath } from "@/utils/handleBasePath";
 
 // Enhanced XR CSS helper with better typing
 const xr = (styles: Record<string, string | number>) => styles as React.CSSProperties;
@@ -124,7 +125,7 @@ const DummyContent = () => {
             })}
           >
             <Image
-              src="/apple-vision-pro.png"
+              src={getAssetPath("/apple-vision-pro.png")}
               alt="Macbook mockup from Aceternity UI"
               height={500}
               width={500}
@@ -187,7 +188,7 @@ const ProjectPitchContent = () => {
           })}
         >
           <Image
-            src="/apple-vision-pro.png"
+            src={getAssetPath("/apple-vision-pro.png")}
             alt="Project pitch visualization"
             height={500}
             width={500}
@@ -299,14 +300,14 @@ const XRtisticHabitatContent = () => (
   </Panel>
 );
 
-// Data array remains the same
+// Data array with corrected asset paths
 const data = [
-  { category: "Ongoing | XR Application", title: "Exit Suit", src: "/exitsuit.png", content: <ExitSuitContent/> },
-  { category: "Ongoing | XR Research", title: "MotionID", src: "/project5.png", content: <MotionIDContent/> },
-  { category: "Completed | Mixed Reality", title: "XR Memory", src: "/project3.png", content: <XRMemoryContent/> },
-  { category: "Completed | VR", title: "Graphing Calculator", src: "/project11.png", content: <GraphingCalculatorContent/> },
-  { category: "Completed | VR", title: "Drum Simulator", src: "/project4.jpg", content: <DrumSimulatorContent/> },
-  { category: "Completed | VR", title: "Space Simulation", src: "/carousel5.jpg", content: <SpaceSimulationContent/> },
-  { category: "Archived | Mixed Reality", title: "XRtistic Habitat", src: "/stock1.jpeg", content: <XRtisticHabitatContent/> },
-  { category: "Your 🫵 Project | ?", title: "Pitch Competition Winner Project 🏆", src: "/stock2.jpeg", content: <ProjectPitchContent /> },
+  { category: "Ongoing | XR Application", title: "Exit Suit", src: getAssetPath("/exitsuit.png"), content: <ExitSuitContent/> },
+  { category: "Ongoing | XR Research", title: "MotionID", src: getAssetPath("/project5.png"), content: <MotionIDContent/> },
+  { category: "Completed | Mixed Reality", title: "XR Memory", src: getAssetPath("/project3.png"), content: <XRMemoryContent/> },
+  { category: "Completed | VR", title: "Graphing Calculator", src: getAssetPath("/project11.png"), content: <GraphingCalculatorContent/> },
+  { category: "Completed | VR", title: "Drum Simulator", src: getAssetPath("/project4.jpg"), content: <DrumSimulatorContent/> },
+  { category: "Completed | VR", title: "Space Simulation", src: getAssetPath("/carousel5.jpg"), content: <SpaceSimulationContent/> },
+  { category: "Archived | Mixed Reality", title: "XRtistic Habitat", src: getAssetPath("/stock1.jpeg"), content: <XRtisticHabitatContent/> },
+  { category: "Your 🫵 Project | ?", title: "Pitch Competition Winner Project 🏆", src: getAssetPath("/stock2.jpeg"), content: <ProjectPitchContent /> },
 ];

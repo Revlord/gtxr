@@ -1,11 +1,9 @@
 "use client";
 
 import AboutUsCard from "./ui/about-us-card";
-import Club1 from "@/public/club1_upscayl.png";
-import Club2 from "@/public/club2_upscayl.png";
 import { PinContainer } from "./ui/3d-pin";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
-import ImmerseGT from "@/public/immersegt.png";
+import { getAssetPath } from "@/utils/handleBasePath";
 
 const AboutUs = () => {
     return (
@@ -50,7 +48,7 @@ const AboutUs = () => {
                 <p className="text-2xl sm:text-3xl lg:text-4xl text-zinc-500 mb-4 mt-12 sm:mt-24 lg:mt-32">02.</p>
                 <h2 className="text-2xl sm:text-4xl lg:text-5xl text-zinc-400 font-bold max-w-5xl">We <span className="text-purple">collaborate with each other</span> to advance our knowledge of the XR space together.</h2>
                 <div className="mt-8 sm:mt-16 flex gap-8 flex-col lg:flex-row items-center">
-                    <img src={Club1.src} alt="Stock Image 1" className="w-full lg:w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-[102%]" />
+                    <img src={getAssetPath("/club1_upscayl.png")} alt="Stock Image 1" className="w-full lg:w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-[102%]" />
                     <div className="w-full text-center px-4 sm:px-8 flex flex-col justify-center items-center max-w-xl mt-6 md:mt-0">
                         <h3 className="text-purple font-bold text-xl sm:text-3xl mb-4 sm:mb-12">Open to All, <span className="text-zinc-300 font-normal">Beginners and Experts Alike.</span></h3>
                         <p className="text-zinc-400 text-lg sm:text-xl leading-relaxed mb-4">GTXR embraces a <span className="text-purple">growth and learning culture for everyone</span>, from beginners just getting started with XR to experienced practitioners looking to collaborate on innovative projects.</p>
@@ -68,7 +66,7 @@ const AboutUs = () => {
                             <li className="text-lg sm:text-xl leading-relaxed">And so much more!</li>
                         </ul>
                     </div>
-                    <img src={Club2.src} alt="Stock Image 2" className="w-full lg:w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-[102%]" />
+                    <img src={getAssetPath("/club2_upscayl.png")} alt="Stock Image 2" className="w-full lg:w-[60%] max-w-7xl h-auto rounded-[3rem] transform transition duration-300 hover:scale-[102%]" />
                 </div>
 
                 <p className="text-2xl sm:text-3xl lg:text-4xl text-zinc-500 mb-4 mt-16 sm:mt-24 lg:mt-32">03.</p>
@@ -98,7 +96,7 @@ const AboutUs = () => {
                                     The premier XR hackathon held annually at Georgia Tech.
                                 </span>
                             </div>
-                            <img src={ImmerseGT.src} alt="ImmerseGT" className="w-full h-auto rounded-lg mt-4" />
+                            <img src={getAssetPath("/immersegt.png")} alt="ImmerseGT" className="w-full h-auto rounded-lg mt-4" />
                         </div>
                     </PinContainer>
                 </div>

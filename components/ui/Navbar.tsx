@@ -3,6 +3,7 @@ import { navItems } from '@/data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { getAssetPath } from '@/utils/handleBasePath';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="transition duration-300 hover:opacity-80">
-          <Image src="/temp_logo.png" alt="logo" width={100} height={55} className="rounded-full" />
+          <Image src={getAssetPath("/temp_logo.png")} alt="logo" width={100} height={55} className="rounded-full" />
         </Link>
 
         {/* Hamburger Menu Icon */}
