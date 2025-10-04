@@ -101,8 +101,16 @@ const AboutUs = () => {
                     </PinContainer>
                 </div>
             </div>
+            
+            {/* WebSpatial Sine Panel */}
+            <div
+              className="__enableXr__ hidden xl:block fixed right-4 top-24 rounded-3xl p-6 text-sm text-zinc-100 bg-white/5 backdrop-blur"
+              style={{ ['--xr-background-material' as any]: 'regular', ['--xr-back' as any]: 70 }}
+            >
+              <p className="opacity-80">Tip: Pin this window in your space and browse our sponsors in another Scene.</p>
+            </div>
         </div>
     );
 };
-6
+
 export default AboutUs;

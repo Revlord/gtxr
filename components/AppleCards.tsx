@@ -1,313 +1,346 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { getAssetPath } from "@/utils/handleBasePath";
 
-// Enhanced XR CSS helper with better typing
+// Helper: strongly-typed CSS variables for WebSpatial
 const xr = (styles: Record<string, string | number>) => styles as React.CSSProperties;
 
-export function AppleCardsCarouselDemo() {
-  const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} />
-  ));
+// XR env base (empty on normal web; set when running in WebSpatial)
+const useXRBase = () =>
+  useMemo(() => (typeof window !== "undefined" && (window as any).__XR_ENV_BASE__) || "", []);
+
+/* =========================
+   1) INTERACTION PRIMITIVES
+   ========================= */
+
+// 1a) Tilt + "pop" depth on press/drag
+const XRTiltCard: React.FC<React.PropsWithChildren<{ depth?: number }>> = ({
+  children,
+  depth = 40,
+}) => {
+  const [rot, setRot] = useState({ rx: 0, ry: 0 });
+  const [z, setZ] = useState(depth);
+
+  const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const r = el.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+    const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+    setRot({ rx: -dy * 8, ry: dx * 10 });
+  };
+  const onLeave = () => setRot({ rx: 0, ry: 0 });
+  const onDown = () => setZ(depth + 20);
+  const onUp = () => setZ(depth);
 
   return (
-    // Main spatial container with advanced monitoring and scene setup
-    <div 
-      className="w-full h-full py-20" 
-      enable-xr 
-      enable-xr-monitor
+    <div
+      enable-xr
+      className="rounded-3xl transition-transform duration-300 will-change-transform"
       style={xr({
-        // Create a main scene container
-        "--xr-scene": "main-gallery",
+        "--xr-background-material": "thin",
+        "--xr-back": z,
+        transform: `translateZ(24px) rotateX(${rot.rx}deg) rotateY(${rot.ry}deg)`,
+        transformOrigin: "center",
+        cursor: "pointer",
+      })}
+      onPointerMove={onMove}
+      onPointerLeave={onLeave}
+      onPointerDown={onDown}
+      onPointerUp={onUp}
+    >
+      {children}
+    </div>
+  );
+};
+
+// 1b) Pinch-to-zoom image (PointerEvents → multi-touch & visionOS pinch)
+const XRZoomImage: React.FC<{
+  src: string;
+  alt: string;
+  w?: number;
+  h?: number;
+  maxScale?: number;
+}> = ({ src, alt, w = 900, h = 600, maxScale = 2 }) => {
+  const imgRef = useRef<HTMLDivElement>(null);
+  const pointers = useRef<Map<number, { x: number; y: number }>>(new Map());
+  const baseDist = useRef<number | null>(null);
+  const [scale, setScale] = useState(1);
+
+  const setTransform = (s: number) => {
+    if (!imgRef.current) return;
+    imgRef.current.style.transform = `translateZ(30px) scale(${s})`;
+  };
+
+  const onDown = (e: React.PointerEvent) => {
+    (e.currentTarget as Element).setPointerCapture(e.pointerId);
+    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  };
+
+  const onMove = (e: React.PointerEvent) => {
+    if (!pointers.current.has(e.pointerId)) return;
+    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (pointers.current.size === 2) {
+      const pts = Array.from(pointers.current.values());
+      const dx = pts[0].x - pts[1].x;
+      const dy = pts[0].y - pts[1].y;
+      const dist = Math.hypot(dx, dy);
+      if (baseDist.current == null) baseDist.current = dist;
+      const raw = dist / baseDist.current;
+      const next = Math.min(maxScale, Math.max(1, raw));
+      setScale(next);
+      setTransform(next);
+    }
+  };
+
+  const onUpOrCancel = (e: React.PointerEvent) => {
+    pointers.current.delete(e.pointerId);
+    if (pointers.current.size < 2) {
+      baseDist.current = null;
+      setScale(1);
+      setTransform(1);
+    }
+  };
+
+  return (
+    <div
+      enable-xr
+      className="overflow-hidden rounded-2xl mx-auto"
+      style={xr({
+        "--xr-background-material": "regular",
+        "--xr-back": 25,
+        width: w,
+        height: h,
+        touchAction: "none", // allow pinch
+        cursor: "pointer",
+        transition: "transform .15s ease",
+      })}
+      onPointerDown={onDown}
+      onPointerMove={onMove}
+      onPointerUp={onUpOrCancel}
+      onPointerCancel={onUpOrCancel}
+      ref={imgRef}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={w}
+        height={h}
+        className="object-contain w-full h-full select-none"
+        draggable={false}
+      />
+    </div>
+  );
+};
+
+// 1c) Open route in a new window/scene (uses window.open → Scene in WebSpatial; tab on web)
+const OpenSceneButton: React.FC<{ href: string; name: string; label: string }> = ({
+  href,
+  name,
+  label,
+}) => {
+  const XR_BASE = useXRBase();
+  return (
+    <button
+      enable-xr
+      className="mt-4 rounded-full px-5 py-2 font-semibold bg-white/90 text-black hover:bg-white"
+      style={xr({
+        "--xr-background-material": "thin",
+        "--xr-back": 35,
+        cursor: "pointer",
+      })}
+      onClick={() => window.open(`${XR_BASE}${href}`, name)}
+    >
+      {label}
+    </button>
+  );
+};
+
+/* =========================
+   2) PAGE SHELL
+   ========================= */
+
+export function AppleCardsCarouselDemo() {
+  // Build cards for the carousel
+  const cards = data.map((card, index) => <Card key={card.src} card={card} index={index} />);
+
+  return (
+    <div
+      className="w-full h-full py-20"
+      enable-xr
+      style={xr({
         "--xr-background-material": "translucent",
-        "--xr-opacity": 0.95
+        "--xr-back": 20,
       })}
     >
-      {/* Floating spatial header with depth layering */}
+      {/* Floating header with depth */}
       <h2
         className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center mb-8"
         enable-xr
-        style={xr({ 
-          "--xr-background-material": "thick", 
-          "--xr-back": 60,
-          "--xr-width": 800,
-          "--xr-height": 120,
-          // Add subtle hover elevation
-          "--xr-hover-back": 80
-        })}
+        style={xr({ "--xr-background-material": "thick", "--xr-back": 60 })}
       >
         Our Projects range from XR research to fun VR applications!
       </h2>
-      
-      {/* Spatial carousel with scene containment */}
-      <div 
+
+      {/* Sticky/hovering tips panel (XR-only visual) */}
+      <div
         enable-xr
-        style={xr({
-          "--xr-scene": "carousel-scene",
-          "--xr-background-material": "transparent",
-          "--xr-back": 40
-        })}
+        className="hidden xl:block fixed right-6 top-28 rounded-3xl px-5 py-4 text-sm text-zinc-100 bg-white/5 backdrop-blur"
+        style={xr({ "--xr-background-material": "regular", "--xr-back": 70, cursor: "pointer" })}
       >
+        Tip: pinch images to zoom • drag over cards to “peek”
+      </div>
+
+      {/* Carousel */}
+      <div enable-xr style={xr({ "--xr-background-material": "transparent", "--xr-back": 40 })}>
         <Carousel items={cards} />
       </div>
     </div>
   );
 }
 
-// Enhanced Panel component with interactive spatial features
-const Panel: React.FC<React.PropsWithChildren<{
-  depth?: number;
-  material?: "thin" | "regular" | "thick" | "chrome" | "translucent";
-  interactive?: boolean;
-}>> = ({ 
-  children, 
-  depth = 40, 
-  material = "thick", 
-  interactive = true 
-}) => (
+/* =========================
+   3) SPATIAL PANELS + CONTENT
+   ========================= */
+
+const Panel: React.FC<
+  React.PropsWithChildren<{ depth?: number; material?: "thin" | "regular" | "thick" | "translucent"; interactive?: boolean }>
+> = ({ children, depth = 40, material = "thick", interactive = true }) => (
   <div
     enable-xr
     className={`bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 transition-transform duration-300 ${
-      interactive ? 'hover:scale-[1.02] cursor-pointer' : ''
+      interactive ? "hover:scale-[1.02] cursor-pointer" : ""
     }`}
-    style={xr({ 
+    style={xr({
       "--xr-background-material": material,
       "--xr-back": depth,
-      "--xr-width": 600,
-      "--xr-hover-back": interactive ? depth + 20 : depth,
-      // Add subtle spatial glow effect
-      "--xr-border-glow": "rgba(59, 130, 246, 0.3)",
-      "--xr-corner-radius": 24
     })}
   >
     {children}
   </div>
 );
 
-// Enhanced content components with varying spatial depths
-const DummyContent = () => {
-  return (
-    <div 
-      enable-xr
-      style={xr({
-        "--xr-scene": "content-scene",
-        "--xr-layout": "vertical"
-      })}
-    >
-      {[...new Array(3).fill(1)].map((_, index) => (
-        <Panel 
-          key={"dummy-content" + index}
-          depth={30 + (index * 15)} // Staggered depths
-          material="thick"
-        >
-          <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-            <span 
-              className="font-bold text-neutral-700 dark:text-neutral-200"
-              enable-xr
-              style={xr({
-                "--xr-back": 10,
-                "--xr-background-material": "translucent"
-              })}
-            >
-              This is the super cool description of this project. <br />
-            </span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fugit, similique, doloremque iure maxime dignissimos debitis commodi libero voluptatem amet molestiae a corrupti vel pariatur voluptatibus quas quasi dolorum magni!
-          </p>
-          <div 
-            enable-xr
-            className="md:w-1/2 md:h-1/2 h-full w-full mx-auto"
-            style={xr({
-              "--xr-back": 20,
-              "--xr-background-material": "regular",
-              "--xr-corner-radius": 16
-            })}
-          >
-            <Image
-              src={getAssetPath("/apple-vision-pro.png")}
-              alt="Macbook mockup from Aceternity UI"
-              height={500}
-              width={500}
-              className="object-contain w-full h-full"
-            />
-          </div>
-        </Panel>
-      ))}
-    </div>
-  );
-};
+/* ===== Content blocks (now spatial-enhanced) ===== */
 
-// Enhanced project pitch with call-to-action spatial button
-const ProjectPitchContent = () => {
-  return (
-    <div
-      enable-xr
-      style={xr({
-        "--xr-scene": "pitch-scene",
-        "--xr-background-material": "translucent"
-      })}
-    >
-      <Panel depth={50} material="chrome" interactive={true}>
-        <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-6">
-          <span 
-            className="font-bold text-neutral-700 dark:text-neutral-200"
-            enable-xr
-            style={xr({
-              "--xr-back": 15,
-              "--xr-background-material": "thick",
-              "--xr-corner-radius": 8
-            })}
-          >
-            Wanna lead a project under GTXR? <br />
-          </span>
-          YOU 🫵 can participate in our project pitch competition held every year to pitch your project idea. The Executive Board and mentors will then review your project submissions and select the best ones!
-        </p>
-        
-        {/* Spatial call-to-action button */}
-        <button
-          enable-xr
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 mb-4"
-          style={xr({
-            "--xr-back": 30,
-            "--xr-background-material": "thick",
-            "--xr-hover-back": 45,
-            "--xr-corner-radius": 12,
-            "--xr-border-glow": "rgba(59, 130, 246, 0.5)"
-          })}
-        >
-          Apply for Project Pitch Competition
-        </button>
-        
-        <div
-          enable-xr
-          style={xr({
-            "--xr-back": 25,
-            "--xr-background-material": "regular",
-            "--xr-corner-radius": 20
-          })}
-        >
-          <Image
-            src={getAssetPath("/apple-vision-pro.png")}
-            alt="Project pitch visualization"
-            height={500}
-            width={500}
-            className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-          />
-        </div>
-      </Panel>
-    </div>
-  );
-};
-
-// Enhanced project content components with unique spatial characteristics
 const ExitSuitContent = () => (
-  <Panel depth={45} material="chrome">
-    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-      <span 
-        className="font-bold text-neutral-700 dark:text-neutral-200"
+  <XRTiltCard depth={45}>
+    <Panel material="thin" depth={45}>
+      <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+        <span enable-xr style={xr({ "--xr-back": 10, "--xr-background-material": "translucent" })} className="font-bold text-neutral-700 dark:text-neutral-200">
+          Exit Suit Project <br />
+        </span>
+        A custom-designed “Exit Suit” built by GTXR—engineering + design meets XR craft.
+      </p>
+      <a
+        href="https://exitsuit.com/"
+        className="text-blue-600 hover:text-blue-800 underline font-semibold"
         enable-xr
-        style={xr({
-          "--xr-back": 12,
-          "--xr-background-material": "translucent"
-        })}
+        style={xr({ "--xr-back": 20 })}
       >
-        Exit Suit Project <br />
-      </span>
-      In a unique blend of creativity and technological innovation, the GTXR Club recently embarked on an exciting project—the creation of a custom Exit Suit.
-    </p>
-    <a 
-      href="https://exitsuit.com/"
-      enable-xr
-      className="text-blue-600 hover:text-blue-800 underline font-semibold"
-      style={xr({
-        "--xr-back": 20,
-        "--xr-background-material": "thin",
-        "--xr-hover-back": 35,
-        "--xr-corner-radius": 6
-      })}
-    >
-      More About the Exit Suit
-    </a>
-  </Panel>
+        More About the Exit Suit
+      </a>
+      <OpenSceneButton href="/projects" name="gtxr-projects" label="Open Projects in New Window" />
+    </Panel>
+  </XRTiltCard>
 );
 
-// Similar enhancements for other content components...
 const MotionIDContent = () => (
-  <Panel depth={40} material="thick">
-    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-      <span className="font-bold text-neutral-700 dark:text-neutral-200">
-        Motion ID Research <br />
-      </span>
-      Evaluate the feasibility of utilising motion data as a means of identification for VR headsets such as the Quest Pro, 2, 3, and Apple Vision Pro.
-    </p>
-  </Panel>
+  <XRTiltCard depth={40}>
+    <Panel material="thick" depth={40}>
+      <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+        <span className="font-bold text-neutral-700 dark:text-neutral-200">Motion ID Research <br /></span>
+        Can motion patterns uniquely identify a headset user? (Quest & AVP study)
+      </p>
+    </Panel>
+  </XRTiltCard>
 );
 
-// Continue with other content components using similar spatial enhancements...
 const XRMemoryContent = () => (
-  <Panel depth={35} material="regular">
-    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-      <span className="font-bold text-neutral-700 dark:text-neutral-200">
-        XR Memory Project <br />
-      </span>
-      An app that implements a Simon Says-like game in VR space to test whether memory retention in VR spaces is more effective than conventional memory retention.
-    </p>
-  </Panel>
+  <XRTiltCard depth={35}>
+    <Panel material="regular" depth={35}>
+      <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+        <span className="font-bold text-neutral-700 dark:text-neutral-200">XR Memory Project <br /></span>
+        A Simon-Says style VR memory experiment. Hypothesis: spatial recall &gt; 2D recall.
+      </p>
+    </Panel>
+  </XRTiltCard>
 );
 
 const GraphingCalculatorContent = () => (
-  <Panel depth={42} material="thick">
-    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-      <span className="font-bold text-neutral-700 dark:text-neutral-200">
-        VR Graphing Project <br />
-      </span>
-      The VR Graphing Calculator is an innovative project designed to bring advanced mathematical visualization into the immersive world of virtual reality.
-    </p>
-  </Panel>
+  <XRTiltCard depth={42}>
+    <Panel material="thick" depth={42}>
+      <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+        <span className="font-bold text-neutral-700 dark:text-neutral-200">VR Graphing Project <br /></span>
+        Advanced math visualizations in VR.
+      </p>
+      <XRZoomImage src={getAssetPath("/project11.png")} alt="VR Graphing" w={900} h={560} />
+    </Panel>
+  </XRTiltCard>
 );
 
 const DrumSimulatorContent = () => (
-  <Panel depth={38} material="translucent">
-    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-      <span className="font-bold text-neutral-700 dark:text-neutral-200">
-        Drum Simulator <br />
-      </span>
-      The WebXR Drumming Game is an innovative virtual reality experience designed to immerse players in the rhythmic world of drumming.
-    </p>
-  </Panel>
+  <XRTiltCard depth={38}>
+    <Panel material="translucent" depth={38}>
+      <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+        <span className="font-bold text-neutral-700 dark:text-neutral-200">Drum Simulator <br /></span>
+        Rhythm game in the browser (WebXR).
+      </p>
+      <XRZoomImage src={getAssetPath("/project4.jpg")} alt="Drumming" w={900} h={560} />
+    </Panel>
+  </XRTiltCard>
 );
 
 const SpaceSimulationContent = () => (
-  <Panel depth={46} material="chrome">
-    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-      <span className="font-bold text-neutral-700 dark:text-neutral-200">
-        Space Simulation <br />
-      </span>
-      The MR Space Simulation is a cutting-edge application that allows users to experience the wonders of space within a mixed reality environment.
-    </p>
-  </Panel>
+  <XRTiltCard depth={46}>
+    <Panel material="regular" depth={46}>
+      <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+        <span className="font-bold text-neutral-700 dark:text-neutral-200">Space Simulation <br /></span>
+        Mixed-reality spacewalk demo.
+      </p>
+      <XRZoomImage src={getAssetPath("/carousel5.jpg")} alt="Space MR" w={900} h={560} />
+    </Panel>
+  </XRTiltCard>
 );
 
 const XRtisticHabitatContent = () => (
-  <Panel depth={33} material="regular">
-    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-      <span className="font-bold text-neutral-700 dark:text-neutral-200">
-        XRtistic Habitat <br />
-      </span>
-      The XRtistic Habitat project is an innovative solution designed to revolutionize how we approach interior design and space planning.
-    </p>
-  </Panel>
+  <XRTiltCard depth={33}>
+    <Panel material="regular" depth={33}>
+      <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
+        <span className="font-bold text-neutral-700 dark:text-neutral-200">XRtistic Habitat <br /></span>
+        Spatial interior design tool.
+      </p>
+    </Panel>
+  </XRTiltCard>
 );
 
-// Data array with corrected asset paths
+const ProjectPitchContent = () => (
+  <XRTiltCard depth={50}>
+    <Panel material="translucent" depth={50}>
+      <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-6">
+        <span enable-xr style={xr({ "--xr-back": 15, "--xr-background-material": "thick" })} className="font-bold text-neutral-700 dark:text-neutral-200">
+          Wanna lead a project under GTXR? <br />
+        </span>
+        Pitch your idea in our annual competition—mentors + E-Board review and select!
+      </p>
+      <OpenSceneButton href="/projects#pitch" name="gtxr-pitch" label="Apply for Project Pitch" />
+      <XRZoomImage src={getAssetPath("/apple-vision-pro.png")} alt="Pitch Visual" w={900} h={560} />
+    </Panel>
+  </XRTiltCard>
+);
+
+/* =========================
+   4) DATA
+   ========================= */
+
 const data = [
-  { category: "Ongoing | XR Application", title: "Exit Suit", src: getAssetPath("/exitsuit.png"), content: <ExitSuitContent/> },
-  { category: "Ongoing | XR Research", title: "MotionID", src: getAssetPath("/project5.png"), content: <MotionIDContent/> },
-  { category: "Completed | Mixed Reality", title: "XR Memory", src: getAssetPath("/project3.png"), content: <XRMemoryContent/> },
-  { category: "Completed | VR", title: "Graphing Calculator", src: getAssetPath("/project11.png"), content: <GraphingCalculatorContent/> },
-  { category: "Completed | VR", title: "Drum Simulator", src: getAssetPath("/project4.jpg"), content: <DrumSimulatorContent/> },
-  { category: "Completed | VR", title: "Space Simulation", src: getAssetPath("/carousel5.jpg"), content: <SpaceSimulationContent/> },
-  { category: "Archived | Mixed Reality", title: "XRtistic Habitat", src: getAssetPath("/stock1.jpeg"), content: <XRtisticHabitatContent/> },
+  { category: "Ongoing | XR Application", title: "Exit Suit", src: getAssetPath("/exitsuit.png"), content: <ExitSuitContent /> },
+  { category: "Ongoing | XR Research", title: "MotionID", src: getAssetPath("/project5.png"), content: <MotionIDContent /> },
+  { category: "Completed | Mixed Reality", title: "XR Memory", src: getAssetPath("/project3.png"), content: <XRMemoryContent /> },
+  { category: "Completed | VR", title: "Graphing Calculator", src: getAssetPath("/project11.png"), content: <GraphingCalculatorContent /> },
+  { category: "Completed | VR", title: "Drum Simulator", src: getAssetPath("/project4.jpg"), content: <DrumSimulatorContent /> },
+  { category: "Completed | VR", title: "Space Simulation", src: getAssetPath("/carousel5.jpg"), content: <SpaceSimulationContent /> },
+  { category: "Archived | Mixed Reality", title: "XRtistic Habitat", src: getAssetPath("/stock1.jpeg"), content: <XRtisticHabitatContent /> },
   { category: "Your 🫵 Project | ?", title: "Pitch Competition Winner Project 🏆", src: getAssetPath("/stock2.jpeg"), content: <ProjectPitchContent /> },
 ];

@@ -179,6 +179,70 @@
 /* Only active in WebSpatial builds that add `.is-spatial` */
 html.is-spatial {
   background-color: transparent;
-  --xr-background-material: translucent; /* WebSpatial window material */
-  border-radius: 28px;
+  --xr-background-material: translucent;
+  border-radius: 8%;
 }
+
+/* XR-only: window uses translucent material & rounded corners */
+html.is-spatial {
+  background-color: transparent;
+  --xr-background-material: translucent; /* window material */
+  border-radius: 8%;
+}
+
+/* Top nav elevated off the page, translucent “thin” material */
+html.is-spatial .xr-nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  margin-inline: auto;
+  border-radius: 28px;
+  --xr-back: 60;                       /* push forward on Z axis */
+  --xr-background-material: thin;      /* good for interactive items */
+}
+
+/* Make links “interaction regions” on visionOS */
+html.is-spatial .xr-nav a,
+html.is-spatial .xr-card,
+html.is-spatial .xr-cta {
+  cursor: pointer;                      /* qualifies for system hover */
+}
+
+/* Hero image: subtle parallax tilt in 3D */
+html.is-spatial .xr-hero-image {
+  --xr-back: 80;
+  transform-origin: center;
+  transform: translateZ(60px) rotateX(8deg);
+  transition: transform .5s ease;
+}
+html.is-spatial .xr-hero-image:hover {
+  transform: translateZ(85px) rotateX(2deg) rotateY(-6deg);
+}
+
+/* About cards elevated; hover tilt */
+html.is-spatial .xr-card {
+  --xr-background-material: thin;       /* default; can be overridden per card */
+  position: relative;
+  --xr-back: 40;
+  transform-origin: center;
+  transition: transform .35s ease;
+}
+html.is-spatial .xr-card:hover {
+  transform: translateZ(24px) rotateX(6deg) rotateY(-6deg);
+}
+
+/* If a container’s layout changes (e.g., responsive wraps), update XR layout */
+html.is-spatial [enable-xr-monitor] {
+  /* marker attribute only – no style needed */
+}
+
+html.is-spatial .apple-cards .xr-card {
+  --xr-background-material: thin;
+}
+html.is-spatial .apple-cards .xr-zoomable {
+  transition: transform .15s ease;
+}
+html.is-spatial .xr-elev-20 { --xr-back: 20; }
+html.is-spatial .xr-elev-40 { --xr-back: 40; }
+html.is-spatial .xr-thin { --xr-background-material: thin; }
+html.is-spatial .xr-translucent { --xr-background-material: translucent; }

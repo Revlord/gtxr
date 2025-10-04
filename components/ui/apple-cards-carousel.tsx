@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState, createContext, useContext } from "react";
+import React, { useEffect, useMemo, useRef, useState, createContext, useContext } from "react";
 import { IconArrowNarrowLeft, IconArrowNarrowRight, IconX } from "@tabler/icons-react";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
@@ -29,100 +29,105 @@ export const CarouselContext = createContext<{
 });
 
 export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
-  const carouselRef = React.useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = React.useState(false);
-  const [canScrollRight, setCanScrollRight] = React.useState(true);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // helpers
+  const isMobile = () => typeof window !== "undefined" && window.innerWidth < 768;
+
   useEffect(() => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollLeft = initialScroll;
-      checkScrollability();
-    }
+    if (!carouselRef.current) return;
+    carouselRef.current.scrollLeft = initialScroll;
+    checkScrollability();
   }, [initialScroll]);
 
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+
+    // Arrow keys for navigation
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") scrollLeft();
+      if (e.key === "ArrowRight") scrollRight();
+    };
+
+    // Trackpad vertical wheel → horizontal scroll
+    const onWheel = (e: WheelEvent) => {
+      if (!e.shiftKey && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        el.scrollBy({ left: e.deltaY, behavior: "smooth" });
+        e.preventDefault();
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("keydown", onKey);
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, []);
+
   const checkScrollability = () => {
-    if (carouselRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
-    }
+    const el = carouselRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
   };
 
-  const scrollLeft = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
-  };
+  const scrollLeft = () => carouselRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+  const scrollRight = () => carouselRef.current?.scrollBy({ left: 300, behavior: "smooth" });
 
   const handleCardClose = (index: number) => {
-    if (carouselRef.current) {
-      const cardWidth = isMobile() ? 230 : 384;
-      const gap = isMobile() ? 4 : 8;
-      const scrollPosition = (cardWidth + gap) * (index + 1);
-      carouselRef.current.scrollTo({ left: scrollPosition, behavior: "smooth" });
-      setCurrentIndex(index);
-    }
-  };
-
-  const isMobile = () => {
-    return typeof window !== "undefined" && window.innerWidth < 768;
+    const el = carouselRef.current;
+    if (!el) return;
+    const cardWidth = isMobile() ? 230 : 384;
+    const gap = isMobile() ? 4 : 8;
+    const scrollPosition = (cardWidth + gap) * (index + 1);
+    el.scrollTo({ left: scrollPosition, behavior: "smooth" });
+    setCurrentIndex(index);
   };
 
   return (
     <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex }}>
       <div className="relative w-full">
-        {/* Enhanced spatial carousel container */}
+        {/* Spatial carousel container */}
         <div
           className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth [scrollbar-width:none]"
           ref={carouselRef}
           onScroll={checkScrollability}
           enable-xr
-          style={xr({ 
-            "--xr-background-material": "translucent", 
+          style={xr({
+            "--xr-background-material": "translucent",
             "--xr-back": 25,
-            "--xr-scene": "carousel-strip",
-            "--xr-width": 1200,
             "--xr-corner-radius": 20,
-            "--xr-opacity": 0.9
           })}
         >
-          <div className={cn("absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l")}></div>
-          
-          {/* Spatial cards container with staggered depths */}
-          <div 
+          <div className={cn("absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l")} />
+
+          {/* Cards strip */}
+          <div
             className={cn("flex flex-row justify-start gap-4 pl-4", "max-w-7xl mx-auto")}
             enable-xr
             style={xr({
-              "--xr-layout": "horizontal",
-              "--xr-spacing": 16
+              "--xr-back": 10,
             })}
           >
             {items.map((item, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ 
-                  opacity: 1, 
-                  y: 0, 
-                  transition: { 
-                    duration: 0.5, 
-                    delay: 0.2 * index, 
-                    ease: "easeOut", 
-                    once: true 
-                  } 
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, delay: 0.15 * index, ease: "easeOut" },
                 }}
                 key={"card" + index}
                 className="last:pr-[5%] md:last:pr-[33%] rounded-3xl"
                 enable-xr
                 style={xr({
-                  "--xr-back": 15 + (index * 3), // Progressive depth
-                  "--xr-background-material": "transparent"
+                  "--xr-back": 15 + index * 3, // progressive depth
                 })}
               >
                 {item}
@@ -131,39 +136,38 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           </div>
         </div>
 
-        {/* Enhanced spatial navigation controls */}
-        <div 
+        {/* Spatial nav controls */}
+        <div
           className="flex justify-end gap-2 mr-10"
           enable-xr
           style={xr({
             "--xr-back": 35,
             "--xr-background-material": "thin",
-            "--xr-corner-radius": 25
           })}
         >
-          <button 
-            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 hover:bg-gray-200 transition-colors" 
-            onClick={scrollLeft} 
+          <button
+            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 hover:bg-gray-200 transition-colors"
+            onClick={scrollLeft}
             disabled={!canScrollLeft}
             enable-xr
             style={xr({
               "--xr-back": 10,
               "--xr-background-material": "regular",
-              "--xr-hover-back": 20
             })}
+            aria-label="Scroll left"
           >
             <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
           </button>
-          <button 
-            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 hover:bg-gray-200 transition-colors" 
-            onClick={scrollRight} 
+          <button
+            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 hover:bg-gray-200 transition-colors"
+            onClick={scrollRight}
             disabled={!canScrollRight}
             enable-xr
             style={xr({
               "--xr-back": 10,
               "--xr-background-material": "regular",
-              "--xr-hover-back": 20
             })}
+            aria-label="Scroll right"
           >
             <IconArrowNarrowRight className="h-6 w-6 text-gray-500" />
           </button>
@@ -173,18 +177,53 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   );
 };
 
-export const Card = ({ card, index, layout = false }: { card: Card; index: number; layout?: boolean }) => {
+export const Card = ({
+  card,
+  index,
+  layout = false,
+}: {
+  card: Card;
+  index: number;
+  layout?: boolean;
+}) => {
   const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { onCardClose } = useContext(CarouselContext);
 
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        handleClose();
-      }
+  // 3D tilt state
+  const tiltRef = useRef<HTMLButtonElement | null>(null);
+  const raf = useRef<number | null>(null);
+  const rot = useRef({ rx: 0, ry: 0 });
+  const baseZ = 25;
+
+  const animateTilt = () => {
+    if (!tiltRef.current) return;
+    tiltRef.current.style.transform = `translateZ(24px) rotateX(${rot.current.rx}deg) rotateY(${rot.current.ry}deg)`;
+    raf.current = requestAnimationFrame(animateTilt);
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+    const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+    rot.current.rx = -dy * 8;
+    rot.current.ry = dx * 10;
+    if (raf.current == null) raf.current = requestAnimationFrame(animateTilt);
+  };
+  const onPointerLeave = () => {
+    rot.current = { rx: 0, ry: 0 };
+    if (raf.current != null) {
+      cancelAnimationFrame(raf.current);
+      raf.current = null;
     }
+    if (tiltRef.current) tiltRef.current.style.transform = "translateZ(24px) rotateX(0deg) rotateY(0deg)";
+  };
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") handleClose();
+    };
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "auto";
     window.addEventListener("keydown", onKeyDown);
@@ -204,81 +243,75 @@ export const Card = ({ card, index, layout = false }: { card: Card; index: numbe
       <AnimatePresence>
         {open && (
           <div className="fixed inset-0 h-screen z-50 overflow-auto">
-            {/* Enhanced spatial modal backdrop */}
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              exit={{ opacity: 0 }} 
+            {/* Spatial backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               className="bg-black/80 backdrop-blur-lg h-full w-full fixed inset-0"
               enable-xr
               style={xr({
                 "--xr-background-material": "translucent",
                 "--xr-back": 5,
-                "--xr-opacity": 0.8
               })}
             />
-            
-            {/* Enhanced spatial modal panel */}
+
+            {/* Spatial modal panel */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.96 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
               className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative shadow-2xl"
               enable-xr
-              style={xr({ 
-                "--xr-background-material": "thick", 
+              style={xr({
+                "--xr-background-material": "thick",
                 "--xr-back": 80,
-                "--xr-width": 900,
-                "--xr-corner-radius": 24,
-                "--xr-border-glow": "rgba(255, 255, 255, 0.1)",
-                "--xr-shadow-intensity": 0.3
               })}
             >
-              {/* Enhanced close button */}
-              <button 
-                className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform" 
+              {/* Close */}
+              <button
+                className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform"
                 onClick={handleClose}
                 enable-xr
                 style={xr({
                   "--xr-back": 15,
                   "--xr-background-material": "thick",
-                  "--xr-hover-back": 25
                 })}
+                aria-label="Close"
               >
                 <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
               </button>
-              
-              {/* Spatial content with depth layering */}
-              <motion.p 
-                layoutId={layout ? `category-${card.title}` : undefined} 
+
+              {/* Depth-layered content */}
+              <motion.p
+                layoutId={layout ? `category-${card.title}` : undefined}
                 className="text-base font-medium text-black dark:text-white"
                 enable-xr
                 style={xr({
                   "--xr-back": 10,
-                  "--xr-background-material": "translucent"
+                  "--xr-background-material": "translucent",
                 })}
               >
                 {card.category}
               </motion.p>
-              <motion.p 
-                layoutId={layout ? `title-${card.title}` : undefined} 
+              <motion.p
+                layoutId={layout ? `title-${card.title}` : undefined}
                 className="text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white"
                 enable-xr
                 style={xr({
                   "--xr-back": 20,
-                  "--xr-background-material": "thin"
+                  "--xr-background-material": "thin",
                 })}
               >
                 {card.title}
               </motion.p>
-              <div 
+              <div
                 className="py-10"
                 enable-xr
                 style={xr({
-                  "--xr-scene": "modal-content",
-                  "--xr-back": 30
+                  "--xr-back": 30,
                 })}
               >
                 {card.content}
@@ -288,81 +321,77 @@ export const Card = ({ card, index, layout = false }: { card: Card; index: numbe
         )}
       </AnimatePresence>
 
-      {/* Enhanced spatial card with interactive effects */}
+      {/* Spatial card with 3D tilt + pop */}
       <motion.button
+        ref={tiltRef}
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onPointerMove={onPointerMove}
+        onPointerLeave={onPointerLeave}
         className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10 transition-transform duration-300 hover:scale-[1.02]"
         enable-xr
-        style={xr({ 
-          "--xr-background-material": "translucent", 
-          "--xr-back": isHovered ? 35 : 25,
-          "--xr-corner-radius": 24,
-          "--xr-border-glow": isHovered ? "rgba(59, 130, 246, 0.4)" : "rgba(255, 255, 255, 0.1)",
-          "--xr-hover-scale": 1.02,
-          "--xr-shadow-intensity": isHovered ? 0.2 : 0.1
+        style={xr({
+          "--xr-background-material": "translucent",
+          "--xr-back": isHovered ? baseZ + 10 : baseZ,
+          cursor: "pointer", // qualifies as an interaction region on visionOS
         })}
+        aria-label={`${card.title} details`}
       >
-        {/* Enhanced gradient overlay */}
-        <div 
+        {/* gradient overlay */}
+        <div
           className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none"
           enable-xr
           style={xr({
             "--xr-back": 5,
-            "--xr-background-material": "translucent"
+            "--xr-background-material": "translucent",
           })}
         />
-        
-        {/* Enhanced text content with spatial depth */}
-        <div 
+
+        {/* text with spatial depth */}
+        <div
           className="relative z-40 p-8"
           enable-xr
           style={xr({
             "--xr-back": 15,
-            "--xr-background-material": "thin"
+            "--xr-background-material": "thin",
           })}
         >
-          <motion.p 
-            layoutId={layout ? `category-${card.category}` : undefined} 
+          <motion.p
+            layoutId={layout ? `category-${card.category}` : undefined}
             className="text-white text-sm md:text-base font-medium font-sans text-left"
             enable-xr
             style={xr({
               "--xr-back": 8,
-              "--xr-background-material": "translucent"
+              "--xr-background-material": "translucent",
             })}
           >
             {card.category}
           </motion.p>
-          <motion.p 
-            layoutId={layout ? `title-${card.title}` : undefined} 
+          <motion.p
+            layoutId={layout ? `title-${card.title}` : undefined}
             className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2"
             enable-xr
             style={xr({
               "--xr-back": 12,
-              "--xr-background-material": "regular"
+              "--xr-background-material": "regular",
             })}
           >
             {card.title}
           </motion.p>
         </div>
-        
-        {/* Enhanced image with spatial framing */}
+
+        {/* background image */}
         <div
           enable-xr
           className="absolute z-10 inset-0"
           style={xr({
             "--xr-back": -5,
-            "--xr-background-material": "transparent"
+            "--xr-background-material": "transparent",
           })}
         >
-          <BlurImage 
-            src={card.src} 
-            alt={card.title} 
-            fill 
-            className="object-cover" 
-          />
+          <BlurImage src={card.src} alt={card.title} fill className="object-cover select-none" />
         </div>
       </motion.button>
     </>
