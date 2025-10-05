@@ -158,18 +158,19 @@ export function AppleCardsCarouselDemo() {
         <a
           href="/projects"
           className="rounded-full px-5 py-2 border border-white/20 text-white hover:bg-white/10 __enableXr__"
-          style={xr({ "--xr-background-material": "thin", "--xr-back": 30, cursor: "pointer" })}
+          style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 30, cursor: "pointer" }}
         >
           View Projects
         </a>
 
+        {/* NEW: opens the Spatial Board in its own spatial window every time */}
         <XrWindowLink
-          href="/projects"
-          name="gtxr-projects"
+          href="/projects/board"
+          forceNew
           className="rounded-full px-5 py-2 bg-white/90 text-black font-semibold hover:bg-white __enableXr__"
-          style={xr({ "--xr-background-material": "thin", "--xr-back": 35, cursor: "pointer" })}
+          style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 35, cursor: "pointer" }}
         >
-          Open Projects (New Window)
+          Open Spatial Projects Board
         </XrWindowLink>
       </div>
 
@@ -226,16 +227,6 @@ const ExitSuitContent = () => (
       >
         More About the Exit Suit
       </a>
-
-      {/* New-window CTA (spatial-aware) */}
-      <XrWindowLink
-        href="/projects"
-        name="gtxr-projects"
-        className="__enableXr__ mt-4 rounded-full px-5 py-2 font-semibold bg-white/90 text-black hover:bg-white inline-block"
-        style={xr({ "--xr-background-material": "thin", "--xr-back": 35, cursor: "pointer" })}
-      >
-        Open Projects (New Window)
-      </XrWindowLink>
     </Panel>
   </XRTiltCard>
 );
@@ -318,16 +309,6 @@ const ProjectPitchContent = () => (
         </span>
         Pitch your idea in our annual competition—mentors + E-Board review and select!
       </p>
-
-      {/* New-window CTA (spatial-aware) */}
-      <XrWindowLink
-        href="/projects#pitch"
-        name="gtxr-pitch"
-        className="__enableXr__ mt-4 rounded-full px-5 py-2 font-semibold bg-white/90 text-black hover:bg-white inline-block"
-        style={xr({ "--xr-background-material": "thin", "--xr-back": 35, cursor: "pointer" })}
-      >
-        Apply for Project Pitch
-      </XrWindowLink>
 
       <XRZoomImage src={getAssetPath("/apple-vision-pro.png")} alt="Pitch Visual" w={900} h={560} />
     </Panel>

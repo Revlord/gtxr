@@ -3,10 +3,12 @@
 
 import Link from "next/link";
 import * as React from "react";
+import { getAssetPath } from "@/utils/handleBasePath";
 
 type Props = {
-  href: string;           // app route like "/events"
-  name?: string;          // window/scene name for spatial runtimes
+  href: string;                  // app route like "/projects" or "/projects/board"
+  name?: string;                 // window/scene name for spatial runtimes (ignored if forceNew)
+  forceNew?: boolean;            // if true, ALWAYS open a fresh spatial window (new browsing context)
   className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
@@ -15,19 +17,32 @@ type Props = {
 export default function XrWindowLink({
   href,
   name = "gtxr-window",
+  forceNew = false,
   className = "",
   style,
   children,
   ...rest
 }: Props) {
-  const XR_BASE =
-    (typeof window !== "undefined" && (window as any).__XR_ENV_BASE__) || "";
+  // Build an ABSOLUTE URL that already includes your Next.js basePath.
+  // This is the key to avoiding 404s in spatial runtimes.
+  const toAbsolute = () =>
+    typeof window === "undefined"
+      ? href
+      : new URL(getAssetPath(href), window.location.origin).toString();
 
-  // In WebSpatial: open a *new scene/window* with a name.
-  if (XR_BASE) {
+  const isClient = typeof window !== "undefined";
+  const isSpatial = isClient && !!(window as any).__XR_ENV_BASE__; // provided by WebSpatial
+  const targetName = forceNew ? "_blank" : name;
+
+  if (isSpatial) {
     return (
       <button
-        onClick={() => window.open(`${XR_BASE}${href}`, name)}
+        onClick={() => {
+          const abs = toAbsolute();
+          // _blank = new browsing context EVERY time (fresh spatial window)
+          // a named string would reuse the same window
+          window.open(abs, targetName);
+        }}
         className={className}
         style={style}
         {...rest}
@@ -37,7 +52,7 @@ export default function XrWindowLink({
     );
   }
 
-  // On the web: standard new tab, Next.js will handle basePath for href.
+  // Web fallback: standard new tab (Next.js <Link> applies basePath automatically)
   return (
     <Link
       href={href}

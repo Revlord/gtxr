@@ -265,3 +265,6 @@ html.is-spatial .xr-tilt {
 html.is-spatial .xr-tilt:hover {
   transform: translateZ(36px) rotateX(4deg) rotateY(-4deg);
 }
+/* globals.css */
+.xr-grab { cursor: grab; }
+.xr-grabbing { cursor: grabbing; }
