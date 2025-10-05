@@ -1,15 +1,12 @@
+// components/ui/AppleCards.tsx
 "use client";
 import Image from "next/image";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { getAssetPath } from "@/utils/handleBasePath";
+import XrWindowLink from "@/components/ui/xr-window-link";
 
-// Helper: strongly-typed CSS variables for WebSpatial
 const xr = (styles: Record<string, string | number>) => styles as React.CSSProperties;
-
-// XR env base (empty on normal web; set when running in WebSpatial)
-const useXRBase = () =>
-  useMemo(() => (typeof window !== "undefined" && (window as any).__XR_ENV_BASE__) || "", []);
 
 /* =========================
    1) INTERACTION PRIMITIVES
@@ -36,8 +33,7 @@ const XRTiltCard: React.FC<React.PropsWithChildren<{ depth?: number }>> = ({
 
   return (
     <div
-      enable-xr
-      className="rounded-3xl transition-transform duration-300 will-change-transform"
+      className="__enableXr__ rounded-3xl transition-transform duration-300 will-change-transform"
       style={xr({
         "--xr-background-material": "thin",
         "--xr-back": z,
@@ -55,7 +51,7 @@ const XRTiltCard: React.FC<React.PropsWithChildren<{ depth?: number }>> = ({
   );
 };
 
-// 1b) Pinch-to-zoom image (PointerEvents → multi-touch & visionOS pinch)
+// 1b) Pinch-to-zoom image (PointerEvents)
 const XRZoomImage: React.FC<{
   src: string;
   alt: string;
@@ -106,14 +102,14 @@ const XRZoomImage: React.FC<{
 
   return (
     <div
-      enable-xr
-      className="overflow-hidden rounded-2xl mx-auto"
+      ref={imgRef}
+      className="__enableXr__ overflow-hidden rounded-2xl mx-auto"
       style={xr({
         "--xr-background-material": "regular",
         "--xr-back": 25,
         width: w,
         height: h,
-        touchAction: "none", // allow pinch
+        touchAction: "none",
         cursor: "pointer",
         transition: "transform .15s ease",
       })}
@@ -121,7 +117,6 @@ const XRZoomImage: React.FC<{
       onPointerMove={onMove}
       onPointerUp={onUpOrCancel}
       onPointerCancel={onUpOrCancel}
-      ref={imgRef}
     >
       <Image
         src={src}
@@ -135,41 +130,16 @@ const XRZoomImage: React.FC<{
   );
 };
 
-// 1c) Open route in a new window/scene (uses window.open → Scene in WebSpatial; tab on web)
-const OpenSceneButton: React.FC<{ href: string; name: string; label: string }> = ({
-  href,
-  name,
-  label,
-}) => {
-  const XR_BASE = useXRBase();
-  return (
-    <button
-      enable-xr
-      className="mt-4 rounded-full px-5 py-2 font-semibold bg-white/90 text-black hover:bg-white"
-      style={xr({
-        "--xr-background-material": "thin",
-        "--xr-back": 35,
-        cursor: "pointer",
-      })}
-      onClick={() => window.open(`${XR_BASE}${href}`, name)}
-    >
-      {label}
-    </button>
-  );
-};
-
 /* =========================
    2) PAGE SHELL
    ========================= */
 
 export function AppleCardsCarouselDemo() {
-  // Build cards for the carousel
   const cards = data.map((card, index) => <Card key={card.src} card={card} index={index} />);
 
   return (
     <div
-      className="w-full h-full py-20"
-      enable-xr
+      className="__enableXr__ w-full h-full py-20"
       style={xr({
         "--xr-background-material": "translucent",
         "--xr-back": 20,
@@ -177,8 +147,7 @@ export function AppleCardsCarouselDemo() {
     >
       {/* Floating header with depth */}
       <h2
-        className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center mb-8"
-        enable-xr
+        className="__enableXr__ max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center mb-8"
         style={xr({ "--xr-background-material": "thick", "--xr-back": 60 })}
       >
         Our Projects range from XR research to fun VR applications!
@@ -186,15 +155,14 @@ export function AppleCardsCarouselDemo() {
 
       {/* Sticky/hovering tips panel (XR-only visual) */}
       <div
-        enable-xr
-        className="hidden xl:block fixed right-6 top-28 rounded-3xl px-5 py-4 text-sm text-zinc-100 bg-white/5 backdrop-blur"
+        className="__enableXr__ hidden xl:block fixed right-6 top-28 rounded-3xl px-5 py-4 text-sm text-zinc-100 bg-white/5 backdrop-blur"
         style={xr({ "--xr-background-material": "regular", "--xr-back": 70, cursor: "pointer" })}
       >
         Tip: pinch images to zoom • drag over cards to “peek”
       </div>
 
       {/* Carousel */}
-      <div enable-xr style={xr({ "--xr-background-material": "transparent", "--xr-back": 40 })}>
+      <div className="__enableXr__" style={xr({ "--xr-background-material": "transparent", "--xr-back": 40 })}>
         <Carousel items={cards} />
       </div>
     </div>
@@ -209,8 +177,7 @@ const Panel: React.FC<
   React.PropsWithChildren<{ depth?: number; material?: "thin" | "regular" | "thick" | "translucent"; interactive?: boolean }>
 > = ({ children, depth = 40, material = "thick", interactive = true }) => (
   <div
-    enable-xr
-    className={`bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 transition-transform duration-300 ${
+    className={`__enableXr__ bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 transition-transform duration-300 ${
       interactive ? "hover:scale-[1.02] cursor-pointer" : ""
     }`}
     style={xr({
@@ -222,13 +189,13 @@ const Panel: React.FC<
   </div>
 );
 
-/* ===== Content blocks (now spatial-enhanced) ===== */
+/* ===== Content blocks (now spatial-enhanced & XR-window aware) ===== */
 
 const ExitSuitContent = () => (
   <XRTiltCard depth={45}>
     <Panel material="thin" depth={45}>
       <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-4">
-        <span enable-xr style={xr({ "--xr-back": 10, "--xr-background-material": "translucent" })} className="font-bold text-neutral-700 dark:text-neutral-200">
+        <span className="__enableXr__ font-bold text-neutral-700 dark:text-neutral-200" style={xr({ "--xr-back": 10, "--xr-background-material": "translucent" })}>
           Exit Suit Project <br />
         </span>
         A custom-designed “Exit Suit” built by GTXR—engineering + design meets XR craft.
@@ -236,12 +203,19 @@ const ExitSuitContent = () => (
       <a
         href="https://exitsuit.com/"
         className="text-blue-600 hover:text-blue-800 underline font-semibold"
-        enable-xr
-        style={xr({ "--xr-back": 20 })}
       >
         More About the Exit Suit
       </a>
-      <OpenSceneButton href="/projects" name="gtxr-projects" label="Open Projects in New Window" />
+
+      {/* New-window CTA (spatial-aware) */}
+      <XrWindowLink
+        href="/projects"
+        name="gtxr-projects"
+        className="__enableXr__ mt-4 rounded-full px-5 py-2 font-semibold bg-white/90 text-black hover:bg-white inline-block"
+        style={xr({ "--xr-background-material": "thin", "--xr-back": 35, cursor: "pointer" })}
+      >
+        Open Projects (New Window)
+      </XrWindowLink>
     </Panel>
   </XRTiltCard>
 );
@@ -319,12 +293,22 @@ const ProjectPitchContent = () => (
   <XRTiltCard depth={50}>
     <Panel material="translucent" depth={50}>
       <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto mb-6">
-        <span enable-xr style={xr({ "--xr-back": 15, "--xr-background-material": "thick" })} className="font-bold text-neutral-700 dark:text-neutral-200">
+        <span className="__enableXr__ font-bold text-neutral-700 dark:text-neutral-200" style={xr({ "--xr-back": 15, "--xr-background-material": "thick" })}>
           Wanna lead a project under GTXR? <br />
         </span>
         Pitch your idea in our annual competition—mentors + E-Board review and select!
       </p>
-      <OpenSceneButton href="/projects#pitch" name="gtxr-pitch" label="Apply for Project Pitch" />
+
+      {/* New-window CTA (spatial-aware) */}
+      <XrWindowLink
+        href="/projects#pitch"
+        name="gtxr-pitch"
+        className="__enableXr__ mt-4 rounded-full px-5 py-2 font-semibold bg-white/90 text-black hover:bg-white inline-block"
+        style={xr({ "--xr-background-material": "thin", "--xr-back": 35, cursor: "pointer" })}
+      >
+        Apply for Project Pitch
+      </XrWindowLink>
+
       <XRZoomImage src={getAssetPath("/apple-vision-pro.png")} alt="Pitch Visual" w={900} h={560} />
     </Panel>
   </XRTiltCard>

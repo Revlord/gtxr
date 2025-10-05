@@ -3,6 +3,7 @@ import Link from "next/link";
 import { execMembers } from "@/data";
 import { HoverEffect } from "./ui/card-hover-effect";
 import React from "react";
+import XrWindowLink from "@/components/ui/xr-window-link";
 
 const xr = (v: Record<string, string | number>) => v as React.CSSProperties;
 
@@ -39,33 +40,22 @@ export default function Exec() {
 
         {/* Spatial action row */}
         <div className="mt-10 flex items-center justify-center gap-3">
-          {/* Internal nav (same tab) – Link handles basePath */}
-          <Link
+          <a
             href="/team"
-            className="rounded-full px-5 py-2 border border-white/20 text-white hover:bg-white/10"
-            style={xr({
-              "--xr-background-material": "thin",
-              "--xr-back": 30,
-              cursor: "pointer",
-            })}
+            className="rounded-full px-5 py-2 border border-white/20 text-white hover:bg-white/10 __enableXr__"
+            style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 30, cursor: "pointer" }}
           >
             Meet the team
-          </Link>
+          </a>
 
-          {/* New tab / new Scene in WebSpatial */}
-          <Link
+          <XrWindowLink
             href="/team"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full px-5 py-2 bg-white/90 text-black font-semibold hover:bg-white"
-            style={xr({
-              "--xr-background-material": "thin",
-              "--xr-back": 35,
-              cursor: "pointer",
-            })}
+            name="gtxr-team"
+            className="rounded-full px-5 py-2 bg-white/90 text-black font-semibold hover:bg-white __enableXr__"
+            style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 35, cursor: "pointer" }}
           >
             Open Team (New Window)
-          </Link>
+          </XrWindowLink>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
+// components/ui/apple-cards-carousel.tsx
 "use client";
-import React, { useEffect, useMemo, useRef, useState, createContext, useContext } from "react";
+import React, { useEffect, useRef, useState, createContext, useContext } from "react";
 import { IconArrowNarrowLeft, IconArrowNarrowRight, IconX } from "@tabler/icons-react";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
@@ -34,7 +35,6 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // helpers
   const isMobile = () => typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
@@ -47,13 +47,11 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     const el = carouselRef.current;
     if (!el) return;
 
-    // Arrow keys for navigation
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") scrollLeft();
       if (e.key === "ArrowRight") scrollRight();
     };
 
-    // Trackpad vertical wheel → horizontal scroll
     const onWheel = (e: WheelEvent) => {
       if (!e.shiftKey && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         el.scrollBy({ left: e.deltaY, behavior: "smooth" });
@@ -95,10 +93,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
       <div className="relative w-full">
         {/* Spatial carousel container */}
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth [scrollbar-width:none]"
           ref={carouselRef}
           onScroll={checkScrollability}
-          enable-xr
+          className="__enableXr__ flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth [scrollbar-width:none]"
           style={xr({
             "--xr-background-material": "translucent",
             "--xr-back": 25,
@@ -109,8 +106,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
           {/* Cards strip */}
           <div
-            className={cn("flex flex-row justify-start gap-4 pl-4", "max-w-7xl mx-auto")}
-            enable-xr
+            className={cn("flex flex-row justify-start gap-4 pl-4", "max-w-7xl mx-auto __enableXr__")}
             style={xr({
               "--xr-back": 10,
             })}
@@ -118,16 +114,11 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             {items.map((item, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.5, delay: 0.15 * index, ease: "easeOut" },
-                }}
+                animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.15 * index, ease: "easeOut" } }}
                 key={"card" + index}
-                className="last:pr-[5%] md:last:pr-[33%] rounded-3xl"
-                enable-xr
+                className="last:pr-[5%] md:last:pr-[33%] rounded-3xl __enableXr__"
                 style={xr({
-                  "--xr-back": 15 + index * 3, // progressive depth
+                  "--xr-back": 15 + index * 3,
                 })}
               >
                 {item}
@@ -138,18 +129,16 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
         {/* Spatial nav controls */}
         <div
-          className="flex justify-end gap-2 mr-10"
-          enable-xr
+          className="__enableXr__ flex justify-end gap-2 mr-10"
           style={xr({
             "--xr-back": 35,
             "--xr-background-material": "thin",
           })}
         >
           <button
-            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 hover:bg-gray-200 transition-colors"
+            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 hover:bg-gray-200 transition-colors __enableXr__"
             onClick={scrollLeft}
             disabled={!canScrollLeft}
-            enable-xr
             style={xr({
               "--xr-back": 10,
               "--xr-background-material": "regular",
@@ -159,10 +148,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
           </button>
           <button
-            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 hover:bg-gray-200 transition-colors"
+            className="relative z-40 h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center disabled:opacity-50 hover:bg-gray-200 transition-colors __enableXr__"
             onClick={scrollRight}
             disabled={!canScrollRight}
-            enable-xr
             style={xr({
               "--xr-back": 10,
               "--xr-background-material": "regular",
@@ -224,10 +212,8 @@ export const Card = ({
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") handleClose();
     };
-    if (open) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "auto";
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    document.body.style.overflow = open ? "hidden" : "auto";
+    return () => { document.body.style.overflow = "auto"; };
   }, [open]);
 
   useOutsideClick(containerRef, () => handleClose());
@@ -248,8 +234,7 @@ export const Card = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="bg-black/80 backdrop-blur-lg h-full w-full fixed inset-0"
-              enable-xr
+              className="__enableXr__ bg-black/80 backdrop-blur-lg h-full w-full fixed inset-0"
               style={xr({
                 "--xr-background-material": "translucent",
                 "--xr-back": 5,
@@ -263,8 +248,7 @@ export const Card = ({
               exit={{ opacity: 0, scale: 0.96 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative shadow-2xl"
-              enable-xr
+              className="__enableXr__ max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative shadow-2xl"
               style={xr({
                 "--xr-background-material": "thick",
                 "--xr-back": 80,
@@ -272,9 +256,8 @@ export const Card = ({
             >
               {/* Close */}
               <button
-                className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                className="__enableXr__ sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform"
                 onClick={handleClose}
-                enable-xr
                 style={xr({
                   "--xr-back": 15,
                   "--xr-background-material": "thick",
@@ -287,8 +270,7 @@ export const Card = ({
               {/* Depth-layered content */}
               <motion.p
                 layoutId={layout ? `category-${card.title}` : undefined}
-                className="text-base font-medium text-black dark:text-white"
-                enable-xr
+                className="__enableXr__ text-base font-medium text-black dark:text-white"
                 style={xr({
                   "--xr-back": 10,
                   "--xr-background-material": "translucent",
@@ -298,8 +280,7 @@ export const Card = ({
               </motion.p>
               <motion.p
                 layoutId={layout ? `title-${card.title}` : undefined}
-                className="text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white"
-                enable-xr
+                className="__enableXr__ text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white"
                 style={xr({
                   "--xr-back": 20,
                   "--xr-background-material": "thin",
@@ -308,8 +289,7 @@ export const Card = ({
                 {card.title}
               </motion.p>
               <div
-                className="py-10"
-                enable-xr
+                className="__enableXr__ py-10"
                 style={xr({
                   "--xr-back": 30,
                 })}
@@ -330,19 +310,17 @@ export const Card = ({
         onMouseLeave={() => setIsHovered(false)}
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
-        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10 transition-transform duration-300 hover:scale-[1.02]"
-        enable-xr
+        className="__enableXr__ rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10 transition-transform duration-300 hover:scale-[1.02]"
         style={xr({
           "--xr-background-material": "translucent",
           "--xr-back": isHovered ? baseZ + 10 : baseZ,
-          cursor: "pointer", // qualifies as an interaction region on visionOS
+          cursor: "pointer",
         })}
         aria-label={`${card.title} details`}
       >
         {/* gradient overlay */}
         <div
-          className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none"
-          enable-xr
+          className="__enableXr__ absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none"
           style={xr({
             "--xr-back": 5,
             "--xr-background-material": "translucent",
@@ -351,8 +329,7 @@ export const Card = ({
 
         {/* text with spatial depth */}
         <div
-          className="relative z-40 p-8"
-          enable-xr
+          className="__enableXr__ relative z-40 p-8"
           style={xr({
             "--xr-back": 15,
             "--xr-background-material": "thin",
@@ -360,8 +337,7 @@ export const Card = ({
         >
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-white text-sm md:text-base font-medium font-sans text-left"
-            enable-xr
+            className="__enableXr__ text-white text-sm md:text-base font-medium font-sans text-left"
             style={xr({
               "--xr-back": 8,
               "--xr-background-material": "translucent",
@@ -371,8 +347,7 @@ export const Card = ({
           </motion.p>
           <motion.p
             layoutId={layout ? `title-${card.title}` : undefined}
-            className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2"
-            enable-xr
+            className="__enableXr__ text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2"
             style={xr({
               "--xr-back": 12,
               "--xr-background-material": "regular",
@@ -384,8 +359,7 @@ export const Card = ({
 
         {/* background image */}
         <div
-          enable-xr
-          className="absolute z-10 inset-0"
+          className="__enableXr__ absolute z-10 inset-0"
           style={xr({
             "--xr-back": -5,
             "--xr-background-material": "transparent",

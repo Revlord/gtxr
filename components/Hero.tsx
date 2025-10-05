@@ -6,6 +6,7 @@ import { BackgroundBeams } from "./ui/background-beams";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import { getAssetPath } from "@/utils/handleBasePath";
+import XrWindowLink from "@/components/ui/xr-window-link";
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -88,22 +89,14 @@ const Hero = () => {
 
         {/* spatial CTA row */}
         <div className="mt-6 flex items-center justify-center gap-4">
-          {/* New-Window/Scene: Link handles basePath; target opens new scene in spatial shells */}
-          <Link
+          <XrWindowLink
             href="/events"
-            target="_blank"
-            rel="noopener noreferrer"
+            name="gtxr-events"
             className="__enableXr__ rounded-full px-6 py-3 text-black bg-white/90 hover:bg-white font-semibold"
-            style={
-              {
-                ["--xr-background-material" as any]: "thin",
-                ["--xr-back" as any]: 40,
-                cursor: "pointer",
-              } as React.CSSProperties
-            }
+            style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 40 }}
           >
             Open Events (New Window)
-          </Link>
+          </XrWindowLink>
 
           <Link
             href="/events"

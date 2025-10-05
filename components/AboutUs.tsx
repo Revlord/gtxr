@@ -4,6 +4,7 @@ import AboutUsCard from "./ui/about-us-card";
 import { PinContainer } from "./ui/3d-pin";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { getAssetPath } from "@/utils/handleBasePath";
+import XrSidePanel from "./ui/xr-side-panel";
 
 const AboutUs = () => {
     return (
@@ -102,13 +103,11 @@ const AboutUs = () => {
                 </div>
             </div>
             
-            {/* WebSpatial Sine Panel */}
-            <div
-              className="__enableXr__ hidden xl:block fixed right-4 top-24 rounded-3xl p-6 text-sm text-zinc-100 bg-white/5 backdrop-blur"
-              style={{ ['--xr-background-material' as any]: 'regular', ['--xr-back' as any]: 70 }}
-            >
-              <p className="opacity-80">Tip: Pin this window in your space and browse our sponsors in another Scene.</p>
-            </div>
+            <XrSidePanel routeTo="/sponsorships" title="Quick Actions">
+              <p className="text-zinc-300/80 text-sm leading-relaxed">
+                Tip: pin this window in your space and browse our sponsors in another Scene.
+              </p>
+            </XrSidePanel>
         </div>
     );
 };
