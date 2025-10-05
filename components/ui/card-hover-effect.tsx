@@ -84,12 +84,36 @@ export const Card = ({
   className?: string;
   children: React.ReactNode;
 }) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 4;
+    const rotateY = (centerX - x) / 4;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+  };
+
+  const handlePointerLeave = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+  };
+
   return (
     <motion.div
       className={cn(
-        "rounded-2xl h-full w-full overflow-hidden bg-black border border-gray-800 shadow-lg relative z-20",
+        "rounded-2xl h-full w-full overflow-hidden bg-black border border-gray-800 shadow-lg relative z-20 __enableXr__",
         className
       )}
+      style={{ 
+        ["--xr-background-material" as any]: "translucent", 
+        ["--xr-back" as any]: 25,
+        transition: 'transform 0.3s ease-out'
+      }}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
     >

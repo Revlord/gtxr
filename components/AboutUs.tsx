@@ -104,10 +104,9 @@ const AboutUs = () => {
             </div>
             
             <XrSidePanel routeTo="/sponsorships" title="Quick Actions">
-              <p className="text-zinc-300/80 text-sm leading-relaxed">
-                Tip: pin this window in your space and browse our sponsors in another Scene.
-              </p>
+            <p>Tip: pin this window in your space and browse our sponsors in another Scene.</p>
             </XrSidePanel>
+
         </div>
     );
 };

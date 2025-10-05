@@ -153,6 +153,26 @@ export function AppleCardsCarouselDemo() {
         Our Projects range from XR research to fun VR applications!
       </h2>
 
+      {/* Spatial action buttons */}
+      <div className="mt-6 flex items-center justify-center gap-3 mb-8">
+        <a
+          href="/projects"
+          className="rounded-full px-5 py-2 border border-white/20 text-white hover:bg-white/10 __enableXr__"
+          style={xr({ "--xr-background-material": "thin", "--xr-back": 30, cursor: "pointer" })}
+        >
+          View Projects
+        </a>
+
+        <XrWindowLink
+          href="/projects"
+          name="gtxr-projects"
+          className="rounded-full px-5 py-2 bg-white/90 text-black font-semibold hover:bg-white __enableXr__"
+          style={xr({ "--xr-background-material": "thin", "--xr-back": 35, cursor: "pointer" })}
+        >
+          Open Projects (New Window)
+        </XrWindowLink>
+      </div>
+
       {/* Sticky/hovering tips panel (XR-only visual) */}
       <div
         className="__enableXr__ hidden xl:block fixed right-6 top-28 rounded-3xl px-5 py-4 text-sm text-zinc-100 bg-white/5 backdrop-blur"

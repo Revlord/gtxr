@@ -246,3 +246,22 @@ html.is-spatial .xr-elev-20 { --xr-back: 20; }
 html.is-spatial .xr-elev-40 { --xr-back: 40; }
 html.is-spatial .xr-thin { --xr-background-material: thin; }
 html.is-spatial .xr-translucent { --xr-background-material: translucent; }
+
+/* XR-only helpers */
+html.is-spatial .xr-floating-panel {
+  --xr-background-material: regular;
+  --xr-back: 75;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+}
+
+html.is-spatial .xr-cta { cursor: pointer; }
+
+html.is-spatial .xr-tilt {
+  transform: translateZ(24px);
+  transform-origin: center;
+  transition: transform .35s ease;
+}
+html.is-spatial .xr-tilt:hover {
+  transform: translateZ(36px) rotateX(4deg) rotateY(-4deg);
+}
