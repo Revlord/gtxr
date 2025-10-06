@@ -19,16 +19,14 @@ type Sponsor = {
 const xr = (v: Record<string, string | number>) => v as React.CSSProperties;
 
 const SPONSORS: Sponsor[] = [
-  { id: "s1", name: "Snap AR", tier: "Platinum", color: "#FFFC00", logo: getAssetPath("/immersegt.png"), blurb: "Flagship partner for ImmerseGT" },
-  { id: "s2", name: "Niantic", tier: "Gold", color: "#4285F4", blurb: "Workshops + gear sponsoring" },
-  { id: "s3", name: "Meshy", tier: "Gold", color: "#FF6B35" },
-  { id: "s4", name: "GT CREATE-X", tier: "Silver", color: "#B3A369" },
-  { id: "s5", name: "Celsius", tier: "Community", color: "#00D4FF" },
-  { id: "s6", name: "MLH", tier: "Community", color: "#E42D40" },
-  { id: "s7", name: "Standout Stickers", tier: "Community", color: "#FF69B4" },
-  { id: "s8", name: "Grokit", tier: "Community", color: "#32CD32" },
-  { id: "s9", name: "Reboot Imagine", tier: "Community", color: "#9370DB" },
-  { id: "s10", name: "Pico (you guys!)", tier: "Platinum", color: "#1DB954", blurb: "Potential flagship XR hardware partner" },
+  { id: "s1", name: "Snap AR", tier: "Platinum", color: "#FFFC00", logo: getAssetPath("/snap1.png"), blurb: "Flagship partner for ImmerseGT" },
+  { id: "s2", name: "Niantic", tier: "Gold", color: "#4285F4", logo: getAssetPath("/niantic1.png"), blurb: "Workshops + gear sponsoring" },
+  { id: "s3", name: "Meshy", tier: "Gold", color: "#FF6B35", logo: getAssetPath("/meshy1.png") },
+  { id: "s4", name: "GT CREATE-X", tier: "Silver", color: "#B3A369", logo: getAssetPath("/createx1.png") },
+  { id: "s6", name: "MLH", tier: "Community", color: "#E42D40", logo: getAssetPath("/mlh1.png") },
+  { id: "s7", name: "Standout Stickers", tier: "Community", color: "#FF69B4", logo: getAssetPath("/standout1.png") },
+  { id: "s8", name: "Grokit", tier: "Community", color: "#32CD32", logo: getAssetPath("/grokit1.png") },
+  { id: "s10", name: "Pico (you guys!)", tier: "Platinum", color: "#1DB954", logo: getAssetPath("/pico.png"), blurb: "Potential flagship XR hardware partner" },
 ];
 
 type Vec = { x: number; y: number };
