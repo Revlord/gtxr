@@ -40,27 +40,6 @@ const EventsHeaderHero = () => {
           Social Events
         </h2>
 
-        <div className="mt-4 flex gap-3">
-          <Link
-            href="/events"
-            className="rounded-full px-4 py-2 border border-white/20 text-white hover:bg-white/10"
-            style={xr({ "--xr-background-material": "thin", "--xr-back": 35, cursor: "pointer" })}
-          >
-            Browse events
-          </Link>
-
-          {/* new scene/window via Link target (basePath-safe) */}
-          <Link
-            href="/events"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full px-4 py-2 bg-white/90 text-black font-semibold hover:bg-white"
-            style={xr({ "--xr-background-material": "thin", "--xr-back": 40, cursor: "pointer" })}
-          >
-            Open Events (New Window)
-          </Link>
-        </div>
-
         <ShootingStars />
         <StarsBackground starDensity={0.0003} />
       </div>

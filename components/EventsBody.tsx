@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getAssetPath } from "@/utils/handleBasePath";
+import XrWindowLink from "./ui/xr-window-link";
 
 type Event = {
   id: number;
@@ -217,21 +218,21 @@ const EventsBody = () => {
         </div>
         {/* spatial action */}
         <div className="mt-6 flex gap-3">
+          <XrWindowLink
+            href="/events/board"
+            forceNew
+            className="rounded-full px-4 py-2 bg-white/90 text-black font-semibold hover:bg-white __enableXr__"
+            style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 35, cursor: "pointer" }}
+          >
+            Open Spatial Events Wall
+          </XrWindowLink>
+
           <Link
             href="/events"
-            className="rounded-full px-4 py-2 border border-white/20 text-white hover:bg-white/10"
-            style={xr({ "--xr-background-material": "thin", "--xr-back": 30, cursor: "pointer" })}
+            className="rounded-full px-4 py-2 border border-white/20 text-white hover:bg-white/10 __enableXr__"
+            style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 30, cursor: "pointer" }}
           >
-            View all events
-          </Link>
-          <Link
-            href="/events"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full px-4 py-2 bg-white/90 text-black font-semibold hover:bg-white"
-            style={xr({ "--xr-background-material": "thin", "--xr-back": 35, cursor: "pointer" })}
-          >
-            Open Events (New Window)
+            View list on this page
           </Link>
         </div>
       </div>

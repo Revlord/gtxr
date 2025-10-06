@@ -87,25 +87,6 @@ const Hero = () => {
           }
         />
 
-        {/* spatial CTA row */}
-        <div className="mt-6 flex items-center justify-center gap-4">
-          <XrWindowLink
-            href="/events"
-            name="gtxr-events"
-            className="__enableXr__ rounded-full px-6 py-3 text-black bg-white/90 hover:bg-white font-semibold"
-            style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 40 }}
-          >
-            Open Events (New Window)
-          </XrWindowLink>
-
-          <Link
-            href="/events"
-            className="rounded-full px-6 py-3 text-white border border-white/30 hover:bg-white/10"
-          >
-            View in this page
-          </Link>
-        </div>
-
         {/* backdrop text + beams */}
         <div className="font-sans text-center font-extrabold text-[30vw] xl:text-[400px] opacity-[12%] text-zinc-50 absolute -bottom-4 sm:-bottom-8 md:-bottom-12 w-full leading-none pointer-events-none">
           GTXR

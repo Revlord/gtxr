@@ -1,5 +1,6 @@
 import React from 'react';
 import { MeteorCard } from './MeteorCard';
+import XrWindowLink from './ui/xr-window-link';
 
 //Need to fix spacing errors below the lower h3 and p (above the footer) when the screen size is minimized
 
@@ -68,6 +69,23 @@ const SponsorBody = () => {
           <p className="text-zinc-400 sm:text-3xl leading-relaxed mt-6 p-4 text-center">
             To reach out to us, feel free to email us at <a href='mailto:contact@gtxr.club' className='text-violet-600'>contact@gtxr.club</a>
           </p>
+
+          <div className="mt-10 flex items-center justify-center">
+            <div
+              className="__enableXr__ rounded-3xl px-6 py-4 bg-white/5 border border-white/10 text-zinc-100 text-center"
+              style={{ ["--xr-background-material" as any]: "regular", ["--xr-back" as any]: 70 }}
+            >
+              <p className="mb-3">Prefer a spatial overview?</p>
+              <XrWindowLink
+                href="/sponsorships/board"
+                forceNew
+                className="rounded-full px-5 py-2 bg-white/90 text-black font-semibold hover:bg-white inline-block __enableXr__"
+                style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 80, cursor: "pointer" }}
+              >
+                Open Spatial Sponsor Studio
+              </XrWindowLink>
+            </div>
+          </div>
 
         </div>
 

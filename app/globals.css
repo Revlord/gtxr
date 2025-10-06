@@ -268,3 +268,170 @@ html.is-spatial .xr-tilt:hover {
 /* globals.css */
 .xr-grab { cursor: grab; }
 .xr-grabbing { cursor: grabbing; }
+/* Spatial board: softly reactive grid + parallax highlight */
+html.is-spatial .xr-board-surface {
+  position: relative;
+  --gx: 50%;
+  --gy: 50%;
+  --grid: 24px;
+  --ring: rgba(124, 58, 237, .18);
+  --panel: rgba(255,255,255,.06);
+  background:
+    radial-gradient(600px 400px at var(--gx) var(--gy), var(--ring), transparent 65%),
+    linear-gradient(to bottom right, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  outline: 1px solid rgba(255,255,255,.08);
+  border-radius: 24px;
+  overflow: hidden;
+}
+html.is-spatial .xr-board-surface::before {
+  content:"";
+  position:absolute; inset:0;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px var(--grid)),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.05) 0 1px, transparent 1px var(--grid));
+  pointer-events:none;
+  opacity:.35;
+}
+
+/* Glow ring under the active card while dragging */
+.xrg-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(120px 90px at center, rgba(180, 160, 255, .25), transparent 70%);
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity .12s ease;
+}
+.card--active .xrg-glow { opacity: .9; }
+
+/* Animate left/top changes a bit */
+.card-smooth {
+  transition: left .12s ease, top .12s ease, transform .15s ease;
+}
+/* Spatial board backdrop */
+.xr-board-surface {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(120,80,255,.15), transparent 60%),
+    radial-gradient(1000px 500px at 110% 30%, rgba(70,180,255,.12), transparent 60%),
+    linear-gradient(to bottom, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  position: relative;
+  isolation: isolate;
+}
+
+/* Card ambient glow */
+.xr-card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: radial-gradient(400px 200px at 20% 0%, rgba(150,120,255,.18), transparent 60%);
+  filter: blur(14px);
+  z-index: -1;
+}
+
+/* Modal glass treatment */
+.xr-modal-card {
+  background: linear-gradient(to bottom right, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+/* Side panel gorgeous glass */
+.xr-panel {
+  background: linear-gradient(to bottom right, rgba(255,255,255,.11), rgba(255,255,255,.05));
+}
+
+/* Collapsed pill */
+.xr-pill {
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: linear-gradient(to bottom right, rgba(255,255,255,.18), rgba(255,255,255,.07));
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+}
+
+/* Icon + chip buttons for panel */
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 9999px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.12);
+  color: white; transition: transform .15s ease, background .2s ease;
+}
+.icon-btn:hover { transform: translateZ(18px) scale(1.06); background: rgba(255,255,255,.18); }
+
+.chip-btn {
+  display: inline-flex; gap: 8px; align-items: center; justify-content: center;
+  padding: 10px 12px; border-radius: 12px; color: white;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.12);
+  transition: transform .15s ease, background .2s ease;
+}
+.chip-btn:hover { transform: translateZ(18px) scale(1.04); background: rgba(255,255,255,.18); }
+
+/* XR cursors */
+.xr-cta { cursor: pointer; }
+.xr-grab { cursor: grab; }
+.xr-grabbing { cursor: grabbing; }
+/* === Spatial spotlight that tracks the pointer (hero only) === */
+.xrs-spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.xrs-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(
+      24rem 18rem at var(--sx,50%) var(--sy,50%),
+      rgba(120, 120, 255, .16),
+      rgba(120, 120, 255, .08) 35%,
+      transparent 60%
+    );
+  transition: background-position .08s linear;
+  z-index: 5;
+}
+
+/* subtle glass bloom behind hero device */
+.xrs-glass-bloom {
+  filter: drop-shadow(0 40px 60px rgba(120, 100, 255, .15))
+          drop-shadow(0 8px 40px rgba(120, 150, 255, .12));
+}
+
+/* “floating chips” hover lift */
+.xrs-chip {
+  transform: translateZ(24px);
+  transition: transform .25s ease, backdrop-filter .25s ease;
+}
+.xrs-chip:hover {
+  transform: translateZ(36px) scale(1.04);
+  backdrop-filter: blur(10px);
+}
+
+/* “card” overlay for hero info */
+.xrs-overlay-backdrop {
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(12px);
+}
+/* Spatial glow for "Upcoming" cards (uses box-shadow on the element) */
+@keyframes xrPulse {
+  0% { box-shadow: 0 0 0 0 rgba(168,85,247,.28); }
+  70% { box-shadow: 0 0 0 18px rgba(168,85,247,0); }
+  100% { box-shadow: 0 0 0 0 rgba(168,85,247,0); }
+}
+html.is-spatial .xr-upcoming-pulse { animation: xrPulse 2.6s ease-out infinite; }
+
+/* Board look */
+html.is-spatial .xr-board-canvas { --xr-background-material: translucent; --xr-back: 30; border-radius: 28px; }
+/* Sponsor / hero gloss */
+.xr-cta-glow { box-shadow: 0 8px 30px rgba(167,139,250,.25), inset 0 1px 10px rgba(255,255,255,.08); }
+html.is-spatial .xr-cta-glow { --xr-back: 70; --xr-background-material: thin; }
+
+/* Slight highlight on droplet hover (desktop) */
+@media (hover:hover) {
+  .goo-drop:hover { filter: brightness(1.07); }
+}
