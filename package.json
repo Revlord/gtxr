@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "dev:avp": "XR_ENV=avp NEXT_USE_TURBOPACK=0 next dev",
+    "dev:avp": "cross-env XR_ENV=avp NEXT_PUBLIC_XR_BASE=/webspatial/avp next dev",
+    "build:avp": "cross-env XR_ENV=avp NEXT_PUBLIC_XR_BASE=/webspatial/avp next build",
+    "start": "next start -p 3000",
     "build": "next build",
-    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
