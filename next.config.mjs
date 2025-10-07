@@ -7,7 +7,9 @@ const base = {
   // Do NOT set basePath; the plugin sets it in XR builds.
 };
 
-// The plugin is *curried* per docs: withWebSpatial()(config)
-const nextConfig = withWebSpatial()(base);
+// Only apply Web Spatial plugin if XR_ENV is set
+const nextConfig = process.env.XR_ENV 
+  ? withWebSpatial()(base)
+  : base;
 
 export default nextConfig;
