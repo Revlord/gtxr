@@ -29,8 +29,21 @@ export default function XrWindowLink({
         onClick={() => {
           const targetName = forceNew ? `gtxr-${Date.now()}` : name;
           // Use absolute URL to avoid basePath/404 issues when popped out
-          const abs = new URL(href, window.location.origin).toString();
-          window.open(`${XR_BASE}${href.startsWith("/") ? href : new URL(abs).pathname}`, targetName);
+          // Only access window.location when actually clicking (client-side)
+          let finalPath = href;
+          if (typeof window !== "undefined") {
+            if (href.startsWith("/")) {
+              finalPath = href;
+            } else {
+              try {
+                const abs = new URL(href, window.location.origin);
+                finalPath = abs.pathname;
+              } catch {
+                finalPath = href;
+              }
+            }
+          }
+          window.open(`${XR_BASE}${finalPath}`, targetName);
         }}
         className={className}
         style={style}

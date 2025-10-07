@@ -27,8 +27,8 @@ interface ShootingStarsProps {
 
 const getRandomStartPoint = () => {
   const side = Math.floor(Math.random() * 4);
-  const width = isClient ? getWindowWidth() : 0;
-  const height = isClient ? getWindowHeight() : 0;
+  const width = isClient() ? getWindowWidth() : 0;
+  const height = isClient() ? getWindowHeight() : 0;
   const offset = Math.random() * width;
 
   switch (side) {
@@ -60,7 +60,7 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (!isClient) return;
+    if (!isClient()) return;
 
     const createStar = () => {
       const { x, y, angle } = getRandomStartPoint();
@@ -84,7 +84,7 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({
   }, [minSpeed, maxSpeed, minDelay, maxDelay]);
 
   useEffect(() => {
-    if (!isClient) return;
+    if (!isClient()) return;
     
     const moveStars = () => {
       setStar((prevStar) => {
@@ -95,8 +95,8 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({
         const newDistance = prevStar.distance + prevStar.speed;
         const newScale = 1 + newDistance / 100;
         
-        const width = isClient ? getWindowWidth() : 0;
-        const height = isClient ? getWindowHeight() : 0;
+        const width = isClient() ? getWindowWidth() : 0;
+        const height = isClient() ? getWindowHeight() : 0;
         
         if (
           newX < -20 ||
@@ -120,7 +120,7 @@ const ShootingStars: React.FC<ShootingStarsProps> = ({
     return () => cancelAnimationFrame(animationFrame);
   }, [star]);
 
-  if (!isClient) return null;
+  if (!isClient()) return null;
 
   return (
     <svg
