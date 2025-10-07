@@ -1,7 +1,7 @@
 'use client'
 import { navItems } from '@/data';
 import Image from 'next/image';
-import Link from 'next/link';
+import SafeLink from './safe-link';
 import { useState } from 'react';
 import { getAssetPath } from '@/utils/handleBasePath';
 
@@ -12,9 +12,9 @@ export default function Navbar() {
     // Mark as spatial via class "__enableXr__" (or use enable-xr attr if you prefer)
     <header className="__enableXr__ xr-nav bg-black/90 shadow-lg sticky top-0 w-full z-50">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="transition duration-300 hover:opacity-80">
+        <SafeLink href="/" className="transition duration-300 hover:opacity-80">
           <Image src={getAssetPath('/temp_logo.png')} alt="logo" width={100} height={55} className="rounded-full" />
-        </Link>
+        </SafeLink>
 
         {/* Hamburger */}
         <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
@@ -27,7 +27,7 @@ export default function Navbar() {
         <ul className="hidden lg:flex space-x-6 text-white">
           {navItems.map(({ label, href }, i) => (
             <li key={i} className="relative group">
-              <Link
+              <SafeLink
                 href={href}
                 className="text-sm uppercase font-medium tracking-wider hover:text-purple transition duration-300 rounded-xl px-2 py-1 __enableXr__"
                 // Per-item material; thin by default, but give hovered anchor a stronger look
@@ -35,7 +35,7 @@ export default function Navbar() {
               >
                 {label}
                 <span className="absolute left-0 bottom-0 w-full h-0.5 bg-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              </Link>
+              </SafeLink>
             </li>
           ))}
         </ul>
@@ -47,14 +47,14 @@ export default function Navbar() {
           <ul className="px-4 py-2 space-y-2 text-white">
             {navItems.map(({ label, href }, i) => (
               <li key={i}>
-                <Link
+                <SafeLink
                   href={href}
                   className="block text-sm uppercase font-medium tracking-wider hover:text-purple transition duration-300 rounded-xl px-2 py-2 __enableXr__"
                   onClick={() => setIsMenuOpen(false)}
                   style={{ ['--xr-background-material' as any]: 'thin' }}
                 >
                   {label}
-                </Link>
+                </SafeLink>
               </li>
             ))}
           </ul>

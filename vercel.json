@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/webspatial/avp", "destination": "/" },
-    { "source": "/webspatial/avp/(.*)", "destination": "/$1" }
-  ]
-}

@@ -34,7 +34,7 @@ const Hero = () => {
               {navItems.map(({ label, href }, index) => (
                 <li key={index} className="relative group">
                   <Link
-                    href={href}
+                    href={href || '#'}
                     className="text-sm uppercase font-medium tracking-wider group-hover:text-purple transition duration-300"
                   >
                     {label}
@@ -118,7 +118,7 @@ const MobileMenu = ({ isOpen, closeMenu }: MobileMenuProps) => {
         {navItems.map(({ label, href }, index) => (
           <li key={index} className="relative group">
             <Link
-              href={href}
+              href={href || '#'}
               className="text-3xl uppercase tracking-wider group-hover:text-purple transition duration-300"
             >
               {label}
