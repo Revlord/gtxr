@@ -7,6 +7,7 @@
     "dev": "next dev",
     "dev:avp": "XR_ENV=avp NEXT_USE_TURBOPACK=0 next dev",
     "build": "next build",
+    "build:web": "next build --config next.config.web.mjs",
     "build:avp": "XR_ENV=avp NEXT_USE_TURBOPACK=0 next build",
     "start": "next start",
     "lint": "next lint",

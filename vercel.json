@@ -1,9 +1,5 @@
 {
-  "buildCommand": "next build",
+  "buildCommand": "npm run build:web",
   "outputDirectory": ".next",
-  "framework": "nextjs",
-  "installCommand": "npm install",
-  "env": {
-    "NEXT_USE_TURBOPACK": "0"
-  }
+  "framework": "nextjs"
 }
