@@ -28,7 +28,7 @@ export default function Navbar() {
           {navItems.map(({ label, href }, i) => (
             <li key={i} className="relative group">
               <SafeLink
-                href={href}
+                href={href ?? "/"}
                 className="text-sm uppercase font-medium tracking-wider hover:text-purple transition duration-300 rounded-xl px-2 py-1 __enableXr__"
                 // Per-item material; thin by default, but give hovered anchor a stronger look
                 style={{ ['--xr-background-material' as any]: 'transparent' }}
@@ -48,7 +48,7 @@ export default function Navbar() {
             {navItems.map(({ label, href }, i) => (
               <li key={i}>
                 <SafeLink
-                  href={href}
+                  href={href ?? "/"}
                   className="block text-sm uppercase font-medium tracking-wider hover:text-purple transition duration-300 rounded-xl px-2 py-2 __enableXr__"
                   onClick={() => setIsMenuOpen(false)}
                   style={{ ['--xr-background-material' as any]: 'thin' }}

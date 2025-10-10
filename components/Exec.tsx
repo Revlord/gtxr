@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import SafeLink from "./ui/safe-link";
 import { execMembers } from "@/data";
 import { HoverEffect } from "./ui/card-hover-effect";
 import React from "react";
@@ -40,13 +40,13 @@ export default function Exec() {
 
         {/* Spatial action row */}
         <div className="mt-10 flex items-center justify-center gap-3">
-          <Link 
+          <SafeLink 
             href="/about"
             className="rounded-full px-5 py-2 border border-white/20 text-white hover:bg-white/10 __enableXr__"
             style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 30, cursor: "pointer" }}
           >
             Meet the team
-          </Link>
+          </SafeLink>
 
           <XrWindowLink
             href="/about"

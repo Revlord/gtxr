@@ -55,6 +55,9 @@ export default function XrWindowLink({
   }
 
   // Web fallback: standard new tab
+  // If someone ever passed an empty href, don't crash the page.
+  if (!href) return <span className={className} style={style}>{children}</span>;
+  
   return (
     <Link href={href} target="_blank" rel="noopener noreferrer" className={className} style={style}>
       {children}

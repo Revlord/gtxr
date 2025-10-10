@@ -4,7 +4,6 @@ import AboutUsCard from "./ui/about-us-card";
 import { PinContainer } from "./ui/3d-pin";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { getAssetPath } from "@/utils/handleBasePath";
-import XrSidePanel from "./ui/xr-side-panel";
 
 const AboutUs = () => {
     return (
@@ -102,10 +101,6 @@ const AboutUs = () => {
                     </PinContainer>
                 </div>
             </div>
-            
-            <XrSidePanel routeTo="/sponsorships" title="Quick Actions">
-            <p>Tip: pin this window in your space and browse our sponsors in another Scene.</p>
-            </XrSidePanel>
 
         </div>
     );

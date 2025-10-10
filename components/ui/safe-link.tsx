@@ -1,28 +1,26 @@
 "use client";
+import Link, { type LinkProps } from "next/link";
+import * as React from "react";
 
-import Link from "next/link";
-import { ComponentProps } from "react";
+/** Safe wrapper: never passes undefined to <Link>. */
+type AnchorProps = React.ComponentPropsWithoutRef<"a">;
+type Props = Omit<AnchorProps, "href"> & { href?: LinkProps["href"] };
 
-type SafeLinkProps = ComponentProps<typeof Link>;
+export default function SafeLink({ href, children, ...rest }: Props) {
+  // If there's no href, render a non-link to avoid Next runtime error.
+  if (!href) return <span {...rest}>{children}</span>;
 
-/**
- * SafeLink - A wrapper around Next.js Link that handles undefined href gracefully
- * Falls back to "#" if href is undefined to prevent runtime errors
- */
-export default function SafeLink({ href, children, ...props }: SafeLinkProps) {
-  // If href is undefined or null, use a safe fallback
-  const safeHref = href ?? "#";
-  
-  // Log warning in development if href is undefined
-  if (process.env.NODE_ENV === "development" && !href) {
-    console.warn("SafeLink: href prop is undefined, falling back to '#'", {
-      children,
-      props
-    });
+  // Allow hash/mailto/http as normal anchors without Next routing if you prefer:
+  if (typeof href === "string" && (/^#|^mailto:|^tel:/i).test(href)) {
+    return (
+      <a href={href} {...rest}>
+        {children}
+      </a>
+    );
   }
-  
+
   return (
-    <Link href={safeHref} {...props}>
+    <Link href={href} {...rest}>
       {children}
     </Link>
   );

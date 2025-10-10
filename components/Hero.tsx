@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import SafeLink from "./ui/safe-link";
 import { navItems } from "@/data";
 import { BackgroundBeams } from "./ui/background-beams";
 import { IconMenu2, IconX } from "@tabler/icons-react";
@@ -33,15 +33,15 @@ const Hero = () => {
             <ul className="sm:flex gap-x-6 text-white items-center justify-center w-full flex-wrap hidden">
               {navItems.map(({ label, href }, index) => (
                 <li key={index} className="relative group">
-                  <Link
-                    href={href || '#'}
+                  <SafeLink
+                    href={href ?? "/"}
                     className="text-sm uppercase font-medium tracking-wider group-hover:text-purple transition duration-300"
                   >
                     {label}
                     <span className="absolute left-0 -bottom-1 w-full h-1 bg-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out">
                       <span className="absolute left-0 top-1 w-full h-4 bg-gradient-to-b from-violet-600 to-transparent opacity-60"></span>
                     </span>
-                  </Link>
+                  </SafeLink>
                 </li>
               ))}
             </ul>
@@ -117,15 +117,15 @@ const MobileMenu = ({ isOpen, closeMenu }: MobileMenuProps) => {
       <ul className="w-full h-full flex flex-col gap-8 text-white items-center justify-center bg-violet-950">
         {navItems.map(({ label, href }, index) => (
           <li key={index} className="relative group">
-            <Link
-              href={href || '#'}
+            <SafeLink
+              href={href ?? "/"}
               className="text-3xl uppercase tracking-wider group-hover:text-purple transition duration-300"
             >
               {label}
               <span className="absolute left-0 -bottom-1 w-full h-1 bg-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out">
                 <span className="absolute left-0 top-1 w-full h-4 bg-gradient-to-b from-violet-600 to-transparent opacity-60"></span>
               </span>
-            </Link>
+            </SafeLink>
           </li>
         ))}
       </ul>
