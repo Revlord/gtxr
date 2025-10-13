@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build:web",
+  "buildCommand": "XR_ENV=avp npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs"
 }
