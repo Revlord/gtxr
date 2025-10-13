@@ -1,5 +1,5 @@
 {
   "buildCommand": "XR_ENV=avp npm run build",
-  "outputDirectory": ".next",
+  "outputDirectory": ".next/webspatial/avp",
   "framework": "nextjs"
 }
