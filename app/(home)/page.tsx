@@ -1,13 +1,13 @@
 import Footer from "@/components/Footer";
-import Hero from "@/components/Hero copy";
+import Hero from "@/components/Hero";
 import AboutUs from "@/components/AboutUs";
 
 export default function Home() {
-  return ( //tailwind works, so does its extension
-    <main>
+  return (
+    <main className="flex-1">
       <div className="min-h-screen flex flex-col bg-black">
-        <Hero/>
-        <AboutUs/>
+        <Hero />
+        <AboutUs />
         <Footer />
       </div>
     </main>

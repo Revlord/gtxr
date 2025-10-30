@@ -5,6 +5,7 @@ import React, { useRef, useState } from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { getAssetPath } from "@/utils/handleBasePath";
 import XrWindowLink from "@/components/ui/xr-window-link";
+import SafeLink from "./ui/safe-link";
 
 const xr = (styles: Record<string, string | number>) => styles as React.CSSProperties;
 
@@ -134,57 +135,48 @@ const XRZoomImage: React.FC<{
    2) PAGE SHELL
    ========================= */
 
-export function AppleCardsCarouselDemo() {
+export function AppleCardsCarouselDemo({ enableXr = false }: { enableXr?: boolean}) {
   const cards = data.map((card, index) => <Card key={card.src} card={card} index={index} />);
+  const xrCls = enableXr ? "__enableXr__" : "";
+  const xrs = (s: Record<string, any>) => (enableXr ? (s as React.CSSProperties) : undefined);
 
   return (
     <div
-      className="__enableXr__ w-full h-full py-20"
-      style={xr({
-        "--xr-background-material": "translucent",
-        "--xr-back": 20,
-      })}
+      className={`relative w-full h-full py-20 ${xrCls}`}
+      style={xrs({ "--xr-background-material": "translucent", "--xr-back": 20 })}
     >
-      {/* Floating header with depth */}
       <h2
-        className="__enableXr__ max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans text-center mb-8"
-        style={xr({ "--xr-background-material": "thick", "--xr-back": 60 })}
+        className={`max-w-7xl pl-4 mx-auto text-white text-xl md:text-2xl font-semibold ${xrCls}`}
+        style={xrs({ "--xr-background-material": "thick", "--xr-back": 60 })}
       >
         Our Projects range from XR research to fun VR applications!
       </h2>
 
       {/* Spatial action buttons */}
       <div className="mt-6 flex items-center justify-center gap-3 mb-8">
-        <a
-          href="/projects"
-          className="rounded-full px-5 py-2 border border-white/20 text-white hover:bg-white/10 __enableXr__"
-          style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 30, cursor: "pointer" }}
-        >
-          View Projects
-        </a>
 
         {/* NEW: opens the Spatial Board in its own spatial window every time */}
         <XrWindowLink
           href="/projects/board"
           forceNew
-          className="rounded-full px-5 py-2 bg-white/90 text-black font-semibold hover:bg-white __enableXr__"
-          style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 35, cursor: "pointer" }}
+          className={`rounded-full px-5 py-2 bg-white/90 text-black font-semibold hover:bg-white ${enableXr ? "__enableXr__" : ""}`}
+          style={enableXr ? ({ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 35, cursor: "pointer" }) : undefined}
         >
           Open Spatial Projects Board
         </XrWindowLink>
       </div>
 
-      {/* Sticky/hovering tips panel (XR-only visual) */}
       <div
-        className="__enableXr__ hidden xl:block fixed right-6 top-28 rounded-3xl px-5 py-4 text-sm text-zinc-100 bg-white/5 backdrop-blur"
-        style={xr({ "--xr-background-material": "regular", "--xr-back": 70, cursor: "pointer" })}
+        className="pointer-events-none hidden xl:block absolute right-6 top-28 rounded-3xl px-5 py-4 text-sm text-zinc-100 bg-white/5 backdrop-blur"
       >
-        Tip: pinch images to zoom • drag over cards to “peek”
+        <span>
+          Tip: pinch images to zoom • drag over cards to “peek”
+        </span>
       </div>
 
       {/* Carousel */}
-      <div className="__enableXr__" style={xr({ "--xr-background-material": "transparent", "--xr-back": 40 })}>
-        <Carousel items={cards} />
+      <div className={enableXr ? "__enableXr__" : ""} style={enableXr ? xr({ "--xr-background-material": "transparent", "--xr-back": 40 }) : undefined}>
+        <Carousel items={cards} disableXR={!enableXr} />
       </div>
     </div>
   );

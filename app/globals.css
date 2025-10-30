@@ -191,9 +191,17 @@ html.is-spatial {
 }
 
 /* Top nav elevated off the page, translucent “thin” material */
+/* Avoid sticky/transform issues under WebKit/VisionOS */
+.xr-nav {
+  position: sticky;
+  top: 0;
+}
+
 html.is-spatial .xr-nav {
   position: fixed;
   inset-inline: 0;
+  left: 0;
+  right: 0;
   top: 0;
   margin-inline: auto;
   border-radius: 28px;
@@ -434,4 +442,19 @@ html.is-spatial .xr-cta-glow { --xr-back: 70; --xr-background-material: thin; }
 /* Slight highlight on droplet hover (desktop) */
 @media (hover:hover) {
   .goo-drop:hover { filter: brightness(1.07); }
+}
+/* Default in spatial Safari: turn XR effects OFF */
+html.is-spatial .__enableXr__ {
+  /* neutralize “materials” so pages look normal */
+  --xr-background-material: initial !important;
+  --xr-back: initial !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important; /* Safari/visionOS */
+  background: transparent !important;
+}
+
+/* Only under the immersive shell do we turn XR ON */
+html.is-spatial .immersive .__enableXr__ {
+  /* restore whatever rules map your --xr-* tokens to the look you want */
+  /* e.g., backdrop-filter / -webkit-backdrop-filter, radii, shadows, etc. */
 }

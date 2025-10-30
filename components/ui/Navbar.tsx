@@ -9,8 +9,8 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    // Mark as spatial via class "__enableXr__" (or use enable-xr attr if you prefer)
-    <header className="__enableXr__ xr-nav bg-black/90 shadow-lg sticky top-0 w-full z-50">
+    // Keep navbar out of XR transforms so sticky/fixed positioning remains stable
+    <header className="xr-nav bg-black/90 shadow-lg w-full z-50">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <SafeLink href="/" className="transition duration-300 hover:opacity-80">
           <Image src={getAssetPath('/temp_logo.png')} alt="logo" width={100} height={55} className="rounded-full" />

@@ -37,26 +37,7 @@ export default function Exec() {
         </h2>
 
         <HoverEffect items={execProjects} />
-
-        {/* Spatial action row */}
-        <div className="mt-10 flex items-center justify-center gap-3">
-          <SafeLink 
-            href="/about"
-            className="rounded-full px-5 py-2 border border-white/20 text-white hover:bg-white/10 __enableXr__"
-            style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 30, cursor: "pointer" }}
-          >
-            Meet the team
-          </SafeLink>
-
-          <XrWindowLink
-            href="/about"
-            name="gtxr-team"
-            className="rounded-full px-5 py-2 bg-white/90 text-black font-semibold hover:bg-white __enableXr__"
-            style={{ ["--xr-background-material" as any]: "thin", ["--xr-back" as any]: 35, cursor: "pointer" }}
-          >
-            Open Team (New Window)
-          </XrWindowLink>
-        </div>
+        
       </div>
     </section>
   );
