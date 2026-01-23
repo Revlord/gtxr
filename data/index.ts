@@ -63,9 +63,21 @@ export const execMembers = [
     image: "/pritiv.jpg"
   },
   {
-    name: "Akshin Vemana",
-    role: "Beat Saber Coordinator",
+    name: "Alexa Shoop",
+    role: "Executive Member",
     bio: "",
-    image: "/akshin.png"
+    image: "/alexaGtxr.png"
+  },
+  {
+    name: "Steven Yoo",
+    role: "Executive Member",
+    bio: "",
+    image: "/stevenYooGtxr.png"
+  },
+  {
+    name: "Austin Graves",
+    role: "Executive Member",
+    bio: "",
+    image: "/austinGtxr.jpeg"
   },
 ];

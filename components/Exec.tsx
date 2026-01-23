@@ -17,7 +17,7 @@ export default function Exec() {
         <h2 className="text-6xl font-bold text-center mb-12">
           <span className="font-sans text-gray-400 ">Executive Board </span>
         </h2>
-        <HoverEffect items={execProjects} />
+        <HoverEffect items={execProjects} className="exec-grid" />
       </div>
     </section>
   );
